@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350">
+  <!-- Title -->
+  <text x="400" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#333">Physical AI in Action: Real-World Examples</text>
+
+  <!-- Boston Dynamics Spot -->
+  <rect x="30" y="50" width="170" height="140" rx="10" fill="#E8F5E9" stroke="#4CAF50" stroke-width="2"/>
+  <text x="115" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#2E7D32">Boston Dynamics</text>
+  <text x="115" y="92" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">Spot</text>
+  <text x="115" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Quadruped Robot</text>
+  <text x="50" y="140" font-family="Arial, sans-serif" font-size="9" fill="#333">• Industrial inspection</text>
+  <text x="50" y="155" font-family="Arial, sans-serif" font-size="9" fill="#333">• Construction sites</text>
+  <text x="50" y="170" font-family="Arial, sans-serif" font-size="9" fill="#333">• Autonomous patrol</text>
+
+  <!-- Intuitive Surgical -->
+  <rect x="220" y="50" width="170" height="140" rx="10" fill="#E3F2FD" stroke="#2196F3" stroke-width="2"/>
+  <text x="305" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1565C0">Intuitive Surgical</text>
+  <text x="305" y="92" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">da Vinci</text>
+  <text x="305" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Surgical Robot</text>
+  <text x="240" y="140" font-family="Arial, sans-serif" font-size="9" fill="#333">• Minimally invasive</text>
+  <text x="240" y="155" font-family="Arial, sans-serif" font-size="9" fill="#333">• Surgeon teleoperation</text>
+  <text x="240" y="170" font-family="Arial, sans-serif" font-size="9" fill="#333">• 7M+ procedures</text>
+
+  <!-- Tesla Optimus -->
+  <rect x="410" y="50" width="170" height="140" rx="10" fill="#FFF3E0" stroke="#FF9800" stroke-width="2"/>
+  <text x="495" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#E65100">Tesla</text>
+  <text x="495" y="92" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">Optimus</text>
+  <text x="495" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Humanoid Robot</text>
+  <text x="430" y="140" font-family="Arial, sans-serif" font-size="9" fill="#333">• Factory assistance</text>
+  <text x="430" y="155" font-family="Arial, sans-serif" font-size="9" fill="#333">• Home tasks</text>
+  <text x="430" y="170" font-family="Arial, sans-serif" font-size="9" fill="#333">• General purpose</text>
+
+  <!-- Figure -->
+  <rect x="600" y="50" width="170" height="140" rx="10" fill="#F3E5F5" stroke="#9C27B0" stroke-width="2"/>
+  <text x="685" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#7B1FA2">Figure AI</text>
+  <text x="685" y="92" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">Figure 01</text>
+  <text x="685" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Humanoid Robot</text>
+  <text x="620" y="140" font-family="Arial, sans-serif" font-size="9" fill="#333">• Warehouse logistics</text>
+  <text x="620" y="155" font-family="Arial, sans-serif" font-size="9" fill="#333">• BMW partnership</text>
+  <text x="620" y="170" font-family="Arial, sans-serif" font-size="9" fill="#333">• LLM integration</text>
+
+  <!-- Second row -->
+  <!-- Waymo -->
+  <rect x="125" y="210" width="170" height="120" rx="10" fill="#FFEBEE" stroke="#F44336" stroke-width="2"/>
+  <text x="210" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#C62828">Waymo</text>
+  <text x="210" y="252" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">Self-Driving</text>
+  <text x="210" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Autonomous Vehicle</text>
+  <text x="145" y="300" font-family="Arial, sans-serif" font-size="9" fill="#333">• Robotaxi service</text>
+  <text x="145" y="315" font-family="Arial, sans-serif" font-size="9" fill="#333">• 20M+ miles driven</text>
+
+  <!-- Amazon Robotics -->
+  <rect x="315" y="210" width="170" height="120" rx="10" fill="#E0F7FA" stroke="#00BCD4" stroke-width="2"/>
+  <text x="400" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#00838F">Amazon</text>
+  <text x="400" y="252" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">Warehouse Bots</text>
+  <text x="400" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Logistics Robots</text>
+  <text x="335" y="300" font-family="Arial, sans-serif" font-size="9" fill="#333">• 750K+ robots deployed</text>
+  <text x="335" y="315" font-family="Arial, sans-serif" font-size="9" fill="#333">• Item sorting/moving</text>
+
+  <!-- Agility Digit -->
+  <rect x="505" y="210" width="170" height="120" rx="10" fill="#FFF8E1" stroke="#FFC107" stroke-width="2"/>
+  <text x="590" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FF8F00">Agility Robotics</text>
+  <text x="590" y="252" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">Digit</text>
+  <text x="590" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Bipedal Robot</text>
+  <text x="525" y="300" font-family="Arial, sans-serif" font-size="9" fill="#333">• Package handling</text>
+  <text x="525" y="315" font-family="Arial, sans-serif" font-size="9" fill="#333">• Real deployments</text>
+</svg>

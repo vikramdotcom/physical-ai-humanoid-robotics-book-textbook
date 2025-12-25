@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(git fetch:*)",
+      "Bash(pwsh -File:*)",
+      "Bash(git checkout:*)",
+      "Bash(npx create-docusaurus@latest website classic --typescript --skip-install)",
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(cat:*)"
+    ]
+  }
+}

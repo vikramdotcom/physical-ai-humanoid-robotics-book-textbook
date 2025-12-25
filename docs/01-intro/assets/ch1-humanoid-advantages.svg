@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="adv1Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8F5E9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A5D6A7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="adv2Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E3F2FD;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#90CAF9;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="adv3Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F3E5F5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#CE93D8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#333">Three Key Advantages of Humanoid Robots</text>
+
+  <!-- Advantage 1: Human Environments -->
+  <rect x="30" y="60" width="230" height="310" rx="15" fill="url(#adv1Grad)" stroke="#388E3C" stroke-width="3"/>
+  <text x="145" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1B5E20">Advantage 1</text>
+
+  <!-- House Icon -->
+  <path d="M145 120 L100 160 L100 200 L190 200 L190 160 Z" fill="#4CAF50" opacity="0.3" stroke="#2E7D32" stroke-width="2"/>
+  <rect x="130" y="175" width="30" height="25" fill="#2E7D32"/>
+
+  <text x="145" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#2E7D32">Human Environments</text>
+
+  <text x="45" y="250" font-family="Arial, sans-serif" font-size="10" fill="#333">• Doors, stairs, furniture</text>
+  <text x="45" y="268" font-family="Arial, sans-serif" font-size="10" fill="#333">• Built for human scale</text>
+  <text x="45" y="286" font-family="Arial, sans-serif" font-size="10" fill="#333">• No infrastructure changes</text>
+  <text x="45" y="304" font-family="Arial, sans-serif" font-size="10" fill="#333">• Bipedal navigation</text>
+
+  <text x="45" y="340" font-family="Arial, sans-serif" font-size="9" fill="#666" font-style="italic">Wheeled robots can't climb</text>
+  <text x="45" y="355" font-family="Arial, sans-serif" font-size="9" fill="#666" font-style="italic">stairs or navigate narrow spaces</text>
+
+  <!-- Advantage 2: Human Interaction -->
+  <rect x="285" y="60" width="230" height="310" rx="15" fill="url(#adv2Grad)" stroke="#1976D2" stroke-width="3"/>
+  <text x="400" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#0D47A1">Advantage 2</text>
+
+  <!-- Human + Robot Icons -->
+  <circle cx="370" cy="150" r="20" fill="#2196F3" opacity="0.3" stroke="#1565C0" stroke-width="2"/>
+  <line x1="370" y1="170" x2="370" y2="200" stroke="#1565C0" stroke-width="2"/>
+  <line x1="350" y1="180" x2="390" y2="180" stroke="#1565C0" stroke-width="2"/>
+
+  <circle cx="430" cy="150" r="20" fill="#90CAF9" stroke="#1565C0" stroke-width="2"/>
+  <rect x="420" y="170" width="20" height="30" fill="#90CAF9" stroke="#1565C0" stroke-width="2"/>
+
+  <!-- Arrow between -->
+  <path d="M390 165 Q400 165 410 165" stroke="#1565C0" stroke-width="2" fill="none" stroke-dasharray="3,3"/>
+
+  <text x="400" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1565C0">Natural Interaction</text>
+
+  <text x="300" y="250" font-family="Arial, sans-serif" font-size="10" fill="#333">• Intuitive for humans</text>
+  <text x="300" y="268" font-family="Arial, sans-serif" font-size="10" fill="#333">• Gesture communication</text>
+  <text x="300" y="286" font-family="Arial, sans-serif" font-size="10" fill="#333">• Eye contact possible</text>
+  <text x="300" y="304" font-family="Arial, sans-serif" font-size="10" fill="#333">• Less intimidating</text>
+
+  <text x="300" y="340" font-family="Arial, sans-serif" font-size="9" fill="#666" font-style="italic">People naturally understand</text>
+  <text x="300" y="355" font-family="Arial, sans-serif" font-size="9" fill="#666" font-style="italic">human-like body language</text>
+
+  <!-- Advantage 3: Human Data -->
+  <rect x="540" y="60" width="230" height="310" rx="15" fill="url(#adv3Grad)" stroke="#7B1FA2" stroke-width="3"/>
+  <text x="655" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#4A148C">Advantage 3</text>
+
+  <!-- Data/Learning Icon -->
+  <rect x="620" y="120" width="70" height="50" rx="5" fill="#9C27B0" opacity="0.3" stroke="#6A1B9A" stroke-width="2"/>
+  <text x="655" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#4A148C">VIDEO</text>
+  <path d="M630 180 L655 195 L680 180" stroke="#6A1B9A" stroke-width="2" fill="none"/>
+  <circle cx="655" cy="200" r="3" fill="#6A1B9A"/>
+
+  <text x="655" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#6A1B9A">Human Demo Data</text>
+
+  <text x="555" y="250" font-family="Arial, sans-serif" font-size="10" fill="#333">• Learn from human videos</text>
+  <text x="555" y="268" font-family="Arial, sans-serif" font-size="10" fill="#333">• Imitation learning</text>
+  <text x="555" y="286" font-family="Arial, sans-serif" font-size="10" fill="#333">• Teleoperation transfer</text>
+  <text x="555" y="304" font-family="Arial, sans-serif" font-size="10" fill="#333">• Massive data available</text>
+
+  <text x="555" y="340" font-family="Arial, sans-serif" font-size="9" fill="#666" font-style="italic">Internet full of human motion</text>
+  <text x="555" y="355" font-family="Arial, sans-serif" font-size="9" fill="#666" font-style="italic">data to train robots</text>
+</svg>

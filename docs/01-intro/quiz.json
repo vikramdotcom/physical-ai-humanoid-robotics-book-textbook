@@ -1,0 +1,157 @@
+{
+  "chapterId": "chapter1",
+  "passingScore": 70,
+  "targetScore": 85,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "multiple-choice",
+      "question": "What is the key characteristic that distinguishes Physical AI from Digital AI?",
+      "options": [
+        "A. Physical AI uses more computing power",
+        "B. Physical AI is embodied and interacts with the real world",
+        "C. Physical AI only works with robots",
+        "D. Physical AI doesn't use machine learning"
+      ],
+      "correctAnswer": "B",
+      "sectionRef": "01-theory.mdx",
+      "explanation": "Physical AI refers to AI systems that are embodied—they have a physical presence and can perceive, reason about, and act upon their environment, unlike Digital AI which operates purely in the digital realm.",
+      "learningObjectiveRef": "LO1"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "question": "Which of the following is an example of Physical AI?",
+      "options": [
+        "A. ChatGPT",
+        "B. Netflix recommendation engine",
+        "C. Boston Dynamics Spot robot",
+        "D. Google Search"
+      ],
+      "correctAnswer": "C",
+      "sectionRef": "01-theory.mdx",
+      "explanation": "Boston Dynamics Spot is a Physical AI system because it's an embodied robot that perceives and acts in the real world. The other options are Digital AI systems that process information without physical interaction.",
+      "learningObjectiveRef": "LO1"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "question": "What are the main components of the Physical AI stack in order?",
+      "options": [
+        "A. Planning → Perception → Control → Actuation",
+        "B. Sensors → Perception → Planning → Control → Actuation",
+        "C. Actuation → Control → Planning → Perception",
+        "D. Perception → Actuation → Planning → Control"
+      ],
+      "correctAnswer": "B",
+      "sectionRef": "01-theory.mdx",
+      "explanation": "The Physical AI stack follows: Sensors (capture world state) → Perception (interpret sensor data) → Planning (decide actions) → Control (execute plans) → Actuation (physical movement), forming a closed loop with the environment.",
+      "learningObjectiveRef": "LO1"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "question": "What is one key advantage of humanoid robots related to human environments?",
+      "options": [
+        "A. They are cheaper to build than wheeled robots",
+        "B. They can navigate stairs, doors, and human-scale spaces without modifications",
+        "C. They are faster than quadruped robots",
+        "D. They require less computing power"
+      ],
+      "correctAnswer": "B",
+      "sectionRef": "02-why-humanoids.mdx",
+      "explanation": "Humanoid robots can operate in human environments (stairs, doorways, furniture) without infrastructure modifications because their form matches the assumptions built into our world. Wheeled robots would need ramps and wider passages.",
+      "learningObjectiveRef": "LO2"
+    },
+    {
+      "id": "q5",
+      "type": "multiple-choice",
+      "question": "Why is the humanoid form factor advantageous for human-robot interaction?",
+      "options": [
+        "A. Humanoids can speak more languages",
+        "B. Humans naturally understand human-like body language and gestures",
+        "C. Humanoids are always smaller than other robots",
+        "D. Humanoids don't need programming"
+      ],
+      "correctAnswer": "B",
+      "sectionRef": "02-why-humanoids.mdx",
+      "explanation": "Humans have evolved to understand human body language, gestures, and movement. A humanoid robot can leverage this innate understanding, making interaction more intuitive and less intimidating.",
+      "learningObjectiveRef": "LO2"
+    },
+    {
+      "id": "q6",
+      "type": "multiple-choice",
+      "question": "How can humanoid robots leverage human demonstration data for learning?",
+      "options": [
+        "A. They cannot use human data at all",
+        "B. Human motion videos can be directly used for imitation learning due to similar kinematics",
+        "C. Only real robot demonstrations work",
+        "D. Human data must be completely recreated in simulation first"
+      ],
+      "correctAnswer": "B",
+      "sectionRef": "02-why-humanoids.mdx",
+      "explanation": "Because humanoid robots have similar body structure to humans, the billions of hours of human motion video (YouTube, movies, etc.) can be used for imitation learning. This 'data advantage' is unique to humanoid form factors.",
+      "learningObjectiveRef": "LO2"
+    },
+    {
+      "id": "q7",
+      "type": "multiple-choice",
+      "question": "Which simulation platform is known for GPU-accelerated parallel training of thousands of robots?",
+      "options": [
+        "A. Gazebo",
+        "B. NVIDIA Isaac Lab",
+        "C. PyBullet",
+        "D. Unity"
+      ],
+      "correctAnswer": "B",
+      "sectionRef": "03-tech-stack.mdx",
+      "explanation": "NVIDIA Isaac Lab (formerly Isaac Gym) is designed for GPU-accelerated physics simulation, allowing training of thousands of robot instances in parallel. This massively speeds up reinforcement learning for locomotion and manipulation.",
+      "learningObjectiveRef": "LO3"
+    },
+    {
+      "id": "q8",
+      "type": "multiple-choice",
+      "question": "What is the 'sim-to-real gap' in Physical AI?",
+      "options": [
+        "A. The time it takes to transfer files from simulation to robot",
+        "B. The difference between simulation physics/sensors and real-world conditions",
+        "C. The gap between robot and human intelligence",
+        "D. The distance a simulated robot can travel"
+      ],
+      "correctAnswer": "B",
+      "sectionRef": "03-tech-stack.mdx",
+      "explanation": "The sim-to-real gap refers to the difference between idealized simulation (perfect sensors, known physics) and messy reality (sensor noise, unknown dynamics, real damage). Bridging this gap through domain randomization and other techniques is a key challenge.",
+      "learningObjectiveRef": "LO3"
+    },
+    {
+      "id": "q9",
+      "type": "multiple-choice",
+      "question": "In the textbook's 4-phase structure, which phase covers reinforcement learning for locomotion?",
+      "options": [
+        "A. Phase 1: Foundation",
+        "B. Phase 2: Core AI",
+        "C. Phase 3: Systems Integration",
+        "D. Phase 4: Deployment"
+      ],
+      "correctAnswer": "B",
+      "sectionRef": "04-roadmap.mdx",
+      "explanation": "Phase 2 (Core AI) covers the AI techniques including Chapter 4 on RL Locomotion. Phase 1 is Foundation, Phase 3 is Systems Integration, and Phase 4 is Deployment.",
+      "learningObjectiveRef": "LO4"
+    },
+    {
+      "id": "q10",
+      "type": "multiple-choice",
+      "question": "Which chapters can be studied in parallel after completing Phase 1 (Chapters 1-3)?",
+      "options": [
+        "A. Chapters 7 and 8",
+        "B. Chapters 4 and 6",
+        "C. Chapters 10 and 11",
+        "D. Chapters 1 and 2"
+      ],
+      "correctAnswer": "B",
+      "sectionRef": "04-roadmap.mdx",
+      "explanation": "After completing Phase 1 (Chapters 1-3), both Chapter 4 (RL Locomotion) and Chapter 6 (Perception) can be studied in parallel since they don't depend on each other. Chapter 5 requires Chapter 4, and Chapters 7+ require earlier phases.",
+      "learningObjectiveRef": "LO4"
+    }
+  ]
+}

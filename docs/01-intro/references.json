@@ -1,0 +1,77 @@
+[
+  {
+    "id": "ref1",
+    "type": "peer-reviewed",
+    "authors": ["J. Duan", "S. Yu", "H. L. Tan", "H. Zhu", "C. Tan"],
+    "title": "A Survey of Embodied AI: From Simulators to Research Tasks",
+    "venue": "IEEE Transactions on Emerging Topics in Computational Intelligence",
+    "year": 2022,
+    "doi": "10.1109/TETCI.2022.3141105"
+  },
+  {
+    "id": "ref2",
+    "type": "peer-reviewed",
+    "authors": ["R. A. Brooks"],
+    "title": "Intelligence Without Representation",
+    "venue": "Artificial Intelligence",
+    "year": 1991,
+    "pages": "139-159",
+    "doi": "10.1016/0004-3702(91)90053-M"
+  },
+  {
+    "id": "ref3",
+    "type": "peer-reviewed",
+    "authors": ["K. Harada", "E. Yoshida", "K. Yokoi"],
+    "title": "Motion Planning for Humanoid Robots",
+    "venue": "Springer Handbook of Robotics",
+    "year": 2016,
+    "pages": "1469-1492",
+    "doi": "10.1007/978-3-319-32552-1_56"
+  },
+  {
+    "id": "ref4",
+    "type": "peer-reviewed",
+    "authors": ["S. Kajita", "H. Hirukawa", "K. Harada", "K. Yokoi"],
+    "title": "Introduction to Humanoid Robotics",
+    "venue": "Springer Tracts in Advanced Robotics",
+    "year": 2014,
+    "doi": "10.1007/978-3-642-54536-8"
+  },
+  {
+    "id": "ref5",
+    "type": "official-docs",
+    "authors": ["NVIDIA"],
+    "title": "Isaac Lab Documentation",
+    "venue": "NVIDIA Developer",
+    "year": 2024,
+    "url": "https://isaac-sim.github.io/IsaacLab/"
+  },
+  {
+    "id": "ref6",
+    "type": "official-docs",
+    "authors": ["DeepMind"],
+    "title": "MuJoCo Documentation",
+    "venue": "MuJoCo",
+    "year": 2024,
+    "url": "https://mujoco.readthedocs.io/"
+  },
+  {
+    "id": "ref7",
+    "type": "official-docs",
+    "authors": ["Open Robotics"],
+    "title": "ROS 2 Documentation",
+    "venue": "ROS 2 Humble",
+    "year": 2024,
+    "url": "https://docs.ros.org/en/humble/"
+  },
+  {
+    "id": "ref8",
+    "type": "peer-reviewed",
+    "authors": ["J. Tobin", "R. Fong", "A. Ray", "J. Schneider", "W. Zaremba", "P. Abbeel"],
+    "title": "Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World",
+    "venue": "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)",
+    "year": 2017,
+    "pages": "23-30",
+    "doi": "10.1109/IROS.2017.8202133"
+  }
+]
