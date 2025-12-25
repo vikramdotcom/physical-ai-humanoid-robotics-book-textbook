@@ -62,7 +62,7 @@ const config: Config = {
           label: 'Chapters',
         },
         {
-          href: 'https://github.com/vikramdotcom/ai-book',
+          href: 'https://github.com/vikramdotcom/physical-ai-humanoid-robotics-book-textbook',
           label: 'GitHub',
           position: 'right',
         },
