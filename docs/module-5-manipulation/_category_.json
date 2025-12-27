@@ -1,0 +1,22 @@
+{
+  "label": "Module 5: Manipulation and Interaction",
+  "position": 6,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "description": "Robot manipulation capabilities, from grasping objects to complex assembly tasks and safe human interaction.",
+    "keywords": ["manipulation", "grasping", "dexterous-manipulation", "human-robot-interaction", "teleoperation"]
+  },
+  "customProps": {
+    "module_number": 5,
+    "chapter_count": 6,
+    "prerequisites": ["Modules 3 and 4"],
+    "learning_outcomes": [
+      "Understand grasping fundamentals and grasp planning",
+      "Implement manipulation planning algorithms",
+      "Describe physical human-robot interaction safety",
+      "Design teleoperation and shared autonomy systems"
+    ]
+  }
+}

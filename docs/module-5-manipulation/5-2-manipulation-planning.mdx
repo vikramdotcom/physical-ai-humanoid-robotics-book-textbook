@@ -1,0 +1,143 @@
+---
+id: "5-2-manipulation-planning"
+title: "Manipulation Planning"
+sidebar_label: "5.2 Manipulation Planning"
+sidebar_position: 2
+description: "Pick-and-place, motion primitives, and task-level planning"
+keywords: [manipulation, pick-place, motion-primitives, task-planning]
+module: 5
+chapter: 2
+reading_time: 20
+difficulty: "intermediate"
+prerequisites: ["5-1-grasping-fundamentals", "4-3-motion-planning-fundamentals"]
+learning_objectives: ["Plan pick-and-place operations", "Use motion primitives", "Apply task-level planning"]
+simulation_lab: {platform: "colab", estimated_time: 30}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 30}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Manipulation Planning
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Plan pick-and-place operations
+- Use motion primitives
+- Apply task-level planning
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+---
+
+## Introduction
+
+Manipulation planning combines grasp planning with motion planning to accomplish tasks like picking up objects and placing them.
+
+<RAGZone id="introduction"></RAGZone>
+
+---
+
+## Theory Content
+
+### Section 1: Pick-and-Place
+
+The basic manipulation sequence: approach, grasp, lift, transport, lower, release. Each phase requires planning.
+
+### Section 2: Motion Primitives
+
+Reusable motion patterns (reach, grasp, lift) that can be combined for complex tasks.
+
+### Section 3: Task Planning
+
+High-level planning decomposes goals into manipulation sequences using symbolic reasoning.
+
+<RAGZone id="theory-content"></RAGZone>
+
+---
+
+## Simulation Lab
+
+```python
+# Pick-and-place sequence
+sequence = ['approach', 'pre_grasp', 'grasp', 'lift', 'transport', 'lower', 'release', 'retract']
+print("Pick-and-Place Sequence:")
+for i, step in enumerate(sequence, 1):
+    print(f"  {i}. {step}")
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+---
+
+## Hardware Lab
+
+```bash
+ros2 pkg list | grep moveit
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+---
+
+## Case Study
+
+MoveIt2 provides manipulation planning capabilities used in industrial and research robots worldwide.
+
+<RAGZone id="case-study"></RAGZone>
+
+---
+
+## Summary
+
+Manipulation planning enables robots to perform useful tasks by combining grasping and motion planning.
+
+---
+
+## Quiz
+
+### Question 1
+Pick-and-place includes?
+A) Only picking B) Approach, grasp, transport, place C) Only placing D) No motion
+<details><summary>Answer</summary>**B**: Complete operation includes all phases from approach to release.</details>
+
+### Question 2
+Motion primitives are?
+A) Random motions B) Reusable motion patterns C) Single joint moves D) No motion
+<details><summary>Answer</summary>**B**: Primitives are reusable building blocks for complex tasks.</details>
+
+### Question 3
+Task planning uses?
+A) Random selection B) Symbolic reasoning C) No planning D) Manual control only
+<details><summary>Answer</summary>**B**: Task planning reasons about goal decomposition symbolically.</details>
+
+### Question 4
+Pre-grasp pose is?
+A) After grasping B) Position before closing gripper C) Final position D) Home position
+<details><summary>Answer</summary>**B**: Pre-grasp positions the gripper before closing on the object.</details>
+
+### Question 5
+MoveIt2 provides?
+A) Only visualization B) Motion and manipulation planning C) Power management D) Network configuration
+<details><summary>Answer</summary>**B**: MoveIt2 is a comprehensive motion planning framework.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+---
+
+## References
+
+[1] MoveIt Documentation, Open Robotics, 2024.
+
+## Further Reading
+
+- MoveIt2 tutorials

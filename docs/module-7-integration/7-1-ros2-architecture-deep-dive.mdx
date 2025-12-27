@@ -1,0 +1,132 @@
+---
+id: "7-1-ros2-architecture-deep-dive"
+title: "ROS2 Architecture Deep Dive"
+sidebar_label: "7.1 ROS2 Architecture"
+sidebar_position: 1
+description: "Nodes, topics, services, actions, and lifecycle management"
+keywords: [ROS2, nodes, topics, services, actions]
+module: 7
+chapter: 1
+reading_time: 25
+difficulty: "intermediate"
+prerequisites: ["1-5-programming-fundamentals"]
+learning_objectives: ["Master ROS2 core concepts", "Design robot software architecture"]
+simulation_lab: {platform: "colab", estimated_time: 30}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 35}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# ROS2 Architecture Deep Dive
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Master ROS2 nodes, topics, services, and actions
+- Design modular robot software
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+## Introduction
+
+ROS2 is the standard framework for robot software. Understanding its architecture enables building scalable, maintainable robotic systems.
+
+<RAGZone id="introduction"></RAGZone>
+
+## Theory Content
+
+### Nodes
+Independent processes performing specific functions. Promote modularity and reuse.
+
+### Topics
+Pub/sub channels for streaming data (sensor readings, commands).
+
+### Services
+Synchronous request/response for queries and commands.
+
+### Actions
+Long-running tasks with feedback and cancellation.
+
+<RAGZone id="theory-content"></RAGZone>
+
+## Simulation Lab
+
+```python
+# ROS2 communication patterns
+patterns = {
+    'Topic': 'Streaming data (sensors, commands)',
+    'Service': 'Request-response (queries)',
+    'Action': 'Long tasks with feedback'
+}
+for p, desc in patterns.items():
+    print(f"{p}: {desc}")
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+## Hardware Lab
+
+```bash
+ros2 node list
+ros2 topic list
+ros2 service list
+ros2 action list
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+## Case Study
+
+Navigation2 uses ROS2 actions for autonomous navigation with goal feedback.
+
+<RAGZone id="case-study"></RAGZone>
+
+## Summary
+
+ROS2's architecture provides flexible, robust communication for complex robot systems.
+
+## Quiz
+
+### Question 1
+Topics are for?
+A) One-time queries B) Streaming data C) Long tasks D) Storage
+<details><summary>Answer</summary>**B**: Topics stream continuous data.</details>
+
+### Question 2
+Services provide?
+A) Streaming B) Request-response C) File storage D) Network config
+<details><summary>Answer</summary>**B**: Services handle synchronous requests.</details>
+
+### Question 3
+Actions support?
+A) Only start B) Start, feedback, cancel C) Storage only D) No feedback
+<details><summary>Answer</summary>**B**: Actions provide feedback and cancellation for long tasks.</details>
+
+### Question 4
+Nodes promote?
+A) Monolithic code B) Modularity C) Single process D) No structure
+<details><summary>Answer</summary>**B**: Nodes enable modular, reusable code.</details>
+
+### Question 5
+ROS2 uses which middleware?
+A) HTTP B) DDS C) FTP D) SMTP
+<details><summary>Answer</summary>**B**: ROS2 uses DDS (Data Distribution Service).</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+## References
+
+[1] Open Robotics, "ROS2 Documentation," 2024.
+
+## Further Reading
+
+- ROS2 tutorials

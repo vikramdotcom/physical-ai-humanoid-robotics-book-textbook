@@ -1,0 +1,162 @@
+---
+id: "3-3-computer-vision-robotics"
+title: "Computer Vision for Robotics"
+sidebar_label: "3.3 Computer Vision"
+sidebar_position: 3
+description: "Image processing, object detection, and segmentation for robotic applications"
+keywords: [computer-vision, object-detection, segmentation, deep-learning]
+module: 3
+chapter: 3
+reading_time: 25
+difficulty: "intermediate"
+prerequisites: ["3-2-vision-systems"]
+learning_objectives:
+  - "Apply image processing techniques for robotics"
+  - "Implement object detection algorithms"
+  - "Understand semantic segmentation for scene understanding"
+simulation_lab: {platform: "colab", estimated_time: 35}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 30}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Computer Vision for Robotics
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Apply image processing techniques for robotics
+- Implement object detection algorithms
+- Understand semantic segmentation for scene understanding
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+---
+
+## Introduction
+
+Computer vision transforms raw images into actionable information for robots. Modern deep learning has revolutionized what robots can perceive and understand.
+
+<RAGZone id="introduction"></RAGZone>
+
+---
+
+## Theory Content
+
+### Section 1: Image Processing Basics
+
+Fundamental operations include filtering, edge detection, color space conversion, and morphological operations that prepare images for higher-level processing.
+
+### Section 2: Object Detection
+
+Modern detectors like YOLO, Faster R-CNN, and DETR identify and localize objects in images. These enable robots to find and interact with specific objects.
+
+### Section 3: Semantic Segmentation
+
+Segmentation assigns class labels to every pixel, enabling detailed scene understanding for navigation and manipulation planning.
+
+<RAGZone id="theory-content"></RAGZone>
+
+---
+
+## Simulation Lab
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Simple edge detection simulation
+image = np.zeros((100, 100))
+image[30:70, 30:70] = 1.0  # White square
+
+# Sobel-like edge detection
+edges = np.abs(np.diff(image, axis=0))[:, :-1] + np.abs(np.diff(image, axis=1))[:-1, :]
+
+fig, axes = plt.subplots(1, 2, figsize=(10, 5))
+axes[0].imshow(image, cmap='gray')
+axes[0].set_title('Original')
+axes[1].imshow(edges, cmap='gray')
+axes[1].set_title('Edges')
+plt.show()
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+---
+
+## Hardware Lab
+
+```bash
+# ROS2 vision packages
+ros2 pkg list | grep vision
+ros2 interface show vision_msgs/msg/Detection2D
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+---
+
+## Case Study
+
+Amazon's warehouse robots use computer vision to identify products, read barcodes, and navigate among shelves using a combination of classical and deep learning methods.
+
+<RAGZone id="case-study"></RAGZone>
+
+---
+
+## Summary
+
+Computer vision enables robots to understand visual information, from basic image processing to sophisticated deep learning-based perception.
+
+---
+
+## Quiz
+
+### Question 1
+What does object detection provide?
+A) Image enhancement B) Object location and class C) 3D models D) Sounds
+<details><summary>Answer</summary>**B**: Object detection identifies what objects are present and where they are located.</details>
+
+### Question 2
+What is semantic segmentation?
+A) Cutting images B) Labeling every pixel C) Compressing images D) Rotating images
+<details><summary>Answer</summary>**B**: Semantic segmentation assigns a class label to every pixel in the image.</details>
+
+### Question 3
+YOLO is known for?
+A) Accuracy only B) Real-time object detection C) Segmentation D) 3D reconstruction
+<details><summary>Answer</summary>**B**: YOLO (You Only Look Once) is designed for fast, real-time detection.</details>
+
+### Question 4
+Why is edge detection useful?
+A) Color enhancement B) Feature extraction C) File compression D) Sound processing
+<details><summary>Answer</summary>**B**: Edge detection extracts important structural features from images.</details>
+
+### Question 5
+Deep learning improved computer vision by?
+A) Reducing cost B) Learning features automatically C) Eliminating cameras D) Simplifying hardware
+<details><summary>Answer</summary>**B**: Deep learning automatically learns useful features from data.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+---
+
+## References
+
+[1] J. Redmon et al., "You Only Look Once: Unified, Real-Time Object Detection," CVPR, 2016.
+
+---
+
+## Further Reading
+
+- OpenCV documentation
+- PyTorch vision tutorials

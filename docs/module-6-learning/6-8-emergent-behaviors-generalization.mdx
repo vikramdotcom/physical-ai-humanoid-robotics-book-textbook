@@ -1,0 +1,124 @@
+---
+id: "6-8-emergent-behaviors-generalization"
+title: "Emergent Behaviors and Generalization"
+sidebar_label: "6.8 Generalization"
+sidebar_position: 8
+description: "Transfer learning, few-shot adaptation, and open-world robotics"
+keywords: [generalization, transfer-learning, few-shot, emergence]
+module: 6
+chapter: 8
+reading_time: 20
+difficulty: "advanced"
+prerequisites: ["6-6-foundation-models-robotics"]
+learning_objectives: ["Understand generalization in robot learning", "Apply transfer learning"]
+simulation_lab: {platform: "colab", estimated_time: 25}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 25}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Emergent Behaviors and Generalization
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Understand generalization challenges
+- Apply transfer learning concepts
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+## Introduction
+
+The goal of robot learning is generalization—performing well on new tasks, objects, and environments not seen during training.
+
+<RAGZone id="introduction"></RAGZone>
+
+## Theory Content
+
+### Transfer Learning
+Leverage knowledge from one task/domain to improve learning in another.
+
+### Few-Shot Adaptation
+Quickly adapt to new situations with minimal additional data.
+
+### Emergent Behaviors
+Complex behaviors that arise from simple learning rules at scale.
+
+<RAGZone id="theory-content"></RAGZone>
+
+## Simulation Lab
+
+```python
+# Generalization concept
+print("Generalization levels:")
+print("1. Same task, same environment")
+print("2. Same task, new environment")
+print("3. New task, same environment")
+print("4. New task, new environment (hardest)")
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+## Hardware Lab
+
+```bash
+ros2 topic list
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+## Case Study
+
+Large language models show emergent capabilities at scale—similar emergence is being explored in robotics.
+
+<RAGZone id="case-study"></RAGZone>
+
+## Summary
+
+Generalization is the key challenge in robot learning, with transfer and few-shot learning as promising approaches.
+
+## Quiz
+
+### Question 1
+Generalization means?
+A) Training more B) Performing well on new situations C) Memorizing data D) No learning
+<details><summary>Answer</summary>**B**: Generalization is success on unseen scenarios.</details>
+
+### Question 2
+Transfer learning uses?
+A) No prior knowledge B) Knowledge from related tasks C) Random initialization D) Hardware transfer
+<details><summary>Answer</summary>**B**: Transfer learning leverages prior learned knowledge.</details>
+
+### Question 3
+Few-shot adaptation requires?
+A) Massive data B) Minimal new data C) No data D) Only simulation
+<details><summary>Answer</summary>**B**: Few-shot methods adapt with very little new data.</details>
+
+### Question 4
+Emergent behaviors arise from?
+A) Manual programming B) Scale and simple rules C) Hardware design D) No learning
+<details><summary>Answer</summary>**B**: Complex behaviors emerge from scaled simple learning.</details>
+
+### Question 5
+Open-world robotics faces?
+A) Closed environments B) Unknown, changing situations C) Only known objects D) No challenges
+<details><summary>Answer</summary>**B**: Open-world means handling novel, unpredictable situations.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+## References
+
+[1] Scaling laws and emergent capabilities research.
+
+## Further Reading
+
+- Transfer learning in robotics surveys

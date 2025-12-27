@@ -1,0 +1,122 @@
+---
+id: "6-7-robot-learning-practice"
+title: "Robot Learning in Practice"
+sidebar_label: "6.7 Learning Practice"
+sidebar_position: 7
+description: "Data collection, training pipelines, and evaluation"
+keywords: [data-collection, training, evaluation, practice]
+module: 6
+chapter: 7
+reading_time: 20
+difficulty: "intermediate"
+prerequisites: ["6-1-ml-fundamentals-robotics"]
+learning_objectives: ["Design robot learning pipelines", "Evaluate learning systems"]
+simulation_lab: {platform: "colab", estimated_time: 30}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 25}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Robot Learning in Practice
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Design practical learning pipelines
+- Evaluate robot learning systems
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+## Introduction
+
+Practical robot learning requires careful data collection, training infrastructure, and rigorous evaluation.
+
+<RAGZone id="introduction"></RAGZone>
+
+## Theory Content
+
+### Data Collection
+Gathering diverse, high-quality robot data through teleoperation, simulation, or autonomous exploration.
+
+### Training Infrastructure
+Compute resources, frameworks, and pipelines for efficient model training.
+
+### Evaluation
+Metrics, benchmarks, and real-world testing for measuring learning success.
+
+<RAGZone id="theory-content"></RAGZone>
+
+## Simulation Lab
+
+```python
+# Learning pipeline stages
+stages = ['Data collection', 'Preprocessing', 'Training', 'Validation', 'Deployment']
+for i, stage in enumerate(stages, 1):
+    print(f"{i}. {stage}")
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+## Hardware Lab
+
+```bash
+ros2 topic list
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+## Case Study
+
+Toyota Research Institute uses teleoperation to collect manipulation data for training household robots.
+
+<RAGZone id="case-study"></RAGZone>
+
+## Summary
+
+Practical robot learning requires attention to data quality, training efficiency, and rigorous evaluation.
+
+## Quiz
+
+### Question 1
+Data quality affects?
+A) Nothing B) Learning success C) Robot color D) Network speed
+<details><summary>Answer</summary>**B**: High-quality data is essential for successful learning.</details>
+
+### Question 2
+Teleoperation collects data through?
+A) Autonomy only B) Human control C) No control D) Random motion
+<details><summary>Answer</summary>**B**: Humans control robots to collect demonstration data.</details>
+
+### Question 3
+Evaluation metrics measure?
+A) Robot weight B) Learning success C) Cost only D) Size
+<details><summary>Answer</summary>**B**: Metrics quantify how well the system performs.</details>
+
+### Question 4
+Training infrastructure includes?
+A) Only software B) Compute and frameworks C) Only hardware D) Nothing
+<details><summary>Answer</summary>**B**: Infrastructure includes compute resources and software frameworks.</details>
+
+### Question 5
+Real-world testing is important because?
+A) Fun B) Validates simulation results C) Required by law D) Saves cost
+<details><summary>Answer</summary>**B**: Real testing validates that learning transfers to deployment.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+## References
+
+[1] S. Levine et al., "Learning Hand-Eye Coordination," IJRR, 2018.
+
+## Further Reading
+
+- Robot learning infrastructure guides

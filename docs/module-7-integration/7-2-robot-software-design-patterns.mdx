@@ -1,0 +1,121 @@
+---
+id: "7-2-robot-software-design-patterns"
+title: "Robot Software Design Patterns"
+sidebar_label: "7.2 Design Patterns"
+sidebar_position: 2
+description: "State machines, behavior trees, and modular design"
+keywords: [state-machines, behavior-trees, design-patterns]
+module: 7
+chapter: 2
+reading_time: 20
+difficulty: "intermediate"
+prerequisites: ["7-1-ros2-architecture-deep-dive"]
+learning_objectives: ["Apply state machines", "Implement behavior trees"]
+simulation_lab: {platform: "colab", estimated_time: 30}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 30}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Robot Software Design Patterns
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Apply state machines for robot behavior
+- Implement behavior trees
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+## Introduction
+
+Design patterns provide proven solutions for organizing robot behavior and decision-making.
+
+<RAGZone id="introduction"></RAGZone>
+
+## Theory Content
+
+### State Machines
+States and transitions model discrete robot behaviors. Simple but limited scalability.
+
+### Behavior Trees
+Tree structure combining sequences, selectors, and actions. Modular and reactive.
+
+### Modular Design
+Separate perception, planning, and control for maintainability.
+
+<RAGZone id="theory-content"></RAGZone>
+
+## Simulation Lab
+
+```python
+# Simple state machine
+states = ['IDLE', 'MOVING', 'GRASPING', 'PLACING']
+print("Robot states:", ' -> '.join(states))
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+## Hardware Lab
+
+```bash
+ros2 pkg list | grep behavior
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+## Case Study
+
+Navigation2 uses behavior trees for flexible navigation with fallback behaviors.
+
+<RAGZone id="case-study"></RAGZone>
+
+## Summary
+
+Design patterns like state machines and behavior trees organize complex robot behaviors.
+
+## Quiz
+
+### Question 1
+State machines have?
+A) No states B) States and transitions C) Only transitions D) Continuous flow
+<details><summary>Answer</summary>**B**: FSMs define discrete states connected by transitions.</details>
+
+### Question 2
+Behavior trees are?
+A) Linear B) Hierarchical and modular C) Random D) Single node
+<details><summary>Answer</summary>**B**: BTs use tree structure for modular behavior composition.</details>
+
+### Question 3
+Modular design separates?
+A) Nothing B) Perception, planning, control C) Only hardware D) Only software
+<details><summary>Answer</summary>**B**: Modularity separates concerns for maintainability.</details>
+
+### Question 4
+BT selector nodes?
+A) Run all children B) Try children until one succeeds C) Never run D) Run randomly
+<details><summary>Answer</summary>**B**: Selectors try alternatives until one succeeds.</details>
+
+### Question 5
+BT sequence nodes?
+A) Run randomly B) Run children in order C) Never run D) Skip all
+<details><summary>Answer</summary>**B**: Sequences execute children in order.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+## References
+
+[1] M. Colledanchise et al., "Behavior Trees in Robotics," 2018.
+
+## Further Reading
+
+- BehaviorTree.CPP documentation

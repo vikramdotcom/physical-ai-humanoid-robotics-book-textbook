@@ -1,0 +1,149 @@
+---
+id: "5-6-teleoperation-shared-autonomy"
+title: "Teleoperation and Shared Autonomy"
+sidebar_label: "5.6 Teleoperation"
+sidebar_position: 6
+description: "Remote control, haptic feedback, and autonomy levels in robot control"
+keywords: [teleoperation, shared-autonomy, haptics, remote-control]
+module: 5
+chapter: 6
+reading_time: 20
+difficulty: "intermediate"
+prerequisites: ["5-5-physical-human-robot-interaction"]
+learning_objectives: ["Understand teleoperation systems", "Apply haptic feedback concepts", "Design shared autonomy interfaces"]
+simulation_lab: {platform: "colab", estimated_time: 25}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 25}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Teleoperation and Shared Autonomy
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Understand teleoperation systems
+- Apply haptic feedback concepts
+- Design shared autonomy interfaces
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+---
+
+## Introduction
+
+Teleoperation allows remote control of robots. Shared autonomy combines human intent with robot intelligence for better performance.
+
+<RAGZone id="introduction"></RAGZone>
+
+---
+
+## Theory Content
+
+### Section 1: Teleoperation
+
+Remote control through input devices (joysticks, motion capture). Challenges include latency and limited sensing.
+
+### Section 2: Haptic Feedback
+
+Force feedback devices let operators feel robot interactions, improving dexterity and safety.
+
+### Section 3: Shared Autonomy
+
+Robot assists human commands (collision avoidance, stabilization) while human provides high-level intent.
+
+<RAGZone id="theory-content"></RAGZone>
+
+---
+
+## Simulation Lab
+
+```python
+# Autonomy levels
+levels = [
+    ('Direct control', 'Human controls everything'),
+    ('Safeguarded', 'Robot prevents collisions'),
+    ('Shared', 'Robot assists with execution'),
+    ('Supervised', 'Robot acts, human monitors'),
+    ('Full autonomy', 'Robot decides and acts')
+]
+print("Autonomy Levels:")
+for name, desc in levels:
+    print(f"  {name}: {desc}")
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+---
+
+## Hardware Lab
+
+```bash
+ros2 interface show sensor_msgs/msg/Joy
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+---
+
+## Case Study
+
+Surgical robots like da Vinci use teleoperation with tremor filtering and motion scaling for precise surgery.
+
+<RAGZone id="case-study"></RAGZone>
+
+---
+
+## Summary
+
+Teleoperation and shared autonomy combine human intelligence with robot capabilities for enhanced performance.
+
+---
+
+## Quiz
+
+### Question 1
+Teleoperation means?
+A) Autonomous operation B) Remote control by human C) No control D) Random motion
+<details><summary>Answer</summary>**B**: Teleoperation is human remote control of robots.</details>
+
+### Question 2
+Haptic feedback provides?
+A) Visual display B) Force sensation to operator C) Sound only D) Temperature
+<details><summary>Answer</summary>**B**: Haptics let operators feel forces the robot experiences.</details>
+
+### Question 3
+Shared autonomy combines?
+A) Two robots B) Human intent and robot assistance C) No assistance D) Full automation
+<details><summary>Answer</summary>**B**: Human provides intent while robot assists execution.</details>
+
+### Question 4
+Latency in teleoperation causes?
+A) Better control B) Delayed response C) Faster motion D) Lower power
+<details><summary>Answer</summary>**B**: Communication delay makes remote control harder.</details>
+
+### Question 5
+Surgical robots use?
+A) Full autonomy B) Teleoperation with enhancement C) No control D) Random motion
+<details><summary>Answer</summary>**B**: Surgical robots combine teleoperation with motion scaling and filtering.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+---
+
+## References
+
+[1] Intuitive Surgical, "da Vinci Surgical System," 2024.
+
+## Further Reading
+
+- Teleoperation and telepresence research

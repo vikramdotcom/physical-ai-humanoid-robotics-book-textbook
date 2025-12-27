@@ -1,0 +1,162 @@
+---
+id: "3-2-vision-systems"
+title: "Vision Systems"
+sidebar_label: "3.2 Vision Systems"
+sidebar_position: 2
+description: "Understanding camera systems, depth sensors, stereo vision, and LiDAR for robot perception"
+keywords: [cameras, depth-sensors, stereo-vision, lidar]
+module: 3
+chapter: 2
+reading_time: 25
+difficulty: "intermediate"
+prerequisites: ["3-1-sensor-fundamentals"]
+learning_objectives:
+  - "Compare different vision sensor technologies"
+  - "Understand depth sensing principles"
+  - "Select appropriate vision systems for applications"
+simulation_lab: {platform: "colab", estimated_time: 30}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 30}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Vision Systems
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Compare different vision sensor technologies
+- Understand depth sensing principles
+- Select appropriate vision systems for applications
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+---
+
+## Introduction
+
+Vision systems give robots the ability to see and understand their environment. From simple cameras to sophisticated LiDAR systems, each technology has unique strengths for different applications.
+
+<RAGZone id="introduction"></RAGZone>
+
+---
+
+## Theory Content
+
+### Section 1: Camera Technologies
+
+**RGB Cameras**: Standard color imaging for object recognition and navigation. **Monochrome Cameras**: Higher sensitivity, often used in industrial applications. **Event Cameras**: Capture changes asynchronously for high-speed applications.
+
+### Section 2: Depth Sensing
+
+**Stereo Vision**: Two cameras compute depth from disparity. **Structured Light**: Project patterns to measure depth (Intel RealSense). **Time-of-Flight**: Measure light travel time (Microsoft Kinect).
+
+### Section 3: LiDAR
+
+LiDAR uses laser light to create precise 3D maps. Types include spinning LiDAR (Velodyne), solid-state LiDAR, and MEMS-based systems.
+
+<RAGZone id="theory-content"></RAGZone>
+
+---
+
+## Simulation Lab
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Simulate stereo depth calculation
+baseline = 0.1  # meters
+focal_length = 500  # pixels
+disparity = np.linspace(1, 100, 100)
+depth = (baseline * focal_length) / disparity
+
+plt.figure(figsize=(10, 5))
+plt.plot(disparity, depth)
+plt.xlabel('Disparity (pixels)')
+plt.ylabel('Depth (meters)')
+plt.title('Stereo Vision: Depth vs Disparity')
+plt.grid(True)
+plt.show()
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+---
+
+## Hardware Lab
+
+```bash
+# ROS2 camera topics
+ros2 interface show sensor_msgs/msg/Image
+ros2 interface show sensor_msgs/msg/PointCloud2
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+---
+
+## Case Study
+
+Autonomous vehicles combine cameras, radar, and LiDAR for comprehensive perception, with each sensor type complementing the others' limitations.
+
+<RAGZone id="case-study"></RAGZone>
+
+---
+
+## Summary
+
+Vision systems are essential for robot perception, with different technologies suited to different applications and environments.
+
+---
+
+## Quiz
+
+### Question 1
+What principle does stereo vision use?
+A) Time of flight B) Disparity between two views C) Structured light D) Radar
+<details><summary>Answer</summary>**B**: Stereo vision computes depth from the disparity between two camera views.</details>
+
+### Question 2
+What is an advantage of LiDAR?
+A) Low cost B) Precise 3D measurements C) Works in darkness only D) No calibration needed
+<details><summary>Answer</summary>**B**: LiDAR provides precise 3D distance measurements.</details>
+
+### Question 3
+Structured light depth sensing works by?
+A) Measuring sound B) Projecting known patterns C) Using GPS D) Temperature sensing
+<details><summary>Answer</summary>**B**: Structured light projects known patterns and analyzes distortions.</details>
+
+### Question 4
+What limits stereo vision accuracy at long range?
+A) Color accuracy B) Disparity becomes very small C) Power consumption D) Size
+<details><summary>Answer</summary>**B**: At long range, disparity becomes small and harder to measure accurately.</details>
+
+### Question 5
+Event cameras excel at?
+A) Color accuracy B) High-speed motion capture C) Low light D) Cost
+<details><summary>Answer</summary>**B**: Event cameras capture changes asynchronously, ideal for high-speed motion.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+---
+
+## References
+
+[1] R. Szeliski, "Computer Vision: Algorithms and Applications," Springer, 2022.
+
+---
+
+## Further Reading
+
+- Intel RealSense documentation
+- Velodyne LiDAR technical resources

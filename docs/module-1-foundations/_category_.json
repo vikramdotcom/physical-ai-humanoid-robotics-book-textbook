@@ -1,0 +1,22 @@
+{
+  "label": "Module 1: Foundations of Physical AI",
+  "position": 2,
+  "collapsible": true,
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "description": "Introduction to the convergence of artificial intelligence and physical robotics systems. Covers fundamental concepts, historical context, and the landscape of modern physical AI.",
+    "keywords": ["physical-ai", "foundations", "introduction", "robotics-history", "ethics"]
+  },
+  "customProps": {
+    "module_number": 1,
+    "chapter_count": 6,
+    "prerequisites": ["Basic mathematics (algebra)", "Familiarity with computers"],
+    "learning_outcomes": [
+      "Understand what physical AI is and its key components",
+      "Trace the historical development of robotics and AI",
+      "Identify the technology stack used in physical AI systems",
+      "Apply basic mathematical concepts to robotics problems"
+    ]
+  }
+}

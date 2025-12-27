@@ -11,7 +11,16 @@
       "Bash(npm run build:*)",
       "Bash(cat:*)",
       "Bash(dir:*)",
-      "Bash(findstr:*)"
+      "Bash(findstr:*)",
+      "Bash(if [ -d \"specs\" ])",
+      "Bash(then ls -d specs/[0-9]*-physical-ai-textbook)",
+      "Bash(else echo \"No specs directory\")",
+      "Bash(fi)",
+      "Bash(ls:*)",
+      "Bash(if [ -d \"history/prompts/general\" ])",
+      "Bash(then ls history/prompts/general/*.prompt.md)",
+      "Bash(else echo \"0\")",
+      "Bash(git add:*)"
     ]
   }
 }

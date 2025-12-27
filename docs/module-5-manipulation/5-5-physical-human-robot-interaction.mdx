@@ -1,0 +1,143 @@
+---
+id: "5-5-physical-human-robot-interaction"
+title: "Physical Human-Robot Interaction"
+sidebar_label: "5.5 pHRI"
+sidebar_position: 5
+description: "Safety, compliant control, and collaborative manipulation with humans"
+keywords: [pHRI, safety, compliance, collaboration]
+module: 5
+chapter: 5
+reading_time: 20
+difficulty: "intermediate"
+prerequisites: ["5-4-contact-collision-handling", "1-6-ethics-and-safety"]
+learning_objectives: ["Understand pHRI safety requirements", "Apply compliant control", "Design collaborative manipulation"]
+simulation_lab: {platform: "colab", estimated_time: 25}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 25}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Physical Human-Robot Interaction
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Understand pHRI safety requirements
+- Apply compliant control
+- Design collaborative manipulation
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+---
+
+## Introduction
+
+pHRI enables robots and humans to physically collaborate, requiring safety measures and compliant behaviors.
+
+<RAGZone id="introduction"></RAGZone>
+
+---
+
+## Theory Content
+
+### Section 1: Safety Requirements
+
+ISO 15066 defines force/pressure limits for safe human contact. Robots must detect and respond to collisions.
+
+### Section 2: Compliant Control
+
+Impedance control makes robots yield to external forces, enabling safe physical interaction.
+
+### Section 3: Collaborative Manipulation
+
+Humans and robots can jointly manipulate objects, combining human intelligence with robot strength.
+
+<RAGZone id="theory-content"></RAGZone>
+
+---
+
+## Simulation Lab
+
+```python
+# ISO 15066 force limits
+body_parts = {'chest': 140, 'arm': 150, 'hand': 140, 'head': 130}
+print("ISO 15066 Max Force Limits (N):")
+for part, limit in body_parts.items():
+    print(f"  {part}: {limit} N")
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+---
+
+## Hardware Lab
+
+```bash
+ros2 interface show geometry_msgs/msg/Wrench
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+---
+
+## Case Study
+
+Universal Robots cobots work alongside humans in assembly tasks using force-limited control.
+
+<RAGZone id="case-study"></RAGZone>
+
+---
+
+## Summary
+
+pHRI enables safe human-robot collaboration through compliance, force limiting, and careful design.
+
+---
+
+## Quiz
+
+### Question 1
+pHRI stands for?
+A) Physical Human-Robot Interface B) Physical Human-Robot Interaction C) Power Human Robot Input D) Precision Handling Robot Integration
+<details><summary>Answer</summary>**B**: Physical Human-Robot Interaction covers direct physical contact between humans and robots.</details>
+
+### Question 2
+ISO 15066 defines?
+A) Colors B) Safe force/pressure limits C) Network protocols D) Power requirements
+<details><summary>Answer</summary>**B**: ISO 15066 specifies limits for safe collaborative robot operation.</details>
+
+### Question 3
+Compliant control enables?
+A) Rigid behavior B) Yielding to external forces C) Higher speed D) Lower cost
+<details><summary>Answer</summary>**B**: Compliance allows robots to give way safely when contacted.</details>
+
+### Question 4
+Cobots are designed for?
+A) Isolation B) Human collaboration C) Maximum speed D) No interaction
+<details><summary>Answer</summary>**B**: Collaborative robots (cobots) work alongside humans safely.</details>
+
+### Question 5
+Force limiting prevents?
+A) Motion B) Injury from excessive force C) Power use D) Communication
+<details><summary>Answer</summary>**B**: Force limits prevent harmful impacts with humans.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+---
+
+## References
+
+[1] ISO/TS 15066:2016, "Collaborative robots."
+
+## Further Reading
+
+- Cobot manufacturer documentation

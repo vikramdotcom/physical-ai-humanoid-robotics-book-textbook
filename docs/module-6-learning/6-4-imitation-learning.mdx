@@ -1,0 +1,124 @@
+---
+id: "6-4-imitation-learning"
+title: "Imitation Learning"
+sidebar_label: "6.4 Imitation Learning"
+sidebar_position: 4
+description: "Behavioral cloning, inverse RL, and learning from demonstrations"
+keywords: [imitation-learning, behavioral-cloning, demonstrations]
+module: 6
+chapter: 4
+reading_time: 20
+difficulty: "intermediate"
+prerequisites: ["6-1-ml-fundamentals-robotics"]
+learning_objectives: ["Apply imitation learning", "Understand demonstration-based learning"]
+simulation_lab: {platform: "colab", estimated_time: 30}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 25}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Imitation Learning
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Apply imitation learning techniques
+- Learn from human demonstrations
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+## Introduction
+
+Imitation learning lets robots learn by watching experts, avoiding the need for manual reward design.
+
+<RAGZone id="introduction"></RAGZone>
+
+## Theory Content
+
+### Behavioral Cloning
+Directly learn policy from state-action pairs in demonstrations.
+
+### Inverse RL
+Infer reward function from expert behavior, then optimize.
+
+### DAgger
+Dataset Aggregation iteratively improves by querying expert on robot's visited states.
+
+<RAGZone id="theory-content"></RAGZone>
+
+## Simulation Lab
+
+```python
+# Behavioral cloning concept
+demonstrations = [
+    {'state': [0, 0], 'action': 'forward'},
+    {'state': [1, 0], 'action': 'forward'},
+]
+print("Learn policy: state -> action from demonstrations")
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+## Hardware Lab
+
+```bash
+ros2 topic list
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+## Case Study
+
+Tesla collects driving demonstrations from human drivers to train its autopilot system.
+
+<RAGZone id="case-study"></RAGZone>
+
+## Summary
+
+Imitation learning efficiently transfers human skills to robots through demonstration.
+
+## Quiz
+
+### Question 1
+Behavioral cloning learns from?
+A) Random data B) Expert demonstrations C) No data D) Hardware specs
+<details><summary>Answer</summary>**B**: BC learns directly from expert state-action pairs.</details>
+
+### Question 2
+Inverse RL infers?
+A) Policy B) Reward function C) Hardware D) Network
+<details><summary>Answer</summary>**B**: IRL recovers the reward function from demonstrations.</details>
+
+### Question 3
+DAgger addresses?
+A) Hardware issues B) Distribution shift C) Power management D) Communication
+<details><summary>Answer</summary>**B**: DAgger handles the distribution shift problem in BC.</details>
+
+### Question 4
+Imitation learning requires?
+A) No expert B) Expert demonstrations C) Only simulation D) No learning
+<details><summary>Answer</summary>**B**: IL needs demonstrations from experts.</details>
+
+### Question 5
+Advantage of imitation learning?
+A) No data needed B) Avoids reward engineering C) Faster hardware D) Less computation
+<details><summary>Answer</summary>**B**: IL doesn't require designing reward functions.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+## References
+
+[1] S. Ross et al., "DAgger," AISTATS, 2011.
+
+## Further Reading
+
+- Imitation learning tutorials

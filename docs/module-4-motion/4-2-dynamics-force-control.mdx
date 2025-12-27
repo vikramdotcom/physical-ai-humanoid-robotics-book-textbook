@@ -1,0 +1,148 @@
+---
+id: "4-2-dynamics-force-control"
+title: "Dynamics and Force Control"
+sidebar_label: "4.2 Dynamics"
+sidebar_position: 2
+description: "Robot dynamics, Newton-Euler formulation, and force control strategies"
+keywords: [dynamics, force-control, torque, Newton-Euler]
+module: 4
+chapter: 2
+reading_time: 25
+difficulty: "advanced"
+prerequisites: ["4-1-forward-inverse-kinematics"]
+learning_objectives: ["Understand robot dynamics equations", "Apply force control strategies", "Compute required joint torques"]
+simulation_lab: {platform: "colab", estimated_time: 30}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 30}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Dynamics and Force Control
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Understand robot dynamics equations
+- Apply force control strategies
+- Compute required joint torques
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+---
+
+## Introduction
+
+While kinematics describes motion geometry, dynamics describes forces and torques required to produce motion. Essential for control and simulation.
+
+<RAGZone id="introduction"></RAGZone>
+
+---
+
+## Theory Content
+
+### Section 1: Equations of Motion
+
+The robot dynamics equation: τ = M(q)q̈ + C(q,q̇)q̇ + G(q)
+
+- M: Mass matrix
+- C: Coriolis/centrifugal terms
+- G: Gravity terms
+
+### Section 2: Force Control
+
+Force control maintains desired contact forces. Impedance control regulates the relationship between force and motion.
+
+<RAGZone id="theory-content"></RAGZone>
+
+---
+
+## Simulation Lab
+
+```python
+import numpy as np
+# Simple gravity compensation
+mass = 2.0  # kg
+g = 9.81
+link_length = 0.5
+angle = np.pi/4
+
+# Torque needed to hold against gravity
+torque = mass * g * link_length * np.cos(angle)
+print(f"Gravity compensation torque: {torque:.2f} Nm")
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+---
+
+## Hardware Lab
+
+```bash
+ros2 interface show trajectory_msgs/msg/JointTrajectory
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+---
+
+## Case Study
+
+Force-controlled robots enable safe assembly tasks where precise force application is critical.
+
+<RAGZone id="case-study"></RAGZone>
+
+---
+
+## Summary
+
+Dynamics enables accurate motion control and force interaction through understanding of forces and torques in robotic systems.
+
+---
+
+## Quiz
+
+### Question 1
+What does dynamics describe?
+A) Position only B) Forces and torques for motion C) Colors D) Sounds
+<details><summary>Answer</summary>**B**: Dynamics relates forces/torques to resulting motion.</details>
+
+### Question 2
+M(q) in dynamics equation represents?
+A) Velocity B) Mass/inertia matrix C) Position D) Time
+<details><summary>Answer</summary>**B**: M(q) is the configuration-dependent mass matrix.</details>
+
+### Question 3
+Force control is used for?
+A) Speed only B) Contact tasks C) Navigation D) Vision
+<details><summary>Answer</summary>**B**: Force control manages contact forces during manipulation.</details>
+
+### Question 4
+Gravity compensation?
+A) Ignores gravity B) Applies torque to counteract gravity C) Increases gravity D) Removes mass
+<details><summary>Answer</summary>**B**: Gravity compensation applies torques to hold position against gravity.</details>
+
+### Question 5
+Impedance control regulates?
+A) Temperature B) Force-motion relationship C) Color D) Sound
+<details><summary>Answer</summary>**B**: Impedance control manages the dynamic relationship between force and motion.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+---
+
+## References
+
+[1] B. Siciliano et al., "Robotics: Modelling, Planning and Control," Springer, 2010.
+
+## Further Reading
+
+- ros2_control documentation

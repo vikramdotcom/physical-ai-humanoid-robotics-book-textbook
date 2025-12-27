@@ -1,0 +1,180 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "chapter-frontmatter.schema.json",
+  "title": "Chapter Frontmatter Schema",
+  "description": "JSON Schema for validating chapter MDX frontmatter",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "sidebar_label",
+    "sidebar_position",
+    "description",
+    "keywords",
+    "module",
+    "chapter",
+    "reading_time",
+    "difficulty",
+    "learning_objectives",
+    "simulation_lab",
+    "hardware_lab",
+    "version",
+    "last_updated",
+    "authors"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[0-9]+-[0-9]+-[a-z0-9-]+$",
+      "description": "Unique chapter identifier (e.g., '1-1-what-is-physical-ai')"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 100,
+      "description": "Human-readable chapter title"
+    },
+    "sidebar_label": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 40,
+      "description": "Short label for sidebar navigation"
+    },
+    "sidebar_position": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 8,
+      "description": "Order within module"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 50,
+      "maxLength": 160,
+      "description": "SEO meta description"
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 3,
+      "maxItems": 10,
+      "description": "SEO keywords"
+    },
+    "module": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 8,
+      "description": "Module number"
+    },
+    "chapter": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 8,
+      "description": "Chapter number within module"
+    },
+    "reading_time": {
+      "type": "integer",
+      "minimum": 5,
+      "maximum": 45,
+      "description": "Estimated reading time in minutes"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": ["beginner", "intermediate", "advanced"],
+      "description": "Chapter difficulty level"
+    },
+    "prerequisites": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9]+-[0-9]+-[a-z0-9-]+$"
+      },
+      "description": "Required prior chapter IDs"
+    },
+    "learning_objectives": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 20
+      },
+      "minItems": 3,
+      "maxItems": 5,
+      "description": "Measurable learning objectives using Bloom's taxonomy"
+    },
+    "simulation_lab": {
+      "type": "object",
+      "required": ["platform", "estimated_time"],
+      "properties": {
+        "platform": {
+          "type": "string",
+          "enum": ["colab", "isaac-sim"]
+        },
+        "notebook_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "scene_file": {
+          "type": "string"
+        },
+        "estimated_time": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 120
+        }
+      }
+    },
+    "hardware_lab": {
+      "type": "object",
+      "required": ["platform", "hardware", "estimated_time"],
+      "properties": {
+        "platform": {
+          "type": "string",
+          "const": "ros2-humble"
+        },
+        "hardware": {
+          "type": "string",
+          "enum": ["jetson-nano", "jetson-orin", "simulation-only"]
+        },
+        "estimated_time": {
+          "type": "integer",
+          "minimum": 15,
+          "maximum": 180
+        },
+        "packages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Semantic version"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO date of last update"
+    },
+    "authors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          }
+        }
+      },
+      "minItems": 1
+    }
+  }
+}

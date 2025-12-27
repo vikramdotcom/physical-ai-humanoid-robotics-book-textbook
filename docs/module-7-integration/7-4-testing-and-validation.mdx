@@ -1,0 +1,123 @@
+---
+id: "7-4-testing-and-validation"
+title: "Testing and Validation"
+sidebar_label: "7.4 Testing"
+sidebar_position: 4
+description: "Unit testing, integration testing, and hardware-in-the-loop"
+keywords: [testing, validation, HIL, quality]
+module: 7
+chapter: 4
+reading_time: 20
+difficulty: "intermediate"
+prerequisites: ["7-1-ros2-architecture-deep-dive"]
+learning_objectives: ["Apply testing strategies", "Validate robot systems"]
+simulation_lab: {platform: "colab", estimated_time: 25}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 30}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Testing and Validation
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Apply systematic testing strategies
+- Validate complete robot systems
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+## Introduction
+
+Rigorous testing ensures robot systems are reliable and safe before deployment.
+
+<RAGZone id="introduction"></RAGZone>
+
+## Theory Content
+
+### Unit Testing
+Test individual components in isolation.
+
+### Integration Testing
+Test component interactions and interfaces.
+
+### Hardware-in-the-Loop (HIL)
+Test software with real hardware components.
+
+<RAGZone id="theory-content"></RAGZone>
+
+## Simulation Lab
+
+```python
+# Testing pyramid
+levels = ['Unit tests (many)', 'Integration tests (some)', 'System tests (few)', 'HIL tests (fewer)']
+for level in levels:
+    print(level)
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+## Hardware Lab
+
+```bash
+# Run ROS2 tests
+colcon test
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+## Case Study
+
+Waymo's autonomous vehicles undergo extensive simulation and HIL testing before road deployment.
+
+<RAGZone id="case-study"></RAGZone>
+
+## Summary
+
+Systematic testing at multiple levels ensures robot reliability and safety.
+
+## Quiz
+
+### Question 1
+Unit tests check?
+A) Whole system B) Individual components C) Network D) Power
+<details><summary>Answer</summary>**B**: Unit tests verify individual components work correctly.</details>
+
+### Question 2
+Integration tests verify?
+A) Single functions B) Component interactions C) Hardware only D) Nothing
+<details><summary>Answer</summary>**B**: Integration tests check that components work together.</details>
+
+### Question 3
+HIL stands for?
+A) High Integration Level B) Hardware-in-the-Loop C) Hybrid Interface Logic D) Host Input Layer
+<details><summary>Answer</summary>**B**: HIL tests software with real hardware.</details>
+
+### Question 4
+Testing pyramid has more?
+A) System tests B) Unit tests at base C) Equal all levels D) No tests
+<details><summary>Answer</summary>**B**: Many unit tests, fewer higher-level tests.</details>
+
+### Question 5
+Why test in simulation first?
+A) Required by law B) Safe and fast C) Not useful D) More expensive
+<details><summary>Answer</summary>**B**: Simulation testing is safe and faster than real-world.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+## References
+
+[1] ROS2 Testing Documentation.
+
+## Further Reading
+
+- Software testing best practices

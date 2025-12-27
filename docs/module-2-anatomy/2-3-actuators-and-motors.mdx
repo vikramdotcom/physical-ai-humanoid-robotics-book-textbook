@@ -1,0 +1,357 @@
+---
+id: "2-3-actuators-and-motors"
+title: "Actuators and Motors"
+sidebar_label: "2.3 Actuators and Motors"
+sidebar_position: 3
+description: "Understanding the actuator technologies that power robot movement including electric motors, hydraulics, and pneumatics"
+keywords:
+  - actuators
+  - electric-motors
+  - hydraulics
+  - pneumatics
+  - series-elastic-actuators
+module: 2
+chapter: 3
+reading_time: 25
+difficulty: "intermediate"
+prerequisites:
+  - "2-1-degrees-of-freedom"
+learning_objectives:
+  - "Compare different actuator technologies and their applications"
+  - "Explain the operating principles of electric motors"
+  - "Describe advantages and disadvantages of hydraulic and pneumatic systems"
+  - "Identify emerging actuator technologies for soft robotics"
+simulation_lab:
+  platform: "colab"
+  estimated_time: 30
+hardware_lab:
+  platform: "ros2-humble"
+  hardware: "simulation-only"
+  estimated_time: 30
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors:
+  - name: "Physical AI Textbook Team"
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Actuators and Motors
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+- Compare different actuator technologies and their applications
+- Explain the operating principles of electric motors
+- Describe advantages and disadvantages of hydraulic and pneumatic systems
+- Identify emerging actuator technologies for soft robotics
+
+<RAGZone id="learning-objectives">
+</RAGZone>
+
+---
+
+## Introduction
+
+Actuators are the muscles of robots—they convert energy into motion. Choosing the right actuator technology is one of the most important decisions in robot design, affecting everything from strength and speed to efficiency and safety. Different applications demand different solutions: a surgical robot needs precision, a warehouse robot needs endurance, and a humanoid needs power density.
+
+In this chapter, we explore the actuator technologies that make robots move, from the electric motors that power most modern robots to the hydraulic systems that give humanoids like Atlas their impressive strength.
+
+<RAGZone id="introduction">
+</RAGZone>
+
+---
+
+## Theory Content
+
+### Section 1: Electric Motors
+
+Electric motors are the most common actuators in robotics due to their efficiency, controllability, and availability.
+
+**DC Motors**: Simple, continuous rotation motors controlled by voltage.
+- Easy to control speed and direction
+- Good for wheels and continuous rotation
+
+**Brushless DC (BLDC)**: No brushes, higher efficiency, longer life.
+- Used in drones, modern robots
+- Requires electronic commutation
+
+**Servo Motors**: DC motors with position feedback.
+- Precise position control
+- Common in robot arms and hobby robotics
+
+**Stepper Motors**: Move in discrete steps.
+- Open-loop position control
+- Common in 3D printers, CNC machines
+
+:::note Key Concept
+The choice between motor types depends on the trade-off between torque, speed, precision, efficiency, and cost for your specific application.
+:::
+
+### Section 2: Hydraulic Actuators
+
+Hydraulic systems use pressurized fluid to generate force.
+
+**Advantages**:
+- Very high power density
+- Can produce enormous forces
+- Self-lubricating
+
+**Disadvantages**:
+- Heavy (need pump, reservoir, fluid)
+- Risk of leaks
+- Complex maintenance
+
+**Applications**: Heavy-duty robots like Atlas use hydraulics for dynamic movements requiring high power.
+
+### Section 3: Pneumatic Actuators
+
+Pneumatic systems use compressed air.
+
+**Advantages**:
+- Clean (no fluid leaks)
+- Lightweight actuators
+- Inherently compliant
+
+**Disadvantages**:
+- Compressible medium makes precise control difficult
+- Need air supply/compressor
+- Lower force than hydraulics
+
+### Section 4: Series Elastic Actuators (SEAs)
+
+SEAs add a spring between motor and load for force sensing and compliance.
+
+**Benefits**:
+- Natural shock absorption
+- Force measurement through spring deflection
+- Safer human-robot interaction
+
+**Used in**: MIT Cheetah legs, many research humanoids
+
+### Section 5: Emerging Technologies
+
+**Artificial Muscles**: Soft actuators mimicking biological muscle.
+- Pneumatic artificial muscles (McKibben)
+- Electroactive polymers
+- Shape memory alloys
+
+<RAGZone id="theory-content">
+</RAGZone>
+
+---
+
+## Simulation Lab: Motor Dynamics
+
+**Platform**: Google Colab
+**Estimated Time**: 30 minutes
+**Difficulty**: Intermediate
+
+### Procedure
+
+```python
+# Lab 2.3: Motor and Actuator Simulation
+import numpy as np
+import matplotlib.pyplot as plt
+
+print("=== Motor Dynamics Simulation ===\n")
+
+# Simulate DC motor response
+def simulate_dc_motor(voltage, R=1.0, L=0.01, Kt=0.1, Kb=0.1, J=0.01, B=0.001, dt=0.001, duration=1.0):
+    """
+    Simulate DC motor dynamics
+    R: Resistance, L: Inductance
+    Kt: Torque constant, Kb: Back-EMF constant
+    J: Inertia, B: Damping
+    """
+    steps = int(duration / dt)
+    current = np.zeros(steps)
+    omega = np.zeros(steps)  # Angular velocity
+    time = np.linspace(0, duration, steps)
+
+    for i in range(1, steps):
+        # Current dynamics: L*di/dt = V - R*i - Kb*omega
+        di_dt = (voltage - R*current[i-1] - Kb*omega[i-1]) / L
+        current[i] = current[i-1] + di_dt * dt
+
+        # Mechanical dynamics: J*d_omega/dt = Kt*i - B*omega
+        domega_dt = (Kt*current[i-1] - B*omega[i-1]) / J
+        omega[i] = omega[i-1] + domega_dt * dt
+
+    return time, current, omega
+
+# Simulate at different voltages
+fig, axes = plt.subplots(2, 1, figsize=(12, 8))
+
+voltages = [6, 12, 24]
+for V in voltages:
+    t, i, w = simulate_dc_motor(V)
+    axes[0].plot(t, i, label=f'{V}V')
+    axes[1].plot(t, w * 60/(2*np.pi), label=f'{V}V')  # Convert to RPM
+
+axes[0].set_ylabel('Current (A)')
+axes[0].set_title('DC Motor Response')
+axes[0].legend()
+axes[0].grid(True)
+
+axes[1].set_xlabel('Time (s)')
+axes[1].set_ylabel('Speed (RPM)')
+axes[1].legend()
+axes[1].grid(True)
+
+plt.tight_layout()
+plt.show()
+```
+
+<RAGZone id="simulation-lab">
+</RAGZone>
+
+---
+
+## Hardware Lab: Motor Control with ROS2
+
+**Platform**: ROS2 Humble
+**Estimated Time**: 30 minutes
+
+### Procedure
+
+Explore ROS2 control interfaces for motor actuation.
+
+```bash
+# Explore ros2_control packages
+ros2 pkg list | grep control
+```
+
+<RAGZone id="hardware-lab">
+</RAGZone>
+
+---
+
+## Case Study: Atlas Hydraulic System
+
+### Background
+
+Boston Dynamics Atlas uses a custom hydraulic system delivering 5,000 psi pressure.
+
+### Implementation
+
+The system provides power density unmatched by electric motors, enabling dynamic movements.
+
+### Lessons Learned
+
+Hydraulics excel for high-power dynamic robots but add weight and complexity.
+
+<RAGZone id="case-study">
+</RAGZone>
+
+---
+
+## Summary
+
+- Electric motors dominate robotics for efficiency and control
+- Hydraulics provide high power density for dynamic robots
+- Pneumatics offer compliance and simplicity
+- SEAs enable force sensing and safe interaction
+- Emerging technologies promise new capabilities
+
+---
+
+## Quiz
+
+### Question 1
+
+Which actuator type provides the highest power density?
+
+A) Stepper motors
+B) Hydraulic actuators
+C) Servo motors
+D) Pneumatic actuators
+
+<details>
+<summary>Answer</summary>
+**B**: Hydraulic actuators provide the highest power density, enabling dynamic movements in robots like Atlas.
+</details>
+
+### Question 2
+
+What advantage do Series Elastic Actuators provide?
+
+A) Higher speed
+B) Force sensing and compliance
+C) Lower cost
+D) Simpler control
+
+<details>
+<summary>Answer</summary>
+**B**: SEAs include a spring that enables force measurement and provides natural compliance for safer human-robot interaction.
+</details>
+
+### Question 3
+
+Why are brushless DC motors preferred over brushed DC motors?
+
+A) Lower cost
+B) Higher efficiency and longer life
+C) Simpler control
+D) More torque
+
+<details>
+<summary>Answer</summary>
+**B**: BLDC motors have no brushes to wear out, resulting in higher efficiency and longer operational life.
+</details>
+
+### Question 4
+
+What is a disadvantage of pneumatic actuators?
+
+A) Too heavy
+B) Difficult to achieve precise position control
+C) Risk of fluid leaks
+D) Low compliance
+
+<details>
+<summary>Answer</summary>
+**B**: Because air is compressible, pneumatic actuators are difficult to control precisely compared to hydraulic or electric systems.
+</details>
+
+### Question 5
+
+Which motor type moves in discrete steps without position feedback?
+
+A) Servo motor
+B) BLDC motor
+C) Stepper motor
+D) DC motor
+
+<details>
+<summary>Answer</summary>
+**C**: Stepper motors move in discrete angular steps, allowing open-loop position control without feedback sensors.
+</details>
+
+<RAGZone id="quiz">
+</RAGZone>
+
+---
+
+## References
+
+[1] D. W. Robinson et al., "Series Elastic Actuator Development for a Biomimetic Walking Robot," in Proc. IEEE ICRA, 1999.
+
+[2] Boston Dynamics, "Atlas Hydraulic System," Technical Documentation, 2024.
+
+[3] S. Kim et al., "Soft Robotics: A Bioinspired Evolution in Robotics," Trends in Biotechnology, 2013.
+
+---
+
+## Further Reading
+
+- "Electric Motors and Drives" by A. Hughes
+- MIT Biomimetic Robotics Lab publications on SEAs

@@ -1,0 +1,902 @@
+---
+id: "1-6-ethics-and-safety"
+title: "Ethics and Safety in Physical AI"
+sidebar_label: "1.6 Ethics and Safety"
+sidebar_position: 6
+description: "Understanding the ethical considerations and safety requirements for developing and deploying Physical AI systems"
+keywords:
+  - robot-ethics
+  - safety-standards
+  - responsible-ai
+  - societal-impact
+module: 1
+chapter: 6
+reading_time: 25
+difficulty: "beginner"
+prerequisites:
+  - "1-1-what-is-physical-ai"
+learning_objectives:
+  - "Identify key ethical considerations in Physical AI development"
+  - "Explain fundamental safety principles for robotic systems"
+  - "Describe major safety standards applicable to robots"
+  - "Analyze potential societal impacts of humanoid robots"
+simulation_lab:
+  platform: "colab"
+  estimated_time: 25
+hardware_lab:
+  platform: "ros2-humble"
+  hardware: "simulation-only"
+  estimated_time: 30
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors:
+  - name: "Physical AI Textbook Team"
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Ethics and Safety in Physical AI
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+- Identify key ethical considerations in Physical AI development
+- Explain fundamental safety principles for robotic systems
+- Describe major safety standards applicable to robots
+- Analyze potential societal impacts of humanoid robots
+
+<RAGZone id="learning-objectives">
+</RAGZone>
+
+---
+
+## Introduction
+
+With great power comes great responsibility. Physical AI systems can transform industries, assist people in daily life, and push the boundaries of what machines can do. But they can also cause harm if designed poorly, deployed carelessly, or used maliciously. As future roboticists, you have a responsibility to understand the ethical dimensions of your work and to design systems that are safe for humans and society.
+
+This chapter explores the ethical landscape of Physical AI and the practical safety measures that protect people from robotic systems. These topics are not afterthoughts—they should inform every decision you make as a roboticist, from initial design through deployment and beyond.
+
+We will examine fundamental ethical principles, international safety standards, and real-world case studies that illustrate why ethics and safety must be at the center of Physical AI development.
+
+<RAGZone id="introduction">
+</RAGZone>
+
+---
+
+## Theory Content
+
+### Section 1: Fundamental Ethical Principles
+
+The field of robot ethics draws on centuries of philosophical thought, adapted for the unique challenges of intelligent machines.
+
+**Asimov's Three Laws** (1942):
+1. A robot may not injure a human being or, through inaction, allow a human being to come to harm.
+2. A robot must obey the orders given it by human beings except where such orders would conflict with the First Law.
+3. A robot must protect its own existence as long as such protection does not conflict with the First or Second Law.
+
+While influential in science fiction, these laws highlight important challenges:
+- They are too simplistic for real-world complexity
+- "Harm" is difficult to define and quantify
+- Conflicts between laws are common in practice
+
+**Modern Ethical Frameworks**:
+
+**Beneficence**: Robots should be designed to benefit humanity and individual users.
+
+**Non-maleficence**: Robots should not cause harm (physical, psychological, or social).
+
+**Autonomy**: Humans should maintain meaningful control over robotic systems.
+
+**Justice**: Benefits and risks of robotics should be distributed fairly.
+
+**Transparency**: Robot capabilities, limitations, and decision-making should be understandable.
+
+:::note Key Concept
+Ethics in robotics is not about preventing all robots—it's about ensuring that the robots we build benefit society while minimizing risks and harms.
+:::
+
+### Section 2: Safety Engineering Fundamentals
+
+Safety engineering for robots involves systematic approaches to identify and mitigate hazards.
+
+**Hierarchy of Controls** (most to least effective):
+1. **Elimination**: Remove the hazard entirely (can the task be done without the robot?)
+2. **Substitution**: Replace with less hazardous alternative (use a smaller/slower robot)
+3. **Engineering Controls**: Design safety features (guards, sensors, speed limits)
+4. **Administrative Controls**: Training, procedures, signage
+5. **Personal Protective Equipment**: Last resort (safety glasses, gloves)
+
+**Types of Robot Hazards**:
+
+| Hazard Type | Examples | Mitigation |
+|-------------|----------|------------|
+| Mechanical | Crushing, impact, entanglement | Force limiting, guards, detection |
+| Electrical | Shock, burns | Insulation, grounding, low voltage |
+| Thermal | Hot surfaces, fires | Cooling, insulation, sensors |
+| Noise | Hearing damage | Quiet operation, enclosures |
+| Ergonomic | Repetitive strain, awkward postures | Human-centered design |
+
+**Risk Assessment Process**:
+1. **Identify hazards**: What could go wrong?
+2. **Assess risks**: How likely? How severe?
+3. **Implement controls**: Apply hierarchy of controls
+4. **Verify effectiveness**: Test and validate
+5. **Monitor and review**: Continuous improvement
+
+### Section 3: Safety Standards for Robotics
+
+International standards provide frameworks for safe robot design and deployment.
+
+**ISO 10218: Industrial Robots**
+- Part 1: Robot design requirements
+- Part 2: Robot systems and integration
+- Defines safe distances, stopping functions, and speed limits
+
+**ISO/TS 15066: Collaborative Robots**
+- Specific to robots working alongside humans
+- Defines power and force limiting thresholds
+- Body-part specific injury thresholds
+
+**Key ISO 15066 Force/Pressure Limits**:
+
+| Body Region | Max Pressure (N/cm²) | Max Force (N) |
+|-------------|---------------------|---------------|
+| Skull/Forehead | 130 | 130 |
+| Face | 65 | 65 |
+| Chest | 120 | 140 |
+| Hand/Fingers | 140 | 140 |
+| Legs | 130 | 210 |
+
+**Other Relevant Standards**:
+- **IEC 61508**: Functional safety of electrical systems
+- **ISO 13482**: Personal care robots
+- **UL 3100**: Safety for service robots (emerging)
+
+### Section 4: Safe Design Principles
+
+**Safe by Design**: Safety must be built in from the beginning, not added later.
+
+**Principles**:
+
+1. **Inherently Safe Design**:
+   - Limited force and speed capabilities
+   - Compliant mechanisms that give way on contact
+   - Rounded edges and soft materials
+
+2. **Safeguarding**:
+   - Physical barriers when appropriate
+   - Safety-rated sensors for human detection
+   - Safety-rated control systems
+
+3. **Safe Behavior**:
+   - Default to safe states on failure
+   - Graceful degradation
+   - Clear communication of robot state
+
+4. **Emergency Stop**:
+   - Easily accessible e-stop buttons
+   - Stop category definitions (ISO 13850):
+     - Category 0: Immediate power removal
+     - Category 1: Controlled stop then power removal
+     - Category 2: Controlled stop with power maintained
+
+### Section 5: Ethical Challenges in Physical AI
+
+Physical AI presents unique ethical challenges beyond traditional robotics:
+
+**Autonomy and Accountability**:
+- Who is responsible when an autonomous robot causes harm?
+- How much autonomy should robots have in safety-critical decisions?
+- Can we meaningfully consent to robot actions we can't predict?
+
+**Privacy and Surveillance**:
+- Robots with cameras and sensors collect vast amounts of data
+- How should this data be stored, used, and protected?
+- What are the boundaries of acceptable monitoring?
+
+**Employment and Economic Impact**:
+- Robots may displace workers in various industries
+- How do we ensure fair transition for affected workers?
+- Who benefits from increased productivity?
+
+**Human Dignity**:
+- Should robots care for vulnerable populations?
+- What is lost when human tasks are automated?
+- How do we preserve human agency and purpose?
+
+**Dual Use**:
+- Many robot technologies have both civilian and military applications
+- How do we prevent misuse of robotics research?
+- What are researchers' responsibilities?
+
+### Section 6: Societal Impact of Humanoid Robots
+
+Humanoid robots present special considerations due to their human-like appearance.
+
+**The Uncanny Valley**: Robots that look almost—but not quite—human can create feelings of unease. This psychological phenomenon affects acceptance and trust.
+
+**Social Robots**:
+- Designed for interaction with humans
+- May form emotional connections (especially with children and elderly)
+- Raise questions about deception (is it ethical for robots to appear emotional?)
+
+**Labor Market Implications**:
+- Humanoids could eventually perform many human jobs
+- Different from previous automation due to physical + cognitive capabilities
+- May require new approaches to education, employment, and social safety nets
+
+**Accessibility Benefits**:
+- Robots could provide care for aging populations
+- Assistive robots could enhance independence for people with disabilities
+- Must be designed inclusively to avoid creating new barriers
+
+<RAGZone id="theory-content">
+</RAGZone>
+
+---
+
+## Simulation Lab: Robot Safety Risk Assessment
+
+**Platform**: Google Colab
+**Estimated Time**: 25 minutes
+**Difficulty**: Beginner
+
+### Objectives
+
+- Implement a simple safety monitoring system
+- Simulate force limiting for collaborative robots
+- Visualize safety zones around a robot
+
+### Setup
+
+Open Google Colab and create a new notebook.
+
+### Procedure
+
+```python
+# Lab 1.6: Robot Safety Simulation
+import numpy as np
+import matplotlib.pyplot as plt
+
+print("=== Robot Safety Risk Assessment Lab ===\n")
+
+# Part 1: Force Limiting for Collaborative Robots
+
+# ISO 15066 force limits (simplified)
+FORCE_LIMITS = {
+    'head': 130,
+    'chest': 140,
+    'arm': 150,
+    'hand': 140,
+    'leg': 210
+}
+
+class CollaborativeRobotArm:
+    """Simulates a collaborative robot arm with force limiting"""
+
+    def __init__(self, max_payload=5.0, max_speed=1.0):
+        self.max_payload = max_payload  # kg
+        self.max_speed = max_speed      # m/s
+        self.current_speed = 0.0
+        self.safety_mode = "normal"
+
+    def calculate_impact_force(self, effective_mass, velocity):
+        """
+        Simplified impact force calculation
+        F = m * v / t (assuming contact time of 0.05s)
+        """
+        contact_time = 0.05  # seconds
+        return effective_mass * velocity / contact_time
+
+    def check_safety(self, human_body_part, effective_mass, velocity):
+        """Check if impact would exceed safety limits"""
+        force = self.calculate_impact_force(effective_mass, velocity)
+        limit = FORCE_LIMITS.get(human_body_part, 100)
+        is_safe = force <= limit
+        return {
+            'force': force,
+            'limit': limit,
+            'is_safe': is_safe,
+            'body_part': human_body_part
+        }
+
+    def adjust_speed_for_safety(self, human_body_part, effective_mass):
+        """Calculate maximum safe speed"""
+        limit = FORCE_LIMITS.get(human_body_part, 100)
+        contact_time = 0.05
+        max_safe_speed = limit * contact_time / effective_mass
+        return min(max_safe_speed, self.max_speed)
+
+# Test the safety system
+robot = CollaborativeRobotArm()
+
+print("Force Limits by Body Part (ISO 15066):")
+for part, limit in FORCE_LIMITS.items():
+    print(f"  {part}: {limit} N")
+
+print("\n--- Safety Check Examples ---\n")
+
+# Test scenarios
+scenarios = [
+    ('head', 5.0, 0.5),   # Effective mass 5kg, velocity 0.5 m/s
+    ('chest', 5.0, 0.5),
+    ('hand', 5.0, 0.5),
+    ('head', 5.0, 0.1),   # Same mass, lower velocity
+]
+
+for body_part, mass, velocity in scenarios:
+    result = robot.check_safety(body_part, mass, velocity)
+    status = "✓ SAFE" if result['is_safe'] else "✗ UNSAFE"
+    print(f"Contact with {body_part} at {velocity} m/s: "
+          f"Force={result['force']:.1f}N (limit={result['limit']}N) - {status}")
+```
+
+```python
+# Part 2: Safety Zone Visualization
+
+print("\n=== Part 2: Safety Zones ===\n")
+
+def create_safety_zones(robot_pos, arm_reach=1.0):
+    """
+    Create safety zones around a robot arm
+    - Danger zone (red): Inside arm reach
+    - Warning zone (yellow): Close to arm reach
+    - Safe zone (green): Beyond warning distance
+    """
+    danger_radius = arm_reach
+    warning_radius = arm_reach + 0.5
+    safe_radius = arm_reach + 1.5
+
+    return {
+        'danger': danger_radius,
+        'warning': warning_radius,
+        'safe': safe_radius,
+        'position': robot_pos
+    }
+
+def check_zone(person_pos, zones):
+    """Determine which zone a person is in"""
+    robot_pos = zones['position']
+    distance = np.sqrt((person_pos[0] - robot_pos[0])**2 +
+                       (person_pos[1] - robot_pos[1])**2)
+
+    if distance < zones['danger']:
+        return 'danger', distance
+    elif distance < zones['warning']:
+        return 'warning', distance
+    else:
+        return 'safe', distance
+
+# Create visualization
+fig, ax = plt.subplots(figsize=(10, 10))
+
+robot_pos = (0, 0)
+zones = create_safety_zones(robot_pos, arm_reach=1.0)
+
+# Draw zones
+theta = np.linspace(0, 2*np.pi, 100)
+
+# Safe zone (green)
+r = zones['safe']
+ax.fill(r*np.cos(theta), r*np.sin(theta), color='green', alpha=0.2, label='Safe Zone')
+
+# Warning zone (yellow)
+r = zones['warning']
+ax.fill(r*np.cos(theta), r*np.sin(theta), color='yellow', alpha=0.3, label='Warning Zone')
+
+# Danger zone (red)
+r = zones['danger']
+ax.fill(r*np.cos(theta), r*np.sin(theta), color='red', alpha=0.3, label='Danger Zone')
+
+# Draw robot
+ax.plot(*robot_pos, 'ko', markersize=20, label='Robot')
+
+# Simulate people at different positions
+people = [
+    (0.5, 0.5),   # In danger zone
+    (1.2, 0.3),   # In warning zone
+    (2.0, 1.5),   # In safe zone
+]
+
+for i, pos in enumerate(people):
+    zone, dist = check_zone(pos, zones)
+    color = {'danger': 'red', 'warning': 'orange', 'safe': 'green'}[zone]
+    ax.plot(pos[0], pos[1], 'o', markersize=15, color=color)
+    ax.annotate(f'Person {i+1}\n{zone} ({dist:.1f}m)',
+               pos, textcoords="offset points", xytext=(10,10))
+    print(f"Person {i+1} at {pos}: {zone} zone, {dist:.2f}m from robot")
+
+ax.set_xlim(-3, 3)
+ax.set_ylim(-3, 3)
+ax.set_aspect('equal')
+ax.legend(loc='upper right')
+ax.set_title('Robot Safety Zones')
+ax.grid(True, alpha=0.3)
+plt.show()
+```
+
+```python
+# Part 3: Speed-Separation Monitoring
+
+print("\n=== Part 3: Speed-Separation Monitoring ===\n")
+
+def calculate_safe_speed(distance, zones, max_speed=1.0):
+    """
+    Calculate safe robot speed based on human distance
+    Speed reduces as humans get closer
+    """
+    if distance < zones['danger']:
+        return 0.0  # Stop completely
+    elif distance < zones['warning']:
+        # Linear reduction in warning zone
+        ratio = (distance - zones['danger']) / (zones['warning'] - zones['danger'])
+        return max_speed * ratio * 0.5  # Max 50% speed in warning zone
+    else:
+        return max_speed
+
+# Simulate speed adjustment as person approaches
+distances = np.linspace(3.0, 0.2, 50)
+speeds = [calculate_safe_speed(d, zones) for d in distances]
+
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 8))
+
+# Plot speed vs distance
+ax1.plot(distances, speeds, 'b-', linewidth=2)
+ax1.axvline(x=zones['danger'], color='red', linestyle='--', label='Danger boundary')
+ax1.axvline(x=zones['warning'], color='orange', linestyle='--', label='Warning boundary')
+ax1.set_xlabel('Distance from Robot (m)')
+ax1.set_ylabel('Safe Robot Speed (m/s)')
+ax1.set_title('Speed-Separation Monitoring: Robot Speed vs Human Distance')
+ax1.legend()
+ax1.grid(True, alpha=0.3)
+ax1.invert_xaxis()
+
+# Plot zones
+colors = []
+for d in distances:
+    if d < zones['danger']:
+        colors.append('red')
+    elif d < zones['warning']:
+        colors.append('yellow')
+    else:
+        colors.append('green')
+
+ax2.bar(range(len(distances)), [1]*len(distances), color=colors, width=1.0)
+ax2.set_xlabel('Simulation Step (person approaching)')
+ax2.set_ylabel('Zone')
+ax2.set_title('Zone Status as Person Approaches Robot')
+ax2.set_yticks([])
+
+plt.tight_layout()
+plt.show()
+
+print("Speed-Separation Summary:")
+print(f"  Safe zone: Full speed ({max(speeds):.1f} m/s)")
+print(f"  Warning zone: Reduced speed (0-0.5 m/s)")
+print(f"  Danger zone: Complete stop (0 m/s)")
+```
+
+```python
+# Part 4: Risk Assessment Matrix
+
+print("\n=== Part 4: Risk Assessment Matrix ===\n")
+
+# Risk = Severity × Probability
+# Severity: 1 (minor) to 5 (catastrophic)
+# Probability: 1 (rare) to 5 (frequent)
+
+risk_scenarios = [
+    {"scenario": "Robot arm collision during normal operation",
+     "severity": 3, "probability": 2, "controls": "Force limiting, safety sensors"},
+    {"scenario": "E-stop failure during emergency",
+     "severity": 5, "probability": 1, "controls": "Redundant e-stop, SIL-3 design"},
+    {"scenario": "Pinch point at gripper",
+     "severity": 2, "probability": 3, "controls": "Guarding, force limiting"},
+    {"scenario": "Software bug causes unexpected motion",
+     "severity": 4, "probability": 2, "controls": "Testing, safety PLC"},
+    {"scenario": "Operator fatigue leads to unsafe behavior",
+     "severity": 3, "probability": 3, "controls": "Training, procedures"},
+]
+
+# Create risk matrix
+risk_matrix = np.zeros((5, 5))
+scenario_positions = []
+
+print("Risk Assessment Results:\n")
+print(f"{'Scenario':<45} {'Sev':>4} {'Prob':>4} {'Risk':>6} {'Level':<12}")
+print("-" * 80)
+
+for s in risk_scenarios:
+    risk_score = s['severity'] * s['probability']
+
+    if risk_score <= 4:
+        level = "Low"
+    elif risk_score <= 9:
+        level = "Medium"
+    elif risk_score <= 16:
+        level = "High"
+    else:
+        level = "Critical"
+
+    print(f"{s['scenario']:<45} {s['severity']:>4} {s['probability']:>4} {risk_score:>6} {level:<12}")
+    scenario_positions.append((s['probability']-1, s['severity']-1, risk_score))
+
+# Visualize risk matrix
+fig, ax = plt.subplots(figsize=(10, 8))
+
+# Create color-coded matrix
+risk_colors = np.zeros((5, 5, 3))
+for i in range(5):
+    for j in range(5):
+        score = (i+1) * (j+1)
+        if score <= 4:
+            risk_colors[j, i] = [0.3, 0.7, 0.3]  # Green
+        elif score <= 9:
+            risk_colors[j, i] = [0.9, 0.9, 0.3]  # Yellow
+        elif score <= 16:
+            risk_colors[j, i] = [0.9, 0.6, 0.3]  # Orange
+        else:
+            risk_colors[j, i] = [0.9, 0.3, 0.3]  # Red
+
+ax.imshow(risk_colors, origin='lower', aspect='auto')
+
+# Add risk scores
+for i in range(5):
+    for j in range(5):
+        score = (i+1) * (j+1)
+        ax.text(i, j, str(score), ha='center', va='center', fontsize=12)
+
+# Mark scenarios
+for prob, sev, score in scenario_positions:
+    ax.plot(prob, sev, 'ko', markersize=20, markerfacecolor='none', markeredgewidth=2)
+
+ax.set_xticks(range(5))
+ax.set_yticks(range(5))
+ax.set_xticklabels(['Rare', 'Unlikely', 'Possible', 'Likely', 'Frequent'])
+ax.set_yticklabels(['Minor', 'Moderate', 'Serious', 'Major', 'Catastrophic'])
+ax.set_xlabel('Probability')
+ax.set_ylabel('Severity')
+ax.set_title('Risk Assessment Matrix\n(Circles indicate scenario positions)')
+
+plt.tight_layout()
+plt.show()
+```
+
+### Expected Results
+
+- Understanding of ISO 15066 force limits
+- Visualization of safety zones around robot
+- Speed-separation monitoring behavior
+- Risk assessment matrix with scenario analysis
+
+### Troubleshooting
+
+- If plots don't display, check matplotlib imports
+- Risk scores should range from 1 (1×1) to 25 (5×5)
+
+<RAGZone id="simulation-lab">
+</RAGZone>
+
+---
+
+## Hardware Lab: ROS2 Safety Features Exploration
+
+**Platform**: ROS2 Humble
+**Hardware**: Simulation-only
+**Estimated Time**: 30 minutes
+**Difficulty**: Beginner
+
+### Prerequisites
+
+- ROS2 Humble installed
+- TurtleSim available
+
+### Safety Notes
+
+:::caution Safety Warning
+This lab explores safety concepts in simulation. Real robot safety systems require certified hardware and rigorous validation.
+:::
+
+### Procedure
+
+1. **Explore ROS2 lifecycle nodes** (safety-relevant):
+```bash
+source /opt/ros/humble/setup.bash
+
+# Lifecycle nodes provide controlled state transitions
+# States: unconfigured → inactive → active → finalized
+
+# See lifecycle node documentation
+ros2 lifecycle --help
+```
+
+2. **Examine Quality of Service (QoS)** for reliable communication:
+```bash
+# List topics with QoS info
+ros2 topic list -v
+
+# QoS profiles affect message delivery reliability
+# - Reliable: Guaranteed delivery (for safety)
+# - Best effort: Fast but may lose messages
+```
+
+3. **Create a simple safety monitor node**:
+
+Create `safety_monitor.py`:
+```python
+#!/usr/bin/env python3
+"""
+Simple safety monitor that watches robot velocity
+and triggers warnings if limits exceeded
+"""
+import rclpy
+from rclpy.node import Node
+from geometry_msgs.msg import Twist
+from std_msgs.msg import Bool
+
+class SafetyMonitor(Node):
+    def __init__(self):
+        super().__init__('safety_monitor')
+
+        # Safety limits
+        self.max_linear_vel = 0.5   # m/s
+        self.max_angular_vel = 1.0  # rad/s
+
+        # Subscribe to velocity commands
+        self.vel_sub = self.create_subscription(
+            Twist,
+            '/turtle1/cmd_vel',
+            self.velocity_callback,
+            10
+        )
+
+        # Publish safety status
+        self.safety_pub = self.create_publisher(Bool, '/safety_ok', 10)
+
+        # Timer for periodic status
+        self.timer = self.create_timer(0.5, self.timer_callback)
+
+        self.last_vel = Twist()
+        self.safety_ok = True
+
+        self.get_logger().info('Safety monitor started!')
+        self.get_logger().info(f'Limits: linear={self.max_linear_vel} m/s, '
+                               f'angular={self.max_angular_vel} rad/s')
+
+    def velocity_callback(self, msg):
+        self.last_vel = msg
+
+        # Check velocity limits
+        linear_ok = abs(msg.linear.x) <= self.max_linear_vel
+        angular_ok = abs(msg.angular.z) <= self.max_angular_vel
+
+        if not linear_ok:
+            self.get_logger().warn(
+                f'LINEAR VELOCITY EXCEEDED: {msg.linear.x:.2f} > {self.max_linear_vel}'
+            )
+
+        if not angular_ok:
+            self.get_logger().warn(
+                f'ANGULAR VELOCITY EXCEEDED: {msg.angular.z:.2f} > {self.max_angular_vel}'
+            )
+
+        self.safety_ok = linear_ok and angular_ok
+
+    def timer_callback(self):
+        msg = Bool()
+        msg.data = self.safety_ok
+        self.safety_pub.publish(msg)
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = SafetyMonitor()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
+```
+
+4. **Test the safety monitor**:
+```bash
+# Terminal 1: Run TurtleSim
+ros2 run turtlesim turtlesim_node
+
+# Terminal 2: Run safety monitor
+python3 safety_monitor.py
+
+# Terminal 3: Send safe velocity
+ros2 topic pub /turtle1/cmd_vel geometry_msgs/Twist \
+  "{linear: {x: 0.3}, angular: {z: 0.5}}"
+
+# Terminal 3: Send unsafe velocity
+ros2 topic pub /turtle1/cmd_vel geometry_msgs/Twist \
+  "{linear: {x: 2.0}, angular: {z: 0.5}}"
+
+# Watch for warnings in Terminal 2
+```
+
+### Verification
+
+- Safety monitor logs warnings when limits exceeded
+- `/safety_ok` topic publishes True/False based on velocity
+- Understand how monitoring provides safety oversight
+
+### Simulation Alternative
+
+Review ROS2 lifecycle and safety documentation if unable to run locally.
+
+<RAGZone id="hardware-lab">
+</RAGZone>
+
+---
+
+## Case Study: The Volkswagen Robot Fatality (2015)
+
+### Background
+
+In July 2015, a contractor at a Volkswagen plant in Germany was killed by an industrial robot. The 22-year-old worker was inside the robot's safety cage, helping to set up the machine, when it grabbed and pressed him against a metal plate.
+
+### What Happened
+
+The robot was not a collaborative robot—it was a traditional industrial robot designed to work inside safety fencing with no humans present. The worker had entered the safety area as part of setup work. The robot moved unexpectedly and struck the worker.
+
+### Analysis
+
+Key factors in this tragedy:
+
+1. **Safety System Bypass**: The worker was inside the safety fence while the robot was active
+2. **Lack of Presence Detection**: The robot had no way to detect a human in its workspace
+3. **Inadequate Procedures**: Setup work apparently occurred without proper lockout/tagout
+4. **Industrial vs. Collaborative**: This robot was not designed for human collaboration
+
+### Lessons for Physical AI
+
+This case illustrates why safety engineering matters:
+
+1. **Safety systems must be robust**: They should be difficult to bypass
+2. **Collaborative robots have different requirements**: Cobot standards (ISO 15066) exist precisely for human-robot interaction
+3. **Procedures matter**: Technology alone cannot ensure safety
+4. **Training is essential**: Workers must understand robot capabilities and hazards
+5. **Defense in depth**: Multiple layers of protection are needed
+
+### The Industry Response
+
+This and similar incidents drove development of:
+- Stricter enforcement of safety procedures
+- Broader adoption of collaborative robots
+- Enhanced presence detection systems
+- Better safety training programs
+- Updated safety standards
+
+<RAGZone id="case-study">
+</RAGZone>
+
+---
+
+## Summary
+
+Ethics and safety are not constraints on innovation—they are essential components of responsible Physical AI development:
+
+- **Ethical principles** (beneficence, non-maleficence, autonomy, justice, transparency) guide decision-making
+- **Safety engineering** follows a hierarchy of controls to minimize risk
+- **Standards** (ISO 10218, ISO 15066) provide concrete requirements
+- **Safe design** principles embed safety from the beginning
+- **Societal impacts** must be considered throughout development
+- **Real incidents** remind us why safety vigilance matters
+
+As you continue learning about Physical AI, remember that the technology we build affects real people—and we have a responsibility to build it well.
+
+---
+
+## Quiz
+
+### Question 1
+
+Which ethical principle states that robots should be designed to benefit humanity?
+
+A) Non-maleficence
+B) Beneficence
+C) Autonomy
+D) Justice
+
+<details>
+<summary>Answer</summary>
+**B**: Beneficence is the principle that robots should be designed to benefit humanity and individual users. Non-maleficence is about avoiding harm, which is related but distinct.
+</details>
+
+### Question 2
+
+In the hierarchy of safety controls, what is the most effective approach?
+
+A) Personal protective equipment
+B) Administrative controls
+C) Elimination of the hazard
+D) Engineering controls
+
+<details>
+<summary>Answer</summary>
+**C**: Elimination of the hazard is the most effective control because it removes the risk entirely. The hierarchy from most to least effective is: Elimination → Substitution → Engineering Controls → Administrative Controls → PPE.
+</details>
+
+### Question 3
+
+What does ISO 15066 specifically address?
+
+A) Industrial robot design
+B) Collaborative robots working alongside humans
+C) Robot programming languages
+D) Environmental testing
+
+<details>
+<summary>Answer</summary>
+**B**: ISO/TS 15066 specifically addresses collaborative robots (cobots) that work alongside humans without traditional safety fencing. It defines power and force limiting thresholds for safe human-robot contact.
+</details>
+
+### Question 4
+
+What is the "uncanny valley" in robotics?
+
+A) A manufacturing technique
+B) The psychological discomfort caused by nearly-but-not-quite human robots
+C) A safety zone around robots
+D) A programming paradigm
+
+<details>
+<summary>Answer</summary>
+**B**: The uncanny valley refers to the psychological phenomenon where robots (or other entities) that look almost—but not quite—human create feelings of unease or revulsion. This affects design decisions for humanoid robots.
+</details>
+
+### Question 5
+
+What was a key factor in the 2015 Volkswagen robot fatality?
+
+A) The robot was a collaborative robot
+B) The worker was outside the safety fence
+C) The worker was inside the safety fence while the robot was active
+D) The robot was too slow
+
+<details>
+<summary>Answer</summary>
+**C**: The worker was inside the safety fence while the industrial robot was active. Unlike collaborative robots, traditional industrial robots are not designed to safely interact with humans and rely on physical separation.
+</details>
+
+<RAGZone id="quiz">
+</RAGZone>
+
+---
+
+## References
+
+[1] I. Asimov, "Runaround," Astounding Science Fiction, March 1942.
+
+[2] International Organization for Standardization, "ISO 10218-1:2011 Robots and robotic devices — Safety requirements for industrial robots," ISO, 2011.
+
+[3] International Organization for Standardization, "ISO/TS 15066:2016 Robots and robotic devices — Collaborative robots," ISO, 2016.
+
+[4] M. Mori, "The Uncanny Valley," Energy, vol. 7, no. 4, pp. 33-35, 1970.
+
+[5] IEEE Global Initiative on Ethics of Autonomous and Intelligent Systems, "Ethically Aligned Design," IEEE, 2019.
+
+[6] BBC News, "Robot kills worker at Volkswagen plant in Germany," July 2015.
+
+---
+
+## Further Reading
+
+- IEEE Robotics and Automation Society Technical Committee on Robot Ethics
+- "Robot Ethics 2.0: From Autonomous Cars to Artificial Intelligence" edited by P. Lin, K. Abney, and R. Jenkins
+- OSHA Technical Manual on Industrial Robots and Robot System Safety

@@ -1,0 +1,123 @@
+---
+id: "6-3-deep-reinforcement-learning"
+title: "Deep Reinforcement Learning"
+sidebar_label: "6.3 Deep RL"
+sidebar_position: 3
+description: "DQN, policy gradients, and actor-critic methods"
+keywords: [DQN, policy-gradient, actor-critic, deep-RL]
+module: 6
+chapter: 3
+reading_time: 25
+difficulty: "advanced"
+prerequisites: ["6-2-reinforcement-learning-basics"]
+learning_objectives: ["Understand deep RL algorithms", "Apply to robot control"]
+simulation_lab: {platform: "colab", estimated_time: 35}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 25}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Deep Reinforcement Learning
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Understand DQN and policy gradient methods
+- Apply deep RL to robotics
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+## Introduction
+
+Deep RL combines neural networks with RL, enabling learning from high-dimensional inputs like images.
+
+<RAGZone id="introduction"></RAGZone>
+
+## Theory Content
+
+### DQN
+Deep Q-Networks use neural networks to approximate Q-functions for complex state spaces.
+
+### Policy Gradients
+Directly optimize policy parameters using gradient ascent on expected reward.
+
+### Actor-Critic
+Combines policy (actor) and value (critic) learning for stable, efficient training.
+
+<RAGZone id="theory-content"></RAGZone>
+
+## Simulation Lab
+
+```python
+# Conceptual deep RL
+print("Deep RL uses neural networks for:")
+print("- Q-function approximation (DQN)")
+print("- Policy representation (Policy Gradient)")
+print("- Combined approach (Actor-Critic)")
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+## Hardware Lab
+
+```bash
+ros2 topic list
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+## Case Study
+
+OpenAI trained robotic hands using PPO (Proximal Policy Optimization), an actor-critic algorithm.
+
+<RAGZone id="case-study"></RAGZone>
+
+## Summary
+
+Deep RL enables learning complex behaviors from raw sensory input using neural network function approximation.
+
+## Quiz
+
+### Question 1
+DQN uses neural networks for?
+A) Hardware control B) Q-function approximation C) Power management D) Communication
+<details><summary>Answer</summary>**B**: DQN approximates Q-values with neural networks.</details>
+
+### Question 2
+Policy gradients optimize?
+A) Value function B) Policy parameters directly C) Hardware D) Network speed
+<details><summary>Answer</summary>**B**: Policy gradients directly optimize policy parameters.</details>
+
+### Question 3
+Actor-critic combines?
+A) Two robots B) Policy and value learning C) Hardware and software D) Networks
+<details><summary>Answer</summary>**B**: Actor learns policy, critic estimates values.</details>
+
+### Question 4
+PPO stands for?
+A) Power Protocol Output B) Proximal Policy Optimization C) Parallel Processing Order D) Protocol Port Option
+<details><summary>Answer</summary>**B**: PPO is a popular actor-critic algorithm.</details>
+
+### Question 5
+Deep RL enables learning from?
+A) Only labeled data B) High-dimensional inputs like images C) No data D) Hardware specs
+<details><summary>Answer</summary>**B**: Deep RL can learn from complex sensory inputs.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+## References
+
+[1] V. Mnih et al., "Human-level control through deep RL," Nature, 2015.
+
+## Further Reading
+
+- Stable Baselines3 documentation

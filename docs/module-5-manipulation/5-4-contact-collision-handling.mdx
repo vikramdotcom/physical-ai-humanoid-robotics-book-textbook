@@ -1,0 +1,147 @@
+---
+id: "5-4-contact-collision-handling"
+title: "Contact and Collision Handling"
+sidebar_label: "5.4 Contact Handling"
+sidebar_position: 4
+description: "Contact modeling, collision avoidance, and safe interaction"
+keywords: [contact, collision, safety, interaction]
+module: 5
+chapter: 4
+reading_time: 20
+difficulty: "intermediate"
+prerequisites: ["5-1-grasping-fundamentals"]
+learning_objectives: ["Model contact interactions", "Implement collision avoidance", "Design safe interaction behaviors"]
+simulation_lab: {platform: "colab", estimated_time: 25}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 25}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Contact and Collision Handling
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Model contact interactions
+- Implement collision avoidance
+- Design safe interaction behaviors
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+---
+
+## Introduction
+
+Robots must handle contacts safely and avoid unintended collisions. This is critical for manipulation and human-robot interaction.
+
+<RAGZone id="introduction"></RAGZone>
+
+---
+
+## Theory Content
+
+### Section 1: Contact Modeling
+
+Contacts involve normal forces, friction, and compliance. Models predict forces from geometry and motion.
+
+### Section 2: Collision Avoidance
+
+Motion planning and reactive control keep robots from hitting obstacles and themselves.
+
+### Section 3: Safe Interaction
+
+When contact is intended, compliance and force limiting ensure safety.
+
+<RAGZone id="theory-content"></RAGZone>
+
+---
+
+## Simulation Lab
+
+```python
+# Simple collision check
+def collision_check(robot_pos, obstacle_pos, obstacle_radius):
+    distance = ((robot_pos[0]-obstacle_pos[0])**2 + (robot_pos[1]-obstacle_pos[1])**2)**0.5
+    return distance < obstacle_radius
+
+robot = (1, 1)
+obstacle = (1.5, 1)
+radius = 0.3
+print(f"Collision: {collision_check(robot, obstacle, radius)}")
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+---
+
+## Hardware Lab
+
+```bash
+ros2 interface show visualization_msgs/msg/Marker
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+---
+
+## Case Study
+
+Collaborative robots use force sensing and compliant control to safely share workspace with humans.
+
+<RAGZone id="case-study"></RAGZone>
+
+---
+
+## Summary
+
+Contact and collision handling enables safe and effective robot manipulation through modeling and control.
+
+---
+
+## Quiz
+
+### Question 1
+Collision avoidance prevents?
+A) Motion B) Unintended impacts C) Power use D) Communication
+<details><summary>Answer</summary>**B**: Collision avoidance keeps robots from hitting things unintentionally.</details>
+
+### Question 2
+Contact models predict?
+A) Colors B) Forces from geometry and motion C) Sounds D) Temperature
+<details><summary>Answer</summary>**B**: Models predict contact forces for planning and control.</details>
+
+### Question 3
+Safe interaction uses?
+A) Maximum force B) Compliance and force limiting C) No sensors D) Rigid control
+<details><summary>Answer</summary>**B**: Compliance and limits ensure safe contact interactions.</details>
+
+### Question 4
+Self-collision avoidance prevents?
+A) External hits B) Robot hitting itself C) Power issues D) Network problems
+<details><summary>Answer</summary>**B**: Robots must avoid collisions between their own links.</details>
+
+### Question 5
+Force sensing enables?
+A) Vision B) Contact detection and control C) Navigation only D) Communication
+<details><summary>Answer</summary>**B**: Force sensors detect contacts for safe interaction control.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+---
+
+## References
+
+[1] MoveIt Collision Detection documentation.
+
+## Further Reading
+
+- FCL (Flexible Collision Library)

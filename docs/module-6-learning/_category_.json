@@ -1,0 +1,22 @@
+{
+  "label": "Module 6: Learning and Intelligence",
+  "position": 7,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "description": "How robots learn from data and experience, covering machine learning, reinforcement learning, and foundation models for robotics.",
+    "keywords": ["machine-learning", "reinforcement-learning", "imitation-learning", "sim-to-real", "foundation-models"]
+  },
+  "customProps": {
+    "module_number": 6,
+    "chapter_count": 8,
+    "prerequisites": ["Module 1", "Basic probability and statistics"],
+    "learning_outcomes": [
+      "Understand ML fundamentals for robotics applications",
+      "Implement reinforcement learning algorithms",
+      "Apply imitation learning techniques",
+      "Describe sim-to-real transfer methods"
+    ]
+  }
+}

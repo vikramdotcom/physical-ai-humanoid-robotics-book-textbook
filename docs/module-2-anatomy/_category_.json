@@ -1,0 +1,22 @@
+{
+  "label": "Module 2: Robot Anatomy and Morphology",
+  "position": 3,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "description": "Comprehensive study of robot physical structures, focusing on humanoid body design, mechanical systems, and bio-inspired approaches.",
+    "keywords": ["robot-anatomy", "morphology", "humanoid-design", "actuators", "end-effectors"]
+  },
+  "customProps": {
+    "module_number": 2,
+    "chapter_count": 5,
+    "prerequisites": ["Module 1", "Basic physics (forces, motion)"],
+    "learning_outcomes": [
+      "Understand robot mechanical design principles",
+      "Calculate degrees of freedom for kinematic chains",
+      "Identify different types of actuators and their applications",
+      "Evaluate materials for robot construction"
+    ]
+  }
+}

@@ -1,0 +1,124 @@
+---
+id: "6-1-ml-fundamentals-robotics"
+title: "Machine Learning Fundamentals for Robotics"
+sidebar_label: "6.1 ML Fundamentals"
+sidebar_position: 1
+description: "Introduction to machine learning concepts for robotics applications"
+keywords: [machine-learning, neural-networks, supervised-learning]
+module: 6
+chapter: 1
+reading_time: 25
+difficulty: "intermediate"
+prerequisites: ["1-5-programming-fundamentals"]
+learning_objectives: ["Understand ML basics", "Apply to robotics"]
+simulation_lab: {platform: "colab", estimated_time: 30}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 25}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Machine Learning Fundamentals for Robotics
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Understand machine learning basics for robotics
+- Apply supervised and unsupervised learning concepts
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+## Introduction
+
+Machine learning enables robots to learn from data rather than explicit programming, essential for handling real-world complexity.
+
+<RAGZone id="introduction"></RAGZone>
+
+## Theory Content
+
+### Supervised Learning
+Learn from labeled examples (input-output pairs).
+
+### Unsupervised Learning
+Find patterns in unlabeled data.
+
+### Neural Networks
+Computational models inspired by biological neurons, powerful for perception and control.
+
+<RAGZone id="theory-content"></RAGZone>
+
+## Simulation Lab
+
+```python
+import numpy as np
+# Simple linear regression
+X = np.array([[1], [2], [3], [4]])
+y = np.array([2, 4, 6, 8])
+# y = 2x, learned from data
+print("ML enables learning patterns from data")
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+## Hardware Lab
+
+```bash
+ros2 topic list
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+## Case Study
+
+Tesla uses neural networks for perception in its autonomous driving systems.
+
+<RAGZone id="case-study"></RAGZone>
+
+## Summary
+
+ML provides the foundation for intelligent robot behavior through data-driven learning.
+
+## Quiz
+
+### Question 1
+Supervised learning requires?
+A) No data B) Labeled examples C) Only images D) Hardware
+<details><summary>Answer</summary>**B**: Supervised learning uses labeled input-output pairs.</details>
+
+### Question 2
+Neural networks are inspired by?
+A) Cars B) Biological neurons C) Wheels D) Gears
+<details><summary>Answer</summary>**B**: Neural networks mimic brain structure.</details>
+
+### Question 3
+ML for robotics enables?
+A) Manual control only B) Learning from data C) No adaptation D) Fixed behavior
+<details><summary>Answer</summary>**B**: ML enables data-driven learning and adaptation.</details>
+
+### Question 4
+Unsupervised learning finds?
+A) Labels B) Patterns without labels C) Exact answers D) Hardware faults
+<details><summary>Answer</summary>**B**: Unsupervised learning discovers patterns in unlabeled data.</details>
+
+### Question 5
+Deep learning uses?
+A) Shallow models B) Multi-layer neural networks C) No computation D) Only rules
+<details><summary>Answer</summary>**B**: Deep learning uses deep (multi-layer) neural networks.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+## References
+
+[1] I. Goodfellow et al., "Deep Learning," MIT Press, 2016.
+
+## Further Reading
+
+- PyTorch tutorials for robotics

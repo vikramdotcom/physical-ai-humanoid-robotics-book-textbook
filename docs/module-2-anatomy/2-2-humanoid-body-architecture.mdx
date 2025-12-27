@@ -1,0 +1,452 @@
+---
+id: "2-2-humanoid-body-architecture"
+title: "Humanoid Body Architecture"
+sidebar_label: "2.2 Humanoid Architecture"
+sidebar_position: 2
+description: "Understanding the design principles of humanoid robot bodies including bipedal design, torso, limbs, and head configurations"
+keywords:
+  - humanoid-design
+  - bipedal-robots
+  - robot-morphology
+  - body-architecture
+module: 2
+chapter: 2
+reading_time: 25
+difficulty: "intermediate"
+prerequisites:
+  - "2-1-degrees-of-freedom"
+learning_objectives:
+  - "Describe the key design considerations for humanoid robot bodies"
+  - "Explain the advantages and challenges of bipedal locomotion"
+  - "Identify the major subsystems of a humanoid robot"
+  - "Compare different humanoid robot designs and their trade-offs"
+simulation_lab:
+  platform: "colab"
+  estimated_time: 30
+hardware_lab:
+  platform: "ros2-humble"
+  hardware: "simulation-only"
+  estimated_time: 30
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors:
+  - name: "Physical AI Textbook Team"
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Humanoid Body Architecture
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+- Describe the key design considerations for humanoid robot bodies
+- Explain the advantages and challenges of bipedal locomotion
+- Identify the major subsystems of a humanoid robot
+- Compare different humanoid robot designs and their trade-offs
+
+<RAGZone id="learning-objectives">
+</RAGZone>
+
+---
+
+## Introduction
+
+Why build robots that look like humans? This question has many answers: human environments are designed for human bodies, human-like robots can use human tools, and people naturally interact better with humanoid forms. But creating a robot that walks on two legs, manipulates objects with hands, and perceives the world from an upright posture presents enormous engineering challenges.
+
+Humanoid robots must balance the competing demands of stability, mobility, manipulation, and human interaction—all within constraints of weight, power, and cost. In this chapter, we explore how engineers approach humanoid body design, examining everything from the overall body plan to the details of individual limbs.
+
+<RAGZone id="introduction">
+</RAGZone>
+
+---
+
+## Theory Content
+
+### Section 1: Why Humanoid Form?
+
+The humanoid form offers several advantages:
+
+**Human Environment Compatibility**: Stairs, doors, chairs, and tools are designed for human bodies. A humanoid robot can navigate and use these without modification.
+
+**Natural Interaction**: People intuitively understand humanoid body language and capabilities, facilitating collaboration.
+
+**Versatility**: The human form is a generalist design capable of diverse tasks—walking, climbing, manipulating, carrying.
+
+**Research Platform**: Humanoids help us understand human movement and cognition through engineering.
+
+:::note Key Concept
+The goal is not to replicate humans perfectly, but to capture the functional advantages of human morphology while potentially improving on human limitations.
+:::
+
+### Section 2: Bipedal Locomotion Design
+
+Walking on two legs is one of robotics' greatest challenges. Humans make it look easy, but bipedal locomotion requires:
+
+**Stability**: Keeping the center of mass over a small support base
+**Efficiency**: Walking should not drain batteries quickly
+**Adaptability**: Handling varied terrain and unexpected disturbances
+
+**Key Design Elements**:
+
+**Hip Configuration**: Most humanoids use 3-DOF hips (pitch, roll, yaw) for leg movement and rotation.
+
+**Knee Design**: Single-DOF revolute joint, often with series elastic actuators for compliance.
+
+**Ankle Design**: Critical for balance—typically 2 DOF (pitch and roll).
+
+**Foot Design**: May include toe joints, compliant soles, or force sensors for feedback.
+
+| Humanoid | Total DOF | Leg DOF (each) | Height | Weight |
+|----------|-----------|----------------|--------|--------|
+| ASIMO | 57 | 6 | 130 cm | 54 kg |
+| Atlas | 28 | 6 | 150 cm | 89 kg |
+| Digit | 30 | 6 | 157 cm | 42 kg |
+| NAO | 25 | 5 | 58 cm | 5.4 kg |
+
+### Section 3: Torso and Upper Body
+
+The torso connects upper and lower body and houses critical components:
+
+**Structural Requirements**:
+- Support arm loads during manipulation
+- Maintain balance during locomotion
+- Protect internal electronics and power systems
+
+**DOF Allocation**:
+- Some robots have a rigid torso (simpler but less flexible)
+- Others include waist joints (1-3 DOF) for improved reach and balance
+- Spine-like designs with multiple segments offer more human-like flexibility
+
+**Internal Components**:
+- Main computer systems
+- Battery packs
+- Power distribution
+- IMU for balance sensing
+
+### Section 4: Arm and Hand Design
+
+Humanoid arms need to replicate human reaching and manipulation capabilities:
+
+**Arm Configuration**:
+- Shoulder: 3 DOF (similar to human ball-and-socket)
+- Elbow: 1-2 DOF (flexion + optional rotation)
+- Wrist: 2-3 DOF (pitch, roll, optional yaw)
+- Total: 6-7 DOF per arm is common
+
+**Hand Design** (covered in detail in Chapter 2.5):
+- Simple grippers (1-2 DOF)
+- Anthropomorphic hands (15-20+ DOF)
+- Trade-off between dexterity and robustness
+
+### Section 5: Head and Sensing
+
+The head integrates perception systems and provides a focus for human interaction:
+
+**Typical Sensors**:
+- Stereo cameras for vision
+- Depth sensors (structured light, time-of-flight)
+- Microphones for audio
+- Sometimes LIDAR for navigation
+
+**Head DOF**:
+- Neck joints allow pan and tilt (2-3 DOF)
+- Enables looking around without moving the body
+- Important for attention and human interaction cues
+
+<RAGZone id="theory-content">
+</RAGZone>
+
+---
+
+## Simulation Lab: Humanoid Body Planning
+
+**Platform**: Google Colab
+**Estimated Time**: 30 minutes
+**Difficulty**: Intermediate
+
+### Objectives
+
+- Calculate total DOF for different humanoid configurations
+- Visualize humanoid kinematic structures
+- Analyze mass distribution effects on balance
+
+### Procedure
+
+```python
+# Lab 2.2: Humanoid Body Architecture Analysis
+import numpy as np
+import matplotlib.pyplot as plt
+
+print("=== Humanoid Body Architecture Analysis ===\n")
+
+# Define humanoid robot configurations
+humanoids = {
+    "ASIMO": {
+        "head": 2,
+        "arms": 7 * 2,  # 7 DOF per arm
+        "hands": 2 * 2,  # Simplified hands
+        "torso": 2,
+        "legs": 6 * 2,  # 6 DOF per leg
+        "height": 1.30,
+        "weight": 54
+    },
+    "Atlas": {
+        "head": 1,
+        "arms": 7 * 2,
+        "hands": 0,  # No hands in basic config
+        "torso": 0,
+        "legs": 6 * 2,
+        "height": 1.50,
+        "weight": 89
+    },
+    "NAO": {
+        "head": 2,
+        "arms": 5 * 2,
+        "hands": 1 * 2,
+        "torso": 0,
+        "legs": 5 * 2,
+        "height": 0.58,
+        "weight": 5.4
+    }
+}
+
+print("Humanoid DOF Comparison:")
+print("-" * 50)
+for name, config in humanoids.items():
+    total_dof = sum([config["head"], config["arms"], config["hands"],
+                     config["torso"], config["legs"]])
+    print(f"{name:10} Total DOF: {total_dof:3}  Height: {config['height']}m  Weight: {config['weight']}kg")
+```
+
+```python
+# Visualize humanoid body schematic
+fig, ax = plt.subplots(figsize=(10, 12))
+
+def draw_humanoid_schematic(ax):
+    # Head
+    head = plt.Circle((0, 1.6), 0.15, fill=False, linewidth=2)
+    ax.add_patch(head)
+    ax.text(0.25, 1.6, 'Head: 2 DOF', fontsize=10)
+
+    # Neck
+    ax.plot([0, 0], [1.45, 1.35], 'k-', linewidth=3)
+
+    # Torso
+    ax.plot([-0.2, 0.2, 0.2, -0.2, -0.2], [1.35, 1.35, 0.8, 0.8, 1.35], 'b-', linewidth=2)
+    ax.text(0.25, 1.1, 'Torso: 0-3 DOF', fontsize=10)
+
+    # Arms
+    # Right arm
+    ax.plot([0.2, 0.4, 0.6], [1.3, 1.0, 0.7], 'g-', linewidth=3)
+    ax.plot([0.2, 0.4, 0.6], [1.3, 1.0, 0.7], 'ko', markersize=8)
+    ax.text(0.65, 1.0, 'Arm: 6-7 DOF', fontsize=10)
+
+    # Left arm
+    ax.plot([-0.2, -0.4, -0.6], [1.3, 1.0, 0.7], 'g-', linewidth=3)
+    ax.plot([-0.2, -0.4, -0.6], [1.3, 1.0, 0.7], 'ko', markersize=8)
+
+    # Hands
+    ax.plot([0.6, 0.7], [0.7, 0.6], 'r-', linewidth=2)
+    ax.plot([-0.6, -0.7], [0.7, 0.6], 'r-', linewidth=2)
+    ax.text(0.75, 0.65, 'Hand: 1-20 DOF', fontsize=10)
+
+    # Legs
+    # Right leg
+    ax.plot([0.1, 0.15, 0.1], [0.8, 0.4, 0.0], 'purple', linewidth=3)
+    ax.plot([0.1, 0.15, 0.1], [0.8, 0.4, 0.0], 'ko', markersize=8)
+    ax.text(0.25, 0.4, 'Leg: 6 DOF', fontsize=10)
+
+    # Left leg
+    ax.plot([-0.1, -0.15, -0.1], [0.8, 0.4, 0.0], 'purple', linewidth=3)
+    ax.plot([-0.1, -0.15, -0.1], [0.8, 0.4, 0.0], 'ko', markersize=8)
+
+    # Feet
+    ax.plot([0.1, 0.25], [0.0, 0.0], 'orange', linewidth=4)
+    ax.plot([-0.1, -0.25], [0.0, 0.0], 'orange', linewidth=4)
+    ax.text(0.3, 0.0, 'Foot: 0-2 DOF', fontsize=10)
+
+draw_humanoid_schematic(ax)
+ax.set_xlim(-1, 1.5)
+ax.set_ylim(-0.2, 2)
+ax.set_aspect('equal')
+ax.set_title('Humanoid Robot Body Architecture\n(Circles indicate joints)', fontsize=14)
+ax.axis('off')
+plt.show()
+```
+
+### Expected Results
+
+- DOF comparison table for different humanoids
+- Schematic visualization of humanoid structure
+- Understanding of subsystem DOF allocation
+
+<RAGZone id="simulation-lab">
+</RAGZone>
+
+---
+
+## Hardware Lab: Exploring Humanoid URDFs
+
+**Platform**: ROS2 Humble
+**Hardware**: Simulation-only
+**Estimated Time**: 30 minutes
+**Difficulty**: Beginner
+
+### Procedure
+
+1. Explore available humanoid robot descriptions
+2. Examine joint configurations in URDF/XACRO files
+3. Visualize humanoid models in RViz
+
+```bash
+# Clone a humanoid robot description (example: NAO)
+# Many humanoid descriptions available in ROS ecosystem
+ros2 pkg list | grep -i humanoid
+```
+
+<RAGZone id="hardware-lab">
+</RAGZone>
+
+---
+
+## Case Study: Boston Dynamics Atlas Design Evolution
+
+### Background
+
+Atlas has evolved through multiple generations, each improving on stability, mobility, and capability.
+
+### Implementation
+
+Key design decisions:
+- Hydraulic actuation for high power density
+- Compact body with protected components
+- 28 DOF for dynamic locomotion and manipulation
+
+### Results
+
+Atlas demonstrates parkour, running, jumping, and recovering from pushes—capabilities that seemed impossible a decade ago.
+
+### Lessons Learned
+
+1. Iteration is essential—each Atlas generation builds on previous learning
+2. Hydraulics enable dynamic motion but add complexity
+3. Whole-body control is crucial for humanoid capability
+
+<RAGZone id="case-study">
+</RAGZone>
+
+---
+
+## Summary
+
+Humanoid body architecture requires careful balancing of many design factors:
+
+- Human form enables operation in human environments
+- Bipedal locomotion presents significant stability challenges
+- DOF allocation varies based on intended tasks
+- Torso design integrates structure and systems
+- Head configuration affects perception and interaction
+
+---
+
+## Quiz
+
+### Question 1
+
+Why is bipedal locomotion challenging for robots?
+
+A) Two legs use more energy than four
+B) Small support base makes balance difficult
+C) Humans don't actually walk on two legs
+D) It requires exactly 6 DOF
+
+<details>
+<summary>Answer</summary>
+**B**: Bipedal robots have a small support base (two feet or one foot during walking), making it challenging to keep the center of mass properly supported for stable balance.
+</details>
+
+### Question 2
+
+How many DOF does a typical humanoid robot arm have?
+
+A) 3 DOF
+B) 6-7 DOF
+C) 12 DOF
+D) 20 DOF
+
+<details>
+<summary>Answer</summary>
+**B**: Typical humanoid arms have 6-7 DOF (3 at shoulder, 1-2 at elbow, 2-3 at wrist), similar to human arm capabilities.
+</details>
+
+### Question 3
+
+What is a key advantage of humanoid form for robots?
+
+A) Simpler to build than wheeled robots
+B) Lower power consumption
+C) Compatibility with human environments
+D) Faster than other robot types
+
+<details>
+<summary>Answer</summary>
+**C**: Humanoid form allows robots to operate in environments designed for humans—using stairs, doors, and tools without environment modification.
+</details>
+
+### Question 4
+
+What components are typically housed in a humanoid robot's torso?
+
+A) Only batteries
+B) Main computer, batteries, and power distribution
+C) Only sensors
+D) Only actuators
+
+<details>
+<summary>Answer</summary>
+**B**: The torso typically houses main computing systems, batteries, power distribution, and often the main IMU for balance sensing.
+</details>
+
+### Question 5
+
+How many DOF does the Atlas robot have?
+
+A) 6
+B) 12
+C) 28
+D) 57
+
+<details>
+<summary>Answer</summary>
+**C**: Atlas has 28 DOF distributed across its body for dynamic locomotion and manipulation.
+</details>
+
+<RAGZone id="quiz">
+</RAGZone>
+
+---
+
+## References
+
+[1] Boston Dynamics, "Atlas Technical Documentation," 2024.
+
+[2] K. Hirai et al., "The development of Honda humanoid robot," in Proc. IEEE ICRA, 1998.
+
+[3] S. Feng et al., "Optimization Based Full Body Control for the DARPA Robotics Challenge," J. Field Robotics, 2015.
+
+---
+
+## Further Reading
+
+- IEEE-RAS Humanoids Conference proceedings
+- Boston Dynamics Atlas technical videos
+- "Humanoid Robots" by P. Sardain and G. Bessonnet

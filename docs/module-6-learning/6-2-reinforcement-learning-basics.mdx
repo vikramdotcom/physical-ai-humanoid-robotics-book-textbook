@@ -1,0 +1,124 @@
+---
+id: "6-2-reinforcement-learning-basics"
+title: "Reinforcement Learning Basics"
+sidebar_label: "6.2 RL Basics"
+sidebar_position: 2
+description: "MDP, policy, value functions, and Q-learning fundamentals"
+keywords: [reinforcement-learning, MDP, Q-learning, policy]
+module: 6
+chapter: 2
+reading_time: 25
+difficulty: "intermediate"
+prerequisites: ["6-1-ml-fundamentals-robotics"]
+learning_objectives: ["Understand RL fundamentals", "Apply Q-learning"]
+simulation_lab: {platform: "colab", estimated_time: 35}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 25}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Reinforcement Learning Basics
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Understand MDP framework
+- Implement basic Q-learning
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+## Introduction
+
+RL learns optimal behavior through trial and error, receiving rewards for good actions—ideal for robot control.
+
+<RAGZone id="introduction"></RAGZone>
+
+## Theory Content
+
+### Markov Decision Process (MDP)
+States, actions, transitions, rewards define the RL problem.
+
+### Policy and Value Functions
+Policy maps states to actions; value functions estimate expected rewards.
+
+### Q-Learning
+Model-free algorithm learning action values directly.
+
+<RAGZone id="theory-content"></RAGZone>
+
+## Simulation Lab
+
+```python
+import numpy as np
+# Simple Q-learning update
+Q = np.zeros((5, 4))  # 5 states, 4 actions
+alpha, gamma = 0.1, 0.9
+# Q(s,a) += alpha * (r + gamma * max(Q(s')) - Q(s,a))
+print("Q-learning learns optimal actions through experience")
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+## Hardware Lab
+
+```bash
+ros2 topic list
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+## Case Study
+
+DeepMind used RL to train robots for object manipulation tasks.
+
+<RAGZone id="case-study"></RAGZone>
+
+## Summary
+
+RL enables robots to learn optimal behaviors through interaction with the environment.
+
+## Quiz
+
+### Question 1
+MDP stands for?
+A) Machine Data Protocol B) Markov Decision Process C) Motor Drive Power D) Manual Design Pattern
+<details><summary>Answer</summary>**B**: MDP is the mathematical framework for RL.</details>
+
+### Question 2
+Q-learning learns?
+A) Policy directly B) Action values C) Only states D) Hardware
+<details><summary>Answer</summary>**B**: Q-learning learns Q-values (action values).</details>
+
+### Question 3
+Reward signal indicates?
+A) Hardware status B) Quality of actions C) Battery level D) Network speed
+<details><summary>Answer</summary>**B**: Rewards guide learning toward good behavior.</details>
+
+### Question 4
+Policy defines?
+A) Hardware specs B) Mapping from states to actions C) Network protocol D) Power management
+<details><summary>Answer</summary>**B**: Policy specifies which action to take in each state.</details>
+
+### Question 5
+RL requires?
+A) Only labeled data B) Interaction with environment C) No computation D) Manual tuning only
+<details><summary>Answer</summary>**B**: RL learns through environment interaction.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+## References
+
+[1] R. Sutton and A. Barto, "Reinforcement Learning," MIT Press, 2018.
+
+## Further Reading
+
+- OpenAI Gym environments

@@ -1,0 +1,126 @@
+---
+id: "6-5-sim-to-real-transfer"
+title: "Sim-to-Real Transfer"
+sidebar_label: "6.5 Sim-to-Real"
+sidebar_position: 5
+description: "Domain randomization and bridging the reality gap"
+keywords: [sim-to-real, domain-randomization, reality-gap]
+module: 6
+chapter: 5
+reading_time: 20
+difficulty: "intermediate"
+prerequisites: ["6-3-deep-reinforcement-learning"]
+learning_objectives: ["Understand sim-to-real challenges", "Apply domain randomization"]
+simulation_lab: {platform: "colab", estimated_time: 30}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 25}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Sim-to-Real Transfer
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Understand the reality gap
+- Apply domain randomization
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+## Introduction
+
+Policies trained in simulation often fail in the real world. Sim-to-real techniques bridge this reality gap.
+
+<RAGZone id="introduction"></RAGZone>
+
+## Theory Content
+
+### Reality Gap
+Differences between simulation and reality cause policy failure.
+
+### Domain Randomization
+Vary simulation parameters during training for robust policies.
+
+### System Identification
+Match simulation to reality through careful parameter tuning.
+
+<RAGZone id="theory-content"></RAGZone>
+
+## Simulation Lab
+
+```python
+import numpy as np
+# Domain randomization example
+friction_range = (0.3, 0.8)
+mass_range = (0.9, 1.1)
+for _ in range(3):
+    friction = np.random.uniform(*friction_range)
+    mass_scale = np.random.uniform(*mass_range)
+    print(f"Training with friction={friction:.2f}, mass_scale={mass_scale:.2f}")
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+## Hardware Lab
+
+```bash
+ros2 topic list
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+## Case Study
+
+OpenAI used massive domain randomization to transfer dexterous manipulation skills to physical robot hands.
+
+<RAGZone id="case-study"></RAGZone>
+
+## Summary
+
+Sim-to-real transfer enables safe, efficient training in simulation with deployment to real robots.
+
+## Quiz
+
+### Question 1
+Reality gap refers to?
+A) Physical distance B) Sim-real differences C) Network latency D) Power issues
+<details><summary>Answer</summary>**B**: The reality gap is the difference between simulation and real world.</details>
+
+### Question 2
+Domain randomization varies?
+A) Only colors B) Simulation parameters C) Robot hardware D) Network settings
+<details><summary>Answer</summary>**B**: DR randomizes physics, visuals, and other parameters.</details>
+
+### Question 3
+Why train in simulation?
+A) Only option B) Safe, fast, cheap C) Required by law D) Better results always
+<details><summary>Answer</summary>**B**: Simulation enables safe, fast, cost-effective training.</details>
+
+### Question 4
+System identification?
+A) Robot naming B) Matching sim to reality C) Network configuration D) Power calibration
+<details><summary>Answer</summary>**B**: Sys-id tunes simulation parameters to match reality.</details>
+
+### Question 5
+Sim-to-real success requires?
+A) Ignoring differences B) Robust policies C) No training D) Only hardware changes
+<details><summary>Answer</summary>**B**: Policies must be robust to sim-real differences.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+## References
+
+[1] J. Tobin et al., "Domain Randomization," IROS, 2017.
+
+## Further Reading
+
+- Isaac Gym documentation

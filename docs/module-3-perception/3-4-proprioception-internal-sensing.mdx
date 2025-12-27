@@ -1,0 +1,166 @@
+---
+id: "3-4-proprioception-internal-sensing"
+title: "Proprioception and Internal Sensing"
+sidebar_label: "3.4 Proprioception"
+sidebar_position: 4
+description: "Understanding IMUs, encoders, and force/torque sensors for robot state estimation"
+keywords: [imu, encoders, force-torque, proprioception]
+module: 3
+chapter: 4
+reading_time: 20
+difficulty: "intermediate"
+prerequisites: ["3-1-sensor-fundamentals"]
+learning_objectives:
+  - "Explain how robots sense their own state"
+  - "Understand IMU operation and limitations"
+  - "Apply encoder and force sensor data"
+simulation_lab: {platform: "colab", estimated_time: 25}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 30}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Proprioception and Internal Sensing
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Explain how robots sense their own state
+- Understand IMU operation and limitations
+- Apply encoder and force sensor data
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+---
+
+## Introduction
+
+Proprioception—knowing the state of one's own body—is essential for robot control. Internal sensors measure joint positions, velocities, forces, and body orientation.
+
+<RAGZone id="introduction"></RAGZone>
+
+---
+
+## Theory Content
+
+### Section 1: Inertial Measurement Units (IMUs)
+
+IMUs combine accelerometers and gyroscopes to measure linear acceleration and angular velocity. They enable balance control and orientation estimation.
+
+### Section 2: Encoders
+
+Encoders measure joint angles and velocities. Types include optical (high precision) and magnetic (robust). Essential for position control.
+
+### Section 3: Force/Torque Sensors
+
+Force sensors enable contact detection, force control, and safe human-robot interaction. Six-axis sensors measure full force/torque vectors.
+
+<RAGZone id="theory-content"></RAGZone>
+
+---
+
+## Simulation Lab
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Simulate IMU gyroscope integration for orientation
+dt = 0.01
+time = np.arange(0, 10, dt)
+true_angle = np.sin(time)  # True orientation
+gyro_rate = np.cos(time) + np.random.normal(0, 0.1, len(time))  # Noisy rate
+
+# Integrate gyroscope
+estimated_angle = np.cumsum(gyro_rate) * dt
+
+plt.figure(figsize=(12, 4))
+plt.plot(time, true_angle, 'b-', label='True angle')
+plt.plot(time, estimated_angle, 'r--', label='Integrated gyro (drifts)')
+plt.xlabel('Time (s)')
+plt.ylabel('Angle (rad)')
+plt.legend()
+plt.title('IMU Gyroscope Drift')
+plt.show()
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+---
+
+## Hardware Lab
+
+```bash
+# IMU and joint state messages
+ros2 interface show sensor_msgs/msg/Imu
+ros2 interface show sensor_msgs/msg/JointState
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+---
+
+## Case Study
+
+Humanoid robots like Atlas rely heavily on IMUs for balance control, processing inertial data at high rates to maintain stability during dynamic movements.
+
+<RAGZone id="case-study"></RAGZone>
+
+---
+
+## Summary
+
+Proprioceptive sensors enable robots to know their own state, essential for motion control, balance, and safe interaction.
+
+---
+
+## Quiz
+
+### Question 1
+What does an IMU measure?
+A) Distance B) Acceleration and rotation rate C) Temperature D) Color
+<details><summary>Answer</summary>**B**: IMUs measure linear acceleration and angular velocity.</details>
+
+### Question 2
+Why do gyroscopes drift?
+A) Battery depletion B) Integration of noise over time C) Temperature D) Magnetic interference
+<details><summary>Answer</summary>**B**: Small noise errors accumulate when integrating angular rate to get angle.</details>
+
+### Question 3
+What do encoders measure?
+A) Force B) Joint angle/position C) Temperature D) Current
+<details><summary>Answer</summary>**B**: Encoders measure rotational position of joints.</details>
+
+### Question 4
+Force/torque sensors enable?
+A) Vision B) Safe contact and force control C) Navigation D) Communication
+<details><summary>Answer</summary>**B**: Force sensors enable robots to safely interact with objects and people.</details>
+
+### Question 5
+Why is proprioception important for balance?
+A) Seeing obstacles B) Knowing body orientation and motion C) Communication D) Power management
+<details><summary>Answer</summary>**B**: Balance requires knowing current body state to make corrections.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+---
+
+## References
+
+[1] R. Siegwart et al., "Introduction to Autonomous Mobile Robots," MIT Press, 2011.
+
+---
+
+## Further Reading
+
+- IMU sensor datasheets
+- ROS2 sensor_msgs documentation

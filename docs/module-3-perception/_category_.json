@@ -1,0 +1,22 @@
+{
+  "label": "Module 3: Perception and Sensing",
+  "position": 4,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "description": "How robots perceive and understand their environment through various sensing modalities, from basic sensors to advanced computer vision.",
+    "keywords": ["perception", "sensors", "computer-vision", "sensor-fusion", "SLAM"]
+  },
+  "customProps": {
+    "module_number": 3,
+    "chapter_count": 6,
+    "prerequisites": ["Module 1", "Basic physics (light, sound, electricity)"],
+    "learning_outcomes": [
+      "Understand different sensor types and their specifications",
+      "Apply computer vision techniques for robotics",
+      "Implement sensor fusion algorithms",
+      "Describe 3D perception and SLAM concepts"
+    ]
+  }
+}

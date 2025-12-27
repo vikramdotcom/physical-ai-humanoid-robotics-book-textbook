@@ -1,0 +1,142 @@
+---
+id: "5-3-dexterous-manipulation"
+title: "Dexterous Manipulation"
+sidebar_label: "5.3 Dexterous Manipulation"
+sidebar_position: 3
+description: "In-hand manipulation, finger gaiting, and tool use"
+keywords: [dexterous, in-hand, finger-gaiting, tool-use]
+module: 5
+chapter: 3
+reading_time: 20
+difficulty: "advanced"
+prerequisites: ["5-1-grasping-fundamentals"]
+learning_objectives: ["Understand in-hand manipulation", "Apply finger gaiting concepts", "Analyze tool use capabilities"]
+simulation_lab: {platform: "colab", estimated_time: 30}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 30}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Dexterous Manipulation
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Understand in-hand manipulation
+- Apply finger gaiting concepts
+- Analyze tool use capabilities
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+---
+
+## Introduction
+
+Dexterous manipulation moves objects within the hand, enabling reorientation and precise positioning without regrasping.
+
+<RAGZone id="introduction"></RAGZone>
+
+---
+
+## Theory Content
+
+### Section 1: In-Hand Manipulation
+
+Rotating and translating objects within a grasp using coordinated finger motions.
+
+### Section 2: Finger Gaiting
+
+Fingers take turns maintaining grasp while others reposition, enabling large reorientations.
+
+### Section 3: Tool Use
+
+Using objects as tools (hammers, screwdrivers) extends robot capabilities beyond direct manipulation.
+
+<RAGZone id="theory-content"></RAGZone>
+
+---
+
+## Simulation Lab
+
+```python
+print("Dexterous Manipulation Capabilities:")
+capabilities = ['In-hand rotation', 'Translation', 'Finger gaiting', 'Tool use']
+for cap in capabilities:
+    print(f"  - {cap}")
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+---
+
+## Hardware Lab
+
+```bash
+ros2 topic list
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+---
+
+## Case Study
+
+OpenAI demonstrated cube manipulation using a dexterous hand trained with reinforcement learning and sim-to-real transfer.
+
+<RAGZone id="case-study"></RAGZone>
+
+---
+
+## Summary
+
+Dexterous manipulation enables complex object handling through coordinated finger control and in-hand motions.
+
+---
+
+## Quiz
+
+### Question 1
+In-hand manipulation means?
+A) Picking up objects B) Moving objects within the grasp C) Dropping objects D) No manipulation
+<details><summary>Answer</summary>**B**: In-hand manipulation repositions objects without releasing.</details>
+
+### Question 2
+Finger gaiting involves?
+A) Walking B) Alternating finger contacts for reorientation C) No fingers D) Single finger only
+<details><summary>Answer</summary>**B**: Fingers alternate contact to achieve large reorientations.</details>
+
+### Question 3
+Tool use extends?
+A) Robot size B) Manipulation capabilities C) Battery life D) Network range
+<details><summary>Answer</summary>**B**: Tools extend what the robot can accomplish beyond direct manipulation.</details>
+
+### Question 4
+Dexterous hands have?
+A) 1 DOF B) Many DOF (15+) C) No DOF D) Only 2 fingers
+<details><summary>Answer</summary>**B**: Dexterous hands have many DOF for complex manipulation.</details>
+
+### Question 5
+OpenAI cube manipulation used?
+A) Only simulation B) Reinforcement learning C) No learning D) Manual programming only
+<details><summary>Answer</summary>**B**: RL with sim-to-real enabled complex dexterous manipulation.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+---
+
+## References
+
+[1] OpenAI, "Learning Dexterous In-Hand Manipulation," 2019.
+
+## Further Reading
+
+- Dexterous manipulation research

@@ -1,0 +1,165 @@
+---
+id: "4-4-bipedal-walking-principles"
+title: "Bipedal Walking Principles"
+sidebar_label: "4.4 Bipedal Walking"
+sidebar_position: 4
+description: "ZMP, capture point, and gait cycles for humanoid walking"
+keywords: [bipedal, walking, ZMP, gait, humanoid]
+module: 4
+chapter: 4
+reading_time: 25
+difficulty: "advanced"
+prerequisites: ["4-2-dynamics-force-control"]
+learning_objectives: ["Understand ZMP and balance criteria", "Analyze gait cycles", "Apply walking pattern generation"]
+simulation_lab: {platform: "colab", estimated_time: 35}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 30}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Bipedal Walking Principles
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Understand ZMP and balance criteria
+- Analyze gait cycles
+- Apply walking pattern generation
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+---
+
+## Introduction
+
+Walking on two legs requires maintaining balance while moving. Key concepts include ZMP (Zero Moment Point) and capture point dynamics.
+
+<RAGZone id="introduction"></RAGZone>
+
+---
+
+## Theory Content
+
+### Section 1: Zero Moment Point (ZMP)
+
+ZMP is the point where the ground reaction force produces no horizontal moment. For stable walking, ZMP must stay within the support polygon.
+
+### Section 2: Gait Cycles
+
+Walking consists of phases: double support (both feet), single support (one foot), and swing. Gait parameters include step length, frequency, and duration.
+
+### Section 3: Capture Point
+
+The capture point indicates where to step to stop falling. Modern walking controllers track capture point dynamics for robust locomotion.
+
+<RAGZone id="theory-content"></RAGZone>
+
+---
+
+## Simulation Lab
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Simple walking CoM trajectory
+t = np.linspace(0, 4, 200)
+step_length = 0.3
+step_time = 0.5
+
+# CoM moves smoothly between foot positions
+com_x = step_length * t / step_time
+com_y = 0.02 * np.sin(2 * np.pi * t / step_time)  # Lateral sway
+
+plt.figure(figsize=(12, 4))
+plt.subplot(1, 2, 1)
+plt.plot(t, com_x)
+plt.xlabel('Time (s)')
+plt.ylabel('Forward position (m)')
+plt.title('CoM Forward Motion')
+
+plt.subplot(1, 2, 2)
+plt.plot(t, com_y)
+plt.xlabel('Time (s)')
+plt.ylabel('Lateral position (m)')
+plt.title('CoM Lateral Sway')
+plt.tight_layout()
+plt.show()
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+---
+
+## Hardware Lab
+
+```bash
+# Walking-related message types
+ros2 interface show geometry_msgs/msg/Twist
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+---
+
+## Case Study
+
+Honda ASIMO used ZMP-based walking control, while Boston Dynamics Atlas uses more dynamic approaches with capture point tracking.
+
+<RAGZone id="case-study"></RAGZone>
+
+---
+
+## Summary
+
+Bipedal walking requires careful balance control through ZMP, capture point tracking, and coordinated gait generation.
+
+---
+
+## Quiz
+
+### Question 1
+ZMP stands for?
+A) Zero Motor Power B) Zero Moment Point C) Zone Motion Planning D) Zigzag Motion Path
+<details><summary>Answer</summary>**B**: Zero Moment Point is where ground reaction produces no horizontal moment.</details>
+
+### Question 2
+For stable walking, ZMP must be?
+A) Outside support polygon B) Within support polygon C) At robot center D) Moving constantly
+<details><summary>Answer</summary>**B**: ZMP inside support polygon prevents tipping.</details>
+
+### Question 3
+Double support phase means?
+A) Two robots B) Both feet on ground C) Moving twice as fast D) Double the force
+<details><summary>Answer</summary>**B**: Double support is when both feet contact the ground simultaneously.</details>
+
+### Question 4
+Capture point indicates?
+A) Camera location B) Where to step to stop falling C) Enemy position D) Battery level
+<details><summary>Answer</summary>**B**: The capture point shows where to place the foot to arrest a fall.</details>
+
+### Question 5
+Gait cycle includes?
+A) Only standing B) Support and swing phases C) Only jumping D) Only running
+<details><summary>Answer</summary>**B**: Walking gait alternates between support phases and swing phases.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+---
+
+## References
+
+[1] S. Kajita et al., "Biped Walking Pattern Generation," ICRA, 2003.
+
+## Further Reading
+
+- "Introduction to Humanoid Robotics" by Kajita and Espiau

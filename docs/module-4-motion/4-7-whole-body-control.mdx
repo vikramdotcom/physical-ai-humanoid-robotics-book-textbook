@@ -1,0 +1,147 @@
+---
+id: "4-7-whole-body-control"
+title: "Whole-Body Control"
+sidebar_label: "4.7 Whole-Body Control"
+sidebar_position: 7
+description: "Coordinating all robot DOF for complex tasks with task prioritization"
+keywords: [whole-body-control, coordination, task-priority, compliance]
+module: 4
+chapter: 7
+reading_time: 25
+difficulty: "advanced"
+prerequisites: ["4-2-dynamics-force-control"]
+learning_objectives: ["Understand whole-body coordination", "Apply task prioritization", "Implement compliant control strategies"]
+simulation_lab: {platform: "colab", estimated_time: 30}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 30}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Whole-Body Control
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Understand whole-body coordination
+- Apply task prioritization
+- Implement compliant control strategies
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+---
+
+## Introduction
+
+Humanoid robots have many DOF that must work together. Whole-body control coordinates all joints to achieve multiple simultaneous objectives.
+
+<RAGZone id="introduction"></RAGZone>
+
+---
+
+## Theory Content
+
+### Section 1: Task Prioritization
+
+Multiple tasks (balance, manipulation, gaze) compete for robot DOF. Task priority frameworks assign importance and resolve conflicts.
+
+### Section 2: Null Space Control
+
+Higher-priority tasks use DOF first. Lower-priority tasks use remaining DOF (null space) without affecting higher tasks.
+
+### Section 3: Compliance
+
+Compliance allows the robot to yield to external forces, enabling safe interaction and robust manipulation.
+
+<RAGZone id="theory-content"></RAGZone>
+
+---
+
+## Simulation Lab
+
+```python
+import numpy as np
+# Conceptual task priority
+tasks = ['Balance', 'Hand position', 'Gaze direction', 'Posture']
+priorities = [1, 2, 3, 4]
+
+print("Task Hierarchy:")
+for task, priority in zip(tasks, priorities):
+    print(f"  Priority {priority}: {task}")
+print("\nHigher priority tasks get DOF first, lower tasks use null space.")
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+---
+
+## Hardware Lab
+
+```bash
+ros2 pkg list | grep control
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+---
+
+## Case Study
+
+Boston Dynamics Atlas uses whole-body control to coordinate 28 DOF for complex maneuvers like parkour.
+
+<RAGZone id="case-study"></RAGZone>
+
+---
+
+## Summary
+
+Whole-body control enables humanoids to perform complex multi-objective tasks through coordinated use of all DOF.
+
+---
+
+## Quiz
+
+### Question 1
+Whole-body control coordinates?
+A) One joint B) All robot DOF C) Only arms D) Only legs
+<details><summary>Answer</summary>**B**: WBC coordinates all degrees of freedom simultaneously.</details>
+
+### Question 2
+Task prioritization resolves?
+A) Power issues B) Conflicts between multiple objectives C) Cost D) Weight
+<details><summary>Answer</summary>**B**: Priority frameworks decide which tasks get DOF when they conflict.</details>
+
+### Question 3
+Null space is used for?
+A) Primary tasks B) Lower-priority tasks without affecting higher ones C) Nothing D) Power
+<details><summary>Answer</summary>**B**: Null space motions don't affect higher-priority task performance.</details>
+
+### Question 4
+Compliance enables?
+A) Rigidity B) Safe interaction with forces C) Faster motion D) Heavier loads
+<details><summary>Answer</summary>**B**: Compliant control allows yielding to external forces for safety.</details>
+
+### Question 5
+Atlas parkour requires?
+A) Simple control B) Whole-body coordination C) Single joint control D) No control
+<details><summary>Answer</summary>**B**: Complex maneuvers need coordinated whole-body control.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+---
+
+## References
+
+[1] L. Sentis and O. Khatib, "Whole-Body Control Framework," ICRA, 2006.
+
+## Further Reading
+
+- Whole-body control research papers

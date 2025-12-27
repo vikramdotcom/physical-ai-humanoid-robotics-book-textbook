@@ -1,0 +1,22 @@
+{
+  "label": "Module 7: Systems Integration and Deployment",
+  "position": 8,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "description": "Bringing together all components into working robotic systems, covering software architecture, testing, and real-world deployment.",
+    "keywords": ["ROS2", "systems-integration", "simulation", "testing", "deployment"]
+  },
+  "customProps": {
+    "module_number": 7,
+    "chapter_count": 5,
+    "prerequisites": ["Modules 1-6"],
+    "learning_outcomes": [
+      "Master ROS2 architecture and design patterns",
+      "Use simulation tools like Isaac Sim and Gazebo",
+      "Implement testing and validation strategies",
+      "Deploy robotic systems to edge hardware"
+    ]
+  }
+}

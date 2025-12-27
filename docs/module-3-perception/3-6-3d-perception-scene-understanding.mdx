@@ -1,0 +1,178 @@
+---
+id: "3-6-3d-perception-scene-understanding"
+title: "3D Perception and Scene Understanding"
+sidebar_label: "3.6 3D Perception"
+sidebar_position: 6
+description: "Point cloud processing, SLAM, and semantic mapping for robot navigation"
+keywords: [point-clouds, SLAM, 3d-perception, semantic-mapping]
+module: 3
+chapter: 6
+reading_time: 25
+difficulty: "advanced"
+prerequisites: ["3-2-vision-systems", "3-5-sensor-fusion-state-estimation"]
+learning_objectives:
+  - "Process 3D point cloud data"
+  - "Understand SLAM fundamentals"
+  - "Apply semantic mapping concepts"
+simulation_lab: {platform: "colab", estimated_time: 35}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 35}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# 3D Perception and Scene Understanding
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Process 3D point cloud data
+- Understand SLAM fundamentals
+- Apply semantic mapping concepts
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+---
+
+## Introduction
+
+3D perception enables robots to understand the spatial structure of their environment, essential for navigation, manipulation, and safe operation.
+
+<RAGZone id="introduction"></RAGZone>
+
+---
+
+## Theory Content
+
+### Section 1: Point Cloud Processing
+
+Point clouds are sets of 3D points from LiDAR or depth cameras. Processing includes filtering, segmentation, and feature extraction.
+
+### Section 2: SLAM (Simultaneous Localization and Mapping)
+
+SLAM solves the chicken-and-egg problem: building a map while localizing within it. Key approaches include particle filters and graph optimization.
+
+### Section 3: Semantic Mapping
+
+Semantic maps add meaning to geometry—labeling areas as "floor," "obstacle," "door," etc., enabling intelligent navigation and task planning.
+
+<RAGZone id="theory-content"></RAGZone>
+
+---
+
+## Simulation Lab
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Generate synthetic point cloud (room with obstacle)
+np.random.seed(42)
+n_points = 500
+
+# Floor points
+floor = np.column_stack([
+    np.random.uniform(-2, 2, n_points),
+    np.random.uniform(-2, 2, n_points),
+    np.zeros(n_points) + np.random.normal(0, 0.02, n_points)
+])
+
+# Obstacle (box)
+obstacle = np.column_stack([
+    np.random.uniform(0, 0.5, 100),
+    np.random.uniform(0, 0.5, 100),
+    np.random.uniform(0, 1, 100)
+])
+
+fig = plt.figure(figsize=(10, 8))
+ax = fig.add_subplot(111, projection='3d')
+ax.scatter(floor[:, 0], floor[:, 1], floor[:, 2], c='green', s=1, label='Floor')
+ax.scatter(obstacle[:, 0], obstacle[:, 1], obstacle[:, 2], c='red', s=5, label='Obstacle')
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_zlabel('Z')
+ax.legend()
+ax.set_title('Simulated 3D Point Cloud')
+plt.show()
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+---
+
+## Hardware Lab
+
+```bash
+# SLAM packages in ROS2
+ros2 pkg list | grep slam
+ros2 interface show nav_msgs/msg/OccupancyGrid
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+---
+
+## Case Study
+
+Boston Dynamics Spot uses real-time 3D perception for autonomous navigation, building maps and avoiding obstacles while operating in complex environments.
+
+<RAGZone id="case-study"></RAGZone>
+
+---
+
+## Summary
+
+3D perception through point clouds, SLAM, and semantic mapping enables robots to understand and navigate complex environments.
+
+---
+
+## Quiz
+
+### Question 1
+What is a point cloud?
+A) Weather data B) Collection of 3D points C) Sound recording D) Image format
+<details><summary>Answer</summary>**B**: Point clouds are sets of 3D coordinate points representing surfaces.</details>
+
+### Question 2
+What problem does SLAM solve?
+A) Battery life B) Mapping while localizing simultaneously C) Color detection D) Speed control
+<details><summary>Answer</summary>**B**: SLAM builds a map while determining position within that map.</details>
+
+### Question 3
+What does semantic mapping add?
+A) Colors B) Meaningful labels to geometry C) Sound D) Temperature
+<details><summary>Answer</summary>**B**: Semantic maps label regions with their meaning (floor, wall, door, etc.).</details>
+
+### Question 4
+What sensor commonly produces point clouds?
+A) Microphone B) LiDAR C) Thermometer D) Pressure sensor
+<details><summary>Answer</summary>**B**: LiDAR (and depth cameras) generate 3D point cloud data.</details>
+
+### Question 5
+Why is 3D perception important for manipulation?
+A) Color matching B) Understanding object positions in space C) Sound detection D) Temperature control
+<details><summary>Answer</summary>**B**: Robots need 3D understanding to grasp and manipulate objects accurately.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+---
+
+## References
+
+[1] C. Cadena et al., "Past, Present, and Future of SLAM," IEEE Trans. Robotics, 2016.
+
+---
+
+## Further Reading
+
+- Open3D library documentation
+- SLAM toolbox for ROS2

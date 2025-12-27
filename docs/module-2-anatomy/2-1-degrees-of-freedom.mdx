@@ -1,0 +1,624 @@
+---
+id: "2-1-degrees-of-freedom"
+title: "Degrees of Freedom and Kinematic Chains"
+sidebar_label: "2.1 Degrees of Freedom"
+sidebar_position: 1
+description: "Understanding degrees of freedom, joint types, and kinematic structures in robotic systems"
+keywords:
+  - degrees-of-freedom
+  - kinematic-chains
+  - robot-joints
+  - DOF
+module: 2
+chapter: 1
+reading_time: 25
+difficulty: "beginner"
+prerequisites:
+  - "1-4-mathematics-for-robotics"
+learning_objectives:
+  - "Define degrees of freedom and calculate DOF for robotic systems"
+  - "Identify and classify different joint types used in robotics"
+  - "Analyze kinematic chains and their properties"
+  - "Apply DOF concepts to design simple robotic mechanisms"
+simulation_lab:
+  platform: "colab"
+  estimated_time: 30
+hardware_lab:
+  platform: "ros2-humble"
+  hardware: "simulation-only"
+  estimated_time: 35
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors:
+  - name: "Physical AI Textbook Team"
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Degrees of Freedom and Kinematic Chains
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+- Define degrees of freedom and calculate DOF for robotic systems
+- Identify and classify different joint types used in robotics
+- Analyze kinematic chains and their properties
+- Apply DOF concepts to design simple robotic mechanisms
+
+<RAGZone id="learning-objectives">
+</RAGZone>
+
+---
+
+## Introduction
+
+How many different ways can a robot arm move? This seemingly simple question leads us to one of the most fundamental concepts in robotics: degrees of freedom (DOF). Degrees of freedom tell us how many independent movements a mechanical system can make—and understanding this concept is essential for designing robots that can reach the positions and orientations needed to complete their tasks.
+
+Think of your own arm. You can move your shoulder in multiple directions, bend your elbow, rotate your forearm, and move your wrist. Each of these independent movements represents a degree of freedom. A humanoid robot's arm works similarly, with joints that allow specific types of motion combined into a kinematic chain—a series of rigid bodies connected by joints.
+
+In this chapter, we will explore how to count and classify degrees of freedom, understand different joint types, and analyze kinematic chains that form the skeleton of robotic systems.
+
+<RAGZone id="introduction">
+</RAGZone>
+
+---
+
+## Theory Content
+
+### Section 1: What Are Degrees of Freedom?
+
+**Degrees of freedom (DOF)** represent the number of independent parameters needed to completely specify the position and orientation of a system. In robotics, DOF determines what positions and orientations a robot can achieve.
+
+**Free Body in Space**: A rigid body floating freely in 3D space has 6 DOF:
+- 3 translational (movement along X, Y, Z axes)
+- 3 rotational (rotation around X, Y, Z axes)
+
+:::note Key Concept
+The DOF of a robot determines its workspace—the set of all positions and orientations its end effector can reach. More DOF generally means more flexibility, but also more complexity.
+:::
+
+**DOF in Robotic Systems**:
+- A simple gripper that only opens/closes: 1 DOF
+- A planar robot arm moving in 2D: typically 2-3 DOF
+- A typical industrial robot arm: 6 DOF
+- A humanoid robot hand: 20+ DOF
+
+### Section 2: Joint Types
+
+Joints are the connections between rigid links that allow relative motion. Different joint types provide different types of motion.
+
+**Revolute Joint (R)**: Allows rotation around a single axis. Like a door hinge.
+- Provides: 1 DOF (rotation)
+- Most common joint type in robotics
+- Example: Elbow joint, robot arm joints
+
+**Prismatic Joint (P)**: Allows linear sliding along an axis. Like a drawer.
+- Provides: 1 DOF (translation)
+- Used in linear actuators, some robot bases
+- Example: Telescoping mechanisms
+
+**Spherical Joint (S)**: Allows rotation around all three axes. Like a ball-and-socket.
+- Provides: 3 DOF (three rotations)
+- Difficult to actuate directly
+- Example: Human hip joint
+
+**Cylindrical Joint (C)**: Combines rotation and translation along the same axis.
+- Provides: 2 DOF (one rotation + one translation)
+
+**Universal Joint (U)**: Two perpendicular revolute joints.
+- Provides: 2 DOF (two perpendicular rotations)
+- Example: Car drive shaft
+
+| Joint Type | Symbol | DOF | Motion Type |
+|------------|--------|-----|-------------|
+| Revolute | R | 1 | Rotation |
+| Prismatic | P | 1 | Translation |
+| Helical | H | 1 | Coupled rotation-translation |
+| Cylindrical | C | 2 | Independent rotation + translation |
+| Universal | U | 2 | Two perpendicular rotations |
+| Spherical | S | 3 | Three rotations |
+
+### Section 3: Kinematic Chains
+
+A **kinematic chain** is a series of rigid links connected by joints. The configuration of a kinematic chain determines what the robot can do.
+
+**Open vs. Closed Chains**:
+
+**Open kinematic chain (serial chain)**: Links form a single path from base to end effector.
+- Example: Most robot arms
+- Easy to analyze and control
+- Each joint's motion directly affects the end effector
+
+**Closed kinematic chain (parallel chain)**: Links form one or more loops.
+- Example: Delta robot, Stewart platform
+- More rigid and precise
+- More complex kinematics
+
+**The Grübler-Kutzbach Formula**:
+
+For calculating DOF of a planar mechanism:
+$$DOF = 3(n-1) - 2j_1 - j_2$$
+
+Where:
+- n = number of links (including ground)
+- j₁ = number of 1-DOF joints
+- j₂ = number of 2-DOF joints
+
+For spatial (3D) mechanisms:
+$$DOF = 6(n-1) - 5j_1 - 4j_2 - 3j_3 - 2j_4 - j_5$$
+
+### Section 4: Common Robot Configurations
+
+Different robot configurations suit different tasks:
+
+**Cartesian (PPP)**: Three prismatic joints along X, Y, Z.
+- Simple kinematics
+- Large, boxy workspace
+- Example: 3D printers, CNC machines
+
+**Cylindrical (RPP)**: Revolute + two prismatic joints.
+- Cylindrical workspace
+- Good for pick-and-place
+
+**Spherical (RRP)**: Two revolute + one prismatic joint.
+- Spherical workspace segment
+- Used in some welding robots
+
+**Articulated (RRR...R)**: All revolute joints.
+- Most common industrial robot type
+- Complex kinematics but flexible workspace
+- Example: Most 6-DOF robot arms
+
+**SCARA (RRP)**: Selective Compliance Assembly Robot Arm.
+- Good for assembly tasks
+- Stiff vertically, compliant horizontally
+
+<RAGZone id="theory-content">
+</RAGZone>
+
+---
+
+## Simulation Lab: Exploring DOF and Kinematics
+
+**Platform**: Google Colab
+**Estimated Time**: 30 minutes
+**Difficulty**: Beginner
+
+### Objectives
+
+- Visualize different joint types and their motion
+- Calculate DOF for various mechanisms
+- Simulate a simple kinematic chain
+
+### Setup
+
+Open Google Colab and create a new notebook.
+
+### Procedure
+
+```python
+# Lab 2.1: Degrees of Freedom and Kinematic Chains
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.patches import Circle, Rectangle, FancyArrow
+
+print("=== Degrees of Freedom Exploration ===\n")
+
+# Part 1: DOF Calculator using Grübler formula
+def calculate_dof_planar(num_links, joints_1dof, joints_2dof=0):
+    """Calculate DOF for planar mechanism using Grübler formula"""
+    # n includes ground link
+    dof = 3 * (num_links - 1) - 2 * joints_1dof - joints_2dof
+    return dof
+
+# Example mechanisms
+mechanisms = [
+    {"name": "Four-bar linkage", "links": 4, "j1": 4, "j2": 0},
+    {"name": "Slider-crank", "links": 4, "j1": 3, "j2": 1},
+    {"name": "Simple pendulum", "links": 2, "j1": 1, "j2": 0},
+    {"name": "3-DOF planar arm", "links": 4, "j1": 3, "j2": 0},
+]
+
+print("DOF Calculations for Common Mechanisms:")
+print("-" * 50)
+for mech in mechanisms:
+    dof = calculate_dof_planar(mech["links"], mech["j1"], mech["j2"])
+    print(f"{mech['name']:20} Links={mech['links']}, J1={mech['j1']}, J2={mech['j2']} → DOF={dof}")
+```
+
+```python
+# Part 2: Visualizing Joint Types
+
+fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+
+# Revolute Joint
+ax1 = axes[0]
+ax1.set_xlim(-2, 2)
+ax1.set_ylim(-2, 2)
+ax1.set_aspect('equal')
+
+# Draw links
+ax1.plot([-1.5, 0], [0, 0], 'b-', linewidth=8, label='Link 1')
+ax1.plot([0, 1.5], [0, 0], 'r-', linewidth=8, label='Link 2')
+ax1.plot(0, 0, 'ko', markersize=20)
+
+# Draw rotation arc
+theta = np.linspace(-np.pi/4, np.pi/4, 50)
+ax1.plot(0.5*np.cos(theta), 0.5*np.sin(theta), 'g--', linewidth=2)
+ax1.annotate('', xy=(0.5*np.cos(np.pi/4), 0.5*np.sin(np.pi/4)),
+            xytext=(0.5, 0), arrowprops=dict(arrowstyle='->', color='green'))
+ax1.set_title('Revolute Joint (1 DOF)\nRotation only', fontsize=12)
+ax1.legend()
+
+# Prismatic Joint
+ax2 = axes[1]
+ax2.set_xlim(-2, 2)
+ax2.set_ylim(-2, 2)
+ax2.set_aspect('equal')
+
+ax2.add_patch(Rectangle((-1.5, -0.3), 1.5, 0.6, color='blue', alpha=0.7))
+ax2.add_patch(Rectangle((0, -0.2), 1.5, 0.4, color='red', alpha=0.7))
+ax2.annotate('', xy=(1.2, 0), xytext=(0.3, 0),
+            arrowprops=dict(arrowstyle='<->', color='green', lw=2))
+ax2.text(0.75, 0.5, 'Slide', color='green', fontsize=10, ha='center')
+ax2.set_title('Prismatic Joint (1 DOF)\nTranslation only', fontsize=12)
+
+# Spherical Joint (simplified 2D representation)
+ax3 = axes[2]
+ax3.set_xlim(-2, 2)
+ax3.set_ylim(-2, 2)
+ax3.set_aspect('equal')
+
+ax3.plot([-1.5, 0], [0, 0], 'b-', linewidth=8)
+ax3.add_patch(Circle((0, 0), 0.3, color='gray', alpha=0.5))
+ax3.plot([0, 1], [0, 0.8], 'r-', linewidth=8)
+ax3.plot([0, 0.8], [0, -1], 'r--', linewidth=4, alpha=0.5)
+ax3.plot([0, 1.2], [0, 0.2], 'r--', linewidth=4, alpha=0.5)
+ax3.set_title('Spherical Joint (3 DOF)\nRotation in all directions', fontsize=12)
+
+plt.tight_layout()
+plt.show()
+```
+
+```python
+# Part 3: 3-DOF Planar Arm Simulation
+
+class PlanarArm:
+    def __init__(self, link_lengths):
+        self.L = link_lengths
+        self.num_joints = len(link_lengths)
+
+    def forward_kinematics(self, joint_angles):
+        """Compute positions of all joints given joint angles"""
+        positions = [(0, 0)]  # Base position
+        cumulative_angle = 0
+
+        for i, (L, theta) in enumerate(zip(self.L, joint_angles)):
+            cumulative_angle += theta
+            x = positions[-1][0] + L * np.cos(cumulative_angle)
+            y = positions[-1][1] + L * np.sin(cumulative_angle)
+            positions.append((x, y))
+
+        return positions
+
+    def visualize(self, joint_angles, ax=None, color='blue'):
+        if ax is None:
+            fig, ax = plt.subplots(figsize=(8, 8))
+
+        positions = self.forward_kinematics(joint_angles)
+
+        # Draw links
+        for i in range(len(positions)-1):
+            ax.plot([positions[i][0], positions[i+1][0]],
+                   [positions[i][1], positions[i+1][1]],
+                   '-', linewidth=6, color=color, alpha=0.7)
+
+        # Draw joints
+        for i, pos in enumerate(positions):
+            size = 12 if i == 0 else 10
+            ax.plot(pos[0], pos[1], 'ko', markersize=size)
+
+        # Mark end effector
+        ax.plot(positions[-1][0], positions[-1][1], 'r*', markersize=15)
+
+        return positions[-1]
+
+# Create a 3-DOF arm
+arm = PlanarArm([1.0, 0.8, 0.5])  # Link lengths
+
+# Visualize different configurations
+fig, axes = plt.subplots(2, 2, figsize=(12, 12))
+
+configurations = [
+    ([0, 0, 0], "All joints at 0°"),
+    ([np.pi/4, 0, 0], "Joint 1 at 45°"),
+    ([np.pi/4, np.pi/4, 0], "Joints 1,2 at 45°"),
+    ([np.pi/4, np.pi/4, -np.pi/2], "Joints 1,2 at 45°, 3 at -90°"),
+]
+
+for ax, (angles, title) in zip(axes.flat, configurations):
+    end_pos = arm.visualize(angles, ax)
+    ax.set_xlim(-2.5, 2.5)
+    ax.set_ylim(-2.5, 2.5)
+    ax.set_aspect('equal')
+    ax.grid(True, alpha=0.3)
+    ax.set_title(f'{title}\nEnd effector: ({end_pos[0]:.2f}, {end_pos[1]:.2f})')
+    ax.axhline(y=0, color='k', linewidth=0.5)
+    ax.axvline(x=0, color='k', linewidth=0.5)
+
+plt.tight_layout()
+plt.show()
+
+print(f"\n3-DOF Arm Properties:")
+print(f"  Total link length: {sum(arm.L):.1f} units")
+print(f"  Maximum reach: {sum(arm.L):.1f} units")
+print(f"  Degrees of freedom: {arm.num_joints}")
+```
+
+### Expected Results
+
+- DOF calculations for various mechanisms
+- Visualizations of different joint types
+- Interactive 3-DOF arm in different configurations
+
+### Troubleshooting
+
+- Ensure angles are in radians for trigonometric functions
+- Check that link lengths are positive values
+
+<RAGZone id="simulation-lab">
+</RAGZone>
+
+---
+
+## Hardware Lab: URDF Robot Description
+
+**Platform**: ROS2 Humble
+**Hardware**: Simulation-only
+**Estimated Time**: 35 minutes
+**Difficulty**: Beginner
+
+### Prerequisites
+
+- ROS2 Humble installed
+- Basic XML understanding
+
+### Safety Notes
+
+:::caution Safety Warning
+This is a simulation-only lab working with robot descriptions.
+:::
+
+### Procedure
+
+1. **Create a simple URDF** describing a 2-DOF arm:
+
+```xml
+<?xml version="1.0"?>
+<robot name="simple_arm">
+  <!-- Base Link -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.1"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Joint 1: Revolute -->
+  <joint name="joint1" type="revolute">
+    <parent link="base_link"/>
+    <child link="link1"/>
+    <origin xyz="0 0 0.05"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="1"/>
+  </joint>
+
+  <!-- Link 1 -->
+  <link name="link1">
+    <visual>
+      <origin xyz="0.25 0 0"/>
+      <geometry>
+        <box size="0.5 0.05 0.05"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Joint 2: Revolute -->
+  <joint name="joint2" type="revolute">
+    <parent link="link1"/>
+    <child link="link2"/>
+    <origin xyz="0.5 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="1"/>
+  </joint>
+
+  <!-- Link 2 -->
+  <link name="link2">
+    <visual>
+      <origin xyz="0.2 0 0"/>
+      <geometry>
+        <box size="0.4 0.04 0.04"/>
+      </geometry>
+    </visual>
+  </link>
+</robot>
+```
+
+2. **Validate the URDF**:
+```bash
+# Check URDF syntax
+ros2 run urdf_tutorial check_urdf simple_arm.urdf
+```
+
+3. **View in RViz**:
+```bash
+ros2 launch urdf_tutorial display.launch.py model:=simple_arm.urdf
+```
+
+### Verification
+
+- URDF validates without errors
+- Robot displays correctly in RViz
+- Joint sliders allow movement (2 DOF)
+
+### Simulation Alternative
+
+Review ROS2 URDF tutorials online if unable to run locally.
+
+<RAGZone id="hardware-lab">
+</RAGZone>
+
+---
+
+## Case Study: The KUKA LBR iiwa 7 DOF Arm
+
+### Background
+
+Most industrial robots have 6 DOF—exactly enough to position and orient an end effector arbitrarily in 3D space. KUKA's LBR iiwa (intelligent industrial work assistant) has 7 DOF, making it "kinematically redundant." Why add an extra joint?
+
+### Implementation
+
+The LBR iiwa's 7 revolute joints provide:
+- 6 DOF for arbitrary end effector pose
+- 1 additional DOF for reconfiguring the arm's posture
+
+This redundancy allows the robot to:
+- Avoid obstacles while maintaining end effector position
+- Optimize for minimal energy or maximum manipulability
+- Work in confined spaces by "elbowing" around obstacles
+
+### Results
+
+The 7th DOF enables applications not possible with 6 DOF arms:
+- Working alongside humans with better obstacle avoidance
+- Reaching around corners in assembly tasks
+- Maintaining optimal arm configuration throughout trajectories
+
+### Lessons Learned
+
+1. **More DOF = more capability but more complexity**: 7 DOF requires more sophisticated control
+2. **Redundancy enables optimization**: Extra DOF can optimize secondary objectives
+3. **Human-robot collaboration benefits**: Redundancy helps navigate shared workspaces
+4. **Application-specific design**: Not all tasks need 7 DOF; choose based on requirements
+
+<RAGZone id="case-study">
+</RAGZone>
+
+---
+
+## Summary
+
+Degrees of freedom and kinematic chains form the foundation of robot mechanical design:
+
+- **DOF** determines what positions and orientations a robot can achieve
+- **Joint types** (revolute, prismatic, spherical, etc.) provide different motion capabilities
+- **Kinematic chains** connect joints and links into functional mechanisms
+- **The Grübler formula** helps calculate DOF for complex mechanisms
+- **Robot configurations** (Cartesian, articulated, SCARA, etc.) suit different applications
+- **Redundancy** (extra DOF) enables additional capabilities like obstacle avoidance
+
+---
+
+## Quiz
+
+### Question 1
+
+How many DOF does a rigid body have when floating freely in 3D space?
+
+A) 3
+B) 4
+C) 6
+D) 9
+
+<details>
+<summary>Answer</summary>
+**C**: A rigid body in 3D space has 6 DOF—3 translational (X, Y, Z position) and 3 rotational (rotation around X, Y, Z axes).
+</details>
+
+### Question 2
+
+Which joint type provides exactly 1 DOF of rotational motion?
+
+A) Prismatic
+B) Revolute
+C) Spherical
+D) Universal
+
+<details>
+<summary>Answer</summary>
+**B**: A revolute joint provides 1 DOF of rotational motion around a single axis, like a door hinge. A prismatic joint provides 1 DOF of translational motion.
+</details>
+
+### Question 3
+
+A typical 6-DOF industrial robot arm uses which configuration?
+
+A) All prismatic joints (PPP-PPP)
+B) All revolute joints (articulated)
+C) Mixed prismatic and revolute (SCARA)
+D) Spherical joints only
+
+<details>
+<summary>Answer</summary>
+**B**: Most 6-DOF industrial robots are articulated, using all revolute joints. This provides a flexible workspace and is mechanically straightforward to implement.
+</details>
+
+### Question 4
+
+What is a "kinematically redundant" robot?
+
+A) A robot with broken joints
+B) A robot with more DOF than needed for a task
+C) A robot with exactly 6 DOF
+D) A robot with less DOF than needed
+
+<details>
+<summary>Answer</summary>
+**B**: A kinematically redundant robot has more DOF than the minimum needed to achieve a given task. For example, a 7-DOF arm is redundant for 6-DOF tasks, allowing optimization of additional criteria.
+</details>
+
+### Question 5
+
+According to the Grübler formula for a planar mechanism with 4 links and 4 single-DOF joints (including the ground link), what is the DOF?
+
+A) 0
+B) 1
+C) 2
+D) 3
+
+<details>
+<summary>Answer</summary>
+**B**: DOF = 3(n-1) - 2j₁ = 3(4-1) - 2(4) = 9 - 8 = 1. A four-bar linkage has 1 DOF.
+</details>
+
+<RAGZone id="quiz">
+</RAGZone>
+
+---
+
+## References
+
+[1] J. J. Craig, "Introduction to Robotics: Mechanics and Control," 4th ed., Pearson, 2017.
+
+[2] B. Siciliano and O. Khatib, Eds., "Springer Handbook of Robotics," 2nd ed., Springer, 2016.
+
+[3] KUKA Robotics, "LBR iiwa Technical Specifications," KUKA Documentation, 2023.
+
+[4] K. M. Lynch and F. C. Park, "Modern Robotics: Mechanics, Planning, and Control," Cambridge University Press, 2017.
+
+---
+
+## Further Reading
+
+- "Theory of Machines and Mechanisms" by J. Shigley and J. Uicker
+- URDF tutorials in ROS2 documentation
+- KUKA LBR iiwa research papers on redundant arm control

@@ -1,0 +1,122 @@
+---
+id: "7-5-deployment-and-operations"
+title: "Deployment and Operations"
+sidebar_label: "7.5 Deployment"
+sidebar_position: 5
+description: "Edge computing, fleet management, and monitoring"
+keywords: [deployment, edge, fleet, monitoring, operations]
+module: 7
+chapter: 5
+reading_time: 20
+difficulty: "intermediate"
+prerequisites: ["7-4-testing-and-validation"]
+learning_objectives: ["Deploy robot systems", "Manage robot fleets"]
+simulation_lab: {platform: "colab", estimated_time: 25}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 25}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Deployment and Operations
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Deploy robot systems to production
+- Manage and monitor robot fleets
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+## Introduction
+
+Successful deployment requires attention to hardware, software updates, monitoring, and fleet management.
+
+<RAGZone id="introduction"></RAGZone>
+
+## Theory Content
+
+### Edge Computing
+Run AI and control on robot hardware for low latency and reliability.
+
+### Fleet Management
+Coordinate multiple robots with centralized monitoring and task assignment.
+
+### Monitoring and Logging
+Track performance, detect issues, and enable debugging.
+
+<RAGZone id="theory-content"></RAGZone>
+
+## Simulation Lab
+
+```python
+# Deployment checklist
+items = ['Software tested', 'Hardware verified', 'Network configured', 'Monitoring enabled', 'Recovery plan ready']
+for i, item in enumerate(items, 1):
+    print(f"{i}. {item}")
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+## Hardware Lab
+
+```bash
+ros2 daemon status
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+## Case Study
+
+Amazon manages thousands of warehouse robots with centralized fleet management systems.
+
+<RAGZone id="case-study"></RAGZone>
+
+## Summary
+
+Successful robot deployment requires attention to edge computing, fleet management, and operations.
+
+## Quiz
+
+### Question 1
+Edge computing runs AI?
+A) Only in cloud B) On robot hardware C) Nowhere D) Only in simulation
+<details><summary>Answer</summary>**B**: Edge computing processes data locally on robots.</details>
+
+### Question 2
+Fleet management coordinates?
+A) One robot B) Multiple robots C) No robots D) Only simulation
+<details><summary>Answer</summary>**B**: Fleet management handles multiple robots.</details>
+
+### Question 3
+Monitoring helps with?
+A) Nothing B) Issue detection C) Hardware design D) Initial development
+<details><summary>Answer</summary>**B**: Monitoring detects problems in deployed systems.</details>
+
+### Question 4
+OTA stands for?
+A) On The Air B) Over-the-Air (updates) C) Only Testing Allowed D) Open Technical Access
+<details><summary>Answer</summary>**B**: OTA enables remote software updates.</details>
+
+### Question 5
+Why log robot data?
+A) Not useful B) Debugging and improvement C) Required by law only D) Storage practice
+<details><summary>Answer</summary>**B**: Logs enable debugging and system improvement.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+## References
+
+[1] AWS RoboMaker Documentation.
+
+## Further Reading
+
+- Fleet management systems

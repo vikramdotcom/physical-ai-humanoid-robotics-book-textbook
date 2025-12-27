@@ -1,0 +1,715 @@
+---
+id: "1-4-mathematics-for-robotics"
+title: "Mathematics for Robotics"
+sidebar_label: "1.4 Mathematics for Robotics"
+sidebar_position: 4
+description: "Essential mathematical concepts for understanding robotics including linear algebra, transformations, and coordinate systems"
+keywords:
+  - linear-algebra
+  - transformations
+  - coordinate-systems
+  - kinematics
+  - robotics-math
+module: 1
+chapter: 4
+reading_time: 30
+difficulty: "beginner"
+prerequisites:
+  - "1-1-what-is-physical-ai"
+learning_objectives:
+  - "Apply vectors and matrices to represent robot positions and orientations"
+  - "Calculate coordinate transformations between reference frames"
+  - "Explain homogeneous transformations for robot kinematics"
+  - "Use basic trigonometry to solve robot positioning problems"
+simulation_lab:
+  platform: "colab"
+  estimated_time: 35
+hardware_lab:
+  platform: "ros2-humble"
+  hardware: "simulation-only"
+  estimated_time: 30
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors:
+  - name: "Physical AI Textbook Team"
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Mathematics for Robotics
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+- Apply vectors and matrices to represent robot positions and orientations
+- Calculate coordinate transformations between reference frames
+- Explain homogeneous transformations for robot kinematics
+- Use basic trigonometry to solve robot positioning problems
+
+<RAGZone id="learning-objectives">
+</RAGZone>
+
+---
+
+## Introduction
+
+Mathematics is the language of robotics. Just as musicians need to read sheet music and architects need to understand geometry, roboticists need mathematics to describe how robots move, perceive, and interact with the world. The good news is that the math you need to get started is not as difficult as you might think—and it becomes intuitive with practice.
+
+In this chapter, we focus on the most essential mathematical tools: vectors to describe positions and directions, matrices to represent rotations and transformations, and coordinate systems to relate different perspectives. These concepts appear everywhere in robotics, from calculating where a robot arm should move to understanding sensor measurements.
+
+Do not worry if you have not seen some of these concepts before. We will build up from basics, and the simulation labs will let you see these abstract ideas come to life in practical applications.
+
+<RAGZone id="introduction">
+</RAGZone>
+
+---
+
+## Theory Content
+
+### Section 1: Vectors - Describing Position and Direction
+
+A **vector** is a mathematical object with both magnitude (size) and direction. In robotics, vectors are used to represent:
+- **Positions**: Where is the robot's hand? (3D coordinates)
+- **Velocities**: How fast and in what direction is it moving?
+- **Forces**: What direction and how hard is the robot pushing?
+
+**Vector Notation**:
+
+A 3D position vector is written as **p = [x, y, z]**
+
+For example, a point at x=2, y=3, z=1 meters is: **p = [2, 3, 1]**
+
+**Basic Vector Operations**:
+
+**Addition** - Combining two vectors: **a + b = [ax + bx, ay + by, az + bz]**
+
+**Scalar Multiplication** - Scaling a vector: **k · a = [k·ax, k·ay, k·az]**
+
+**Magnitude (Length)**: **|a| = sqrt(ax² + ay² + az²)**
+
+:::note Key Concept
+The magnitude of a vector represents distance. If a robot needs to move from point A to point B, the magnitude of (B - A) tells you how far it needs to travel.
+:::
+
+### Section 2: Matrices - Representing Transformations
+
+A **matrix** is a rectangular array of numbers. In robotics, matrices represent transformations—operations that change position, orientation, or both.
+
+**Basic Matrix Structure**:
+
+A 3×3 matrix is a grid of 9 numbers arranged in 3 rows and 3 columns, denoted M = [m11, m12, m13; m21, m22, m23; m31, m32, m33].
+
+**Matrix-Vector Multiplication**:
+
+When we multiply a matrix by a vector, we transform the vector:
+**v_new = M · v**
+
+**Identity Matrix**:
+
+The identity matrix leaves vectors unchanged: **I = [1,0,0; 0,1,0; 0,0,1]**
+
+### Section 3: Rotation Matrices
+
+A **rotation matrix** rotates points around an axis. In 2D, rotation by angle θ around the origin uses cosine and sine functions: **R(θ) = [cos(θ), -sin(θ); sin(θ), cos(θ)]**
+
+In 3D, we have rotations around each axis:
+
+**Rotation around Z-axis**: Uses cos and sin in the top-left 2×2 block
+
+**Rotation around X-axis**: Uses cos and sin in the bottom-right 2×2 block
+
+**Rotation around Y-axis**: Uses cos and sin in positions (1,1), (1,3), (3,1), and (3,3)
+
+:::note Key Concept
+Rotation matrices are **orthonormal**: their columns are unit vectors that are perpendicular to each other. This means R^T = R^(-1), making inverse rotation easy to compute.
+:::
+
+### Section 4: Coordinate Frames and Transformations
+
+In robotics, we often need to describe the same point from different perspectives. A robot's camera might see an object at one set of coordinates, but the robot's arm needs different coordinates to reach it.
+
+**Coordinate Frame**: A coordinate frame defines an origin point and three perpendicular axes (X, Y, Z). Common frames in robotics:
+- **World Frame**: Fixed reference for the environment
+- **Robot Frame**: Attached to the robot's base
+- **Camera Frame**: Attached to a camera sensor
+- **End-Effector Frame**: Attached to the robot's hand/gripper
+
+**Transforming Between Frames**:
+
+To describe a point in frame A using frame B's coordinates, we need:
+1. A rotation (how is frame A oriented relative to B?)
+2. A translation (where is frame A's origin in frame B?)
+
+### Section 5: Homogeneous Transformations
+
+A **homogeneous transformation matrix** combines rotation and translation into a single 4×4 matrix. The structure places the 3×3 rotation matrix R in the top-left, the 3×1 translation vector t in the top-right column, and [0, 0, 0, 1] in the bottom row.
+
+To use this, we represent 3D points in **homogeneous coordinates**: **p = [x, y, z, 1]** (adding a 1 as the fourth element).
+
+**The Power of Homogeneous Transformations**:
+
+We can chain multiple transformations by multiplying matrices: **T_total = T1 · T2 · T3**
+
+This is how robots calculate where their hand is based on all the joint positions!
+
+### Section 6: Trigonometry Essentials
+
+Trigonometry connects angles to distances. Key relationships:
+
+For a right triangle with angle θ:
+- **sin(θ)** = opposite / hypotenuse
+- **cos(θ)** = adjacent / hypotenuse
+- **tan(θ)** = opposite / adjacent = sin(θ) / cos(θ)
+
+**Important Values to Remember**:
+
+| Angle | sin | cos |
+|-------|-----|-----|
+| 0° | 0 | 1 |
+| 30° | 0.5 | 0.866 |
+| 45° | 0.707 | 0.707 |
+| 90° | 1 | 0 |
+| 180° | 0 | -1 |
+
+**The Unit Circle**: A circle with radius 1 centered at the origin. A point at angle θ on the unit circle has coordinates (cos θ, sin θ).
+
+**atan2 Function**: Given a point (x, y), atan2(y, x) gives the angle from the positive x-axis. This is essential for calculating joint angles from positions.
+
+<RAGZone id="theory-content">
+</RAGZone>
+
+---
+
+## Simulation Lab: Coordinate Transformations in Practice
+
+**Platform**: Google Colab
+**Estimated Time**: 35 minutes
+**Difficulty**: Beginner
+
+### Objectives
+
+- Implement vector and matrix operations from scratch
+- Visualize 2D and 3D rotations
+- Chain transformations to simulate robot arm kinematics
+
+### Setup
+
+Open Google Colab and create a new notebook.
+
+### Procedure
+
+```python
+# Lab 1.4: Mathematics for Robotics
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Part 1: Basic Vector Operations
+print("=== Part 1: Vector Operations ===\n")
+
+# Define vectors
+v1 = np.array([3, 4, 0])
+v2 = np.array([1, 2, 2])
+
+# Vector addition
+v_sum = v1 + v2
+print(f"v1 = {v1}")
+print(f"v2 = {v2}")
+print(f"v1 + v2 = {v_sum}")
+
+# Magnitude
+mag_v1 = np.linalg.norm(v1)
+print(f"\n|v1| = {mag_v1}")
+
+# Unit vector (normalized)
+v1_unit = v1 / mag_v1
+print(f"v1 unit vector = {v1_unit}")
+print(f"Check magnitude of unit vector: {np.linalg.norm(v1_unit):.4f}")
+```
+
+```python
+# Part 2: 2D Rotation Matrix
+print("\n=== Part 2: 2D Rotation ===\n")
+
+def rotation_matrix_2d(theta):
+    """Create a 2D rotation matrix for angle theta (in radians)"""
+    c, s = np.cos(theta), np.sin(theta)
+    return np.array([[c, -s],
+                     [s, c]])
+
+# Rotate a point 45 degrees
+point = np.array([1, 0])
+angle = np.radians(45)
+R = rotation_matrix_2d(angle)
+rotated_point = R @ point
+
+print(f"Original point: {point}")
+print(f"Rotation angle: 45°")
+print(f"Rotated point: {rotated_point}")
+
+# Visualize 2D rotation
+fig, ax = plt.subplots(figsize=(8, 8))
+
+# Draw unit circle
+theta = np.linspace(0, 2*np.pi, 100)
+ax.plot(np.cos(theta), np.sin(theta), 'k--', alpha=0.3)
+
+# Rotate the point multiple times
+angles = [0, 30, 60, 90, 120, 150, 180]
+colors = plt.cm.viridis(np.linspace(0, 1, len(angles)))
+
+for i, ang in enumerate(angles):
+    R = rotation_matrix_2d(np.radians(ang))
+    p = R @ np.array([1, 0])
+    ax.arrow(0, 0, p[0]*0.9, p[1]*0.9, head_width=0.08, head_length=0.05,
+             fc=colors[i], ec=colors[i], label=f'{ang}°')
+    ax.plot(p[0], p[1], 'o', color=colors[i], markersize=10)
+
+ax.set_xlim(-1.5, 1.5)
+ax.set_ylim(-1.5, 1.5)
+ax.set_aspect('equal')
+ax.grid(True, alpha=0.3)
+ax.axhline(y=0, color='k', linewidth=0.5)
+ax.axvline(x=0, color='k', linewidth=0.5)
+ax.legend(loc='upper right')
+ax.set_title('2D Rotation of Unit Vector')
+plt.show()
+```
+
+```python
+# Part 3: 3D Rotation Matrices
+print("\n=== Part 3: 3D Rotations ===\n")
+
+def Rx(theta):
+    """Rotation matrix around X-axis"""
+    c, s = np.cos(theta), np.sin(theta)
+    return np.array([[1, 0, 0],
+                     [0, c, -s],
+                     [0, s, c]])
+
+def Ry(theta):
+    """Rotation matrix around Y-axis"""
+    c, s = np.cos(theta), np.sin(theta)
+    return np.array([[c, 0, s],
+                     [0, 1, 0],
+                     [-s, 0, c]])
+
+def Rz(theta):
+    """Rotation matrix around Z-axis"""
+    c, s = np.cos(theta), np.sin(theta)
+    return np.array([[c, -s, 0],
+                     [s, c, 0],
+                     [0, 0, 1]])
+
+# Demonstrate 3D rotations
+point_3d = np.array([1, 0, 0])
+angle = np.radians(45)
+
+print(f"Original point: {point_3d}")
+print(f"\nAfter 45° rotation around Z: {Rz(angle) @ point_3d}")
+print(f"After 45° rotation around X: {Rx(angle) @ point_3d}")
+print(f"After 45° rotation around Y: {Ry(angle) @ point_3d}")
+```
+
+```python
+# Part 4: Homogeneous Transformations
+print("\n=== Part 4: Homogeneous Transformations ===\n")
+
+def make_transform(R, t):
+    """Create a 4x4 homogeneous transformation matrix"""
+    T = np.eye(4)
+    T[:3, :3] = R
+    T[:3, 3] = t
+    return T
+
+def apply_transform(T, point):
+    """Apply transformation to a 3D point"""
+    p_homogeneous = np.append(point, 1)
+    p_transformed = T @ p_homogeneous
+    return p_transformed[:3]
+
+# Create a transformation: rotate 45° around Z, then translate by (2, 1, 0)
+R = Rz(np.radians(45))
+t = np.array([2, 1, 0])
+T = make_transform(R, t)
+
+print("Transformation matrix T:")
+print(T)
+
+# Apply to a point
+point = np.array([1, 0, 0])
+transformed = apply_transform(T, point)
+print(f"\nOriginal point: {point}")
+print(f"Transformed point: {transformed}")
+```
+
+```python
+# Part 5: Simple 2-Link Robot Arm
+print("\n=== Part 5: 2-Link Robot Arm Kinematics ===\n")
+
+def forward_kinematics_2link(theta1, theta2, L1=1.0, L2=1.0):
+    """
+    Calculate end-effector position for a 2-link planar arm
+    theta1: angle of first joint (from horizontal)
+    theta2: angle of second joint (relative to first link)
+    L1, L2: link lengths
+    """
+    # Joint 1 position (at origin)
+    joint1 = np.array([0, 0])
+
+    # Joint 2 position
+    joint2 = np.array([
+        L1 * np.cos(theta1),
+        L1 * np.sin(theta1)
+    ])
+
+    # End effector position
+    end_effector = np.array([
+        L1 * np.cos(theta1) + L2 * np.cos(theta1 + theta2),
+        L1 * np.sin(theta1) + L2 * np.sin(theta1 + theta2)
+    ])
+
+    return joint1, joint2, end_effector
+
+# Draw the arm at different configurations
+fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+
+configs = [
+    (np.radians(45), np.radians(0), "Straight arm at 45°"),
+    (np.radians(45), np.radians(90), "Bent arm"),
+    (np.radians(90), np.radians(-45), "Reaching up")
+]
+
+for ax, (t1, t2, title) in zip(axes, configs):
+    j1, j2, ee = forward_kinematics_2link(t1, t2)
+
+    # Draw arm
+    ax.plot([j1[0], j2[0]], [j1[1], j2[1]], 'b-', linewidth=4, label='Link 1')
+    ax.plot([j2[0], ee[0]], [j2[1], ee[1]], 'r-', linewidth=4, label='Link 2')
+
+    # Draw joints
+    ax.plot(j1[0], j1[1], 'ko', markersize=12)
+    ax.plot(j2[0], j2[1], 'ko', markersize=10)
+    ax.plot(ee[0], ee[1], 'g*', markersize=15, label='End Effector')
+
+    ax.set_xlim(-2.5, 2.5)
+    ax.set_ylim(-0.5, 2.5)
+    ax.set_aspect('equal')
+    ax.grid(True, alpha=0.3)
+    ax.legend()
+    ax.set_title(f'{title}\nEnd pos: ({ee[0]:.2f}, {ee[1]:.2f})')
+
+plt.tight_layout()
+plt.show()
+```
+
+```python
+# Part 6: Animate arm reaching different positions
+from matplotlib.animation import FuncAnimation
+from IPython.display import HTML
+
+# Calculate joint angles to reach a target (simple inverse kinematics)
+def inverse_kinematics_2link(x, y, L1=1.0, L2=1.0):
+    """
+    Calculate joint angles to reach position (x, y)
+    Returns None if position is unreachable
+    """
+    dist = np.sqrt(x**2 + y**2)
+
+    # Check if reachable
+    if dist > L1 + L2 or dist < abs(L1 - L2):
+        return None, None
+
+    # Use law of cosines
+    cos_theta2 = (x**2 + y**2 - L1**2 - L2**2) / (2 * L1 * L2)
+    theta2 = np.arccos(np.clip(cos_theta2, -1, 1))
+
+    # Calculate theta1
+    beta = np.arctan2(y, x)
+    alpha = np.arctan2(L2 * np.sin(theta2), L1 + L2 * np.cos(theta2))
+    theta1 = beta - alpha
+
+    return theta1, theta2
+
+# Test inverse kinematics
+target = (1.2, 1.0)
+t1, t2 = inverse_kinematics_2link(*target)
+
+if t1 is not None:
+    j1, j2, ee = forward_kinematics_2link(t1, t2)
+    print(f"Target: {target}")
+    print(f"Joint angles: θ1={np.degrees(t1):.1f}°, θ2={np.degrees(t2):.1f}°")
+    print(f"Actual end position: ({ee[0]:.3f}, {ee[1]:.3f})")
+
+    # Visualize
+    plt.figure(figsize=(8, 8))
+    plt.plot([j1[0], j2[0]], [j1[1], j2[1]], 'b-', linewidth=4)
+    plt.plot([j2[0], ee[0]], [j2[1], ee[1]], 'r-', linewidth=4)
+    plt.plot(*target, 'gx', markersize=20, markeredgewidth=3, label='Target')
+    plt.plot(ee[0], ee[1], 'g*', markersize=15, label='End Effector')
+    plt.plot(j1[0], j1[1], 'ko', markersize=12)
+    plt.plot(j2[0], j2[1], 'ko', markersize=10)
+    plt.xlim(-2.5, 2.5)
+    plt.ylim(-0.5, 2.5)
+    plt.aspect = 'equal'
+    plt.grid(True)
+    plt.legend()
+    plt.title('Inverse Kinematics: Reaching a Target')
+    plt.show()
+```
+
+### Expected Results
+
+- Visualization of 2D rotation showing vectors at different angles
+- Correct transformation matrix calculations
+- 2-link robot arm visualizations at different configurations
+- Successful inverse kinematics reaching a target point
+
+### Troubleshooting
+
+- If matrices don't multiply correctly, check dimensions
+- Remember numpy uses @ for matrix multiplication
+- Angles must be in radians for trigonometric functions
+
+<RAGZone id="simulation-lab">
+</RAGZone>
+
+---
+
+## Hardware Lab: ROS2 TF (Transform) System
+
+**Platform**: ROS2 Humble
+**Hardware**: Simulation-only (TurtleSim)
+**Estimated Time**: 30 minutes
+**Difficulty**: Beginner
+
+### Prerequisites
+
+- ROS2 Humble installed
+- tf2_tools package installed
+
+### Safety Notes
+
+:::caution Safety Warning
+This is a simulation-only lab exploring ROS2's transformation system.
+:::
+
+### Procedure
+
+1. **Launch TurtleSim and turtle_tf2 demo**:
+```bash
+# Terminal 1
+source /opt/ros/humble/setup.bash
+ros2 launch turtle_tf2_py turtle_tf2_demo.launch.py
+```
+
+2. **In a new terminal, control the first turtle**:
+```bash
+# Terminal 2
+source /opt/ros/humble/setup.bash
+ros2 run turtlesim turtle_teleop_key
+```
+
+3. **Examine the TF tree**:
+```bash
+# Terminal 3
+source /opt/ros/humble/setup.bash
+
+# View the TF tree
+ros2 run tf2_tools view_frames
+
+# This creates a PDF showing the transform tree
+```
+
+4. **Echo transforms between frames**:
+```bash
+# See the transform between world and turtle1
+ros2 run tf2_ros tf2_echo world turtle1
+
+# See transform between the two turtles
+ros2 run tf2_ros tf2_echo turtle1 turtle2
+```
+
+5. **Visualize in RViz** (optional):
+```bash
+ros2 run rviz2 rviz2
+# Add TF display to see coordinate frames
+```
+
+### Verification
+
+- The second turtle follows the first turtle
+- view_frames generates a PDF showing frame relationships
+- tf2_echo shows real-time transform data
+
+### Simulation Alternative
+
+Review ROS2 TF2 documentation and example diagrams if unable to run locally.
+
+<RAGZone id="hardware-lab">
+</RAGZone>
+
+---
+
+## Case Study: Coordinate Frames in the Mars Perseverance Rover
+
+### Background
+
+NASA's Perseverance rover, which landed on Mars in 2021, uses multiple coordinate frames to navigate the Martian surface and manipulate samples with its robotic arm. The mathematical principles in this chapter are directly applied to explore another planet.
+
+### Implementation
+
+Perseverance uses several coordinate frames:
+
+**Rover Frame**: Centered on the rover body, used for local navigation and hazard avoidance. The rover's sensors report obstacles in this frame.
+
+**Site Frame**: A local frame established at the rover's landing site. All mission planning references this frame.
+
+**Arm Frame**: The robotic arm has its own kinematic chain with frames at each joint. Forward kinematics (like our 2-link example) calculates where the end effector is.
+
+**Camera Frames**: Each of the 23 cameras has its own frame. When a camera sees an interesting rock, the position must be transformed to arm coordinates for sampling.
+
+**The transformation pipeline**:
+1. Camera detects object at (x, y, z) in camera frame
+2. Transform to rover frame using camera calibration
+3. Transform to arm base frame
+4. Inverse kinematics calculates joint angles to reach the target
+
+### Results
+
+The mathematics enables:
+- Autonomous navigation over rocky terrain
+- Precise sample collection from specific rocks
+- Coordination between vision and manipulation systems
+- Mission planning from Earth using consistent coordinate references
+
+### Lessons Learned
+
+1. **Coordinate frame discipline is essential**: Clear definitions prevent costly errors
+2. **Calibration matters**: Small errors in transforms compound over distance
+3. **Redundancy helps**: Multiple sensors in different frames cross-validate
+4. **Simple math, complex systems**: The same linear algebra enables interplanetary exploration
+5. **Abstraction scales**: ROS-like concepts (transforms, frames) work from Earth robots to Mars rovers
+
+<RAGZone id="case-study">
+</RAGZone>
+
+---
+
+## Summary
+
+Mathematics provides the foundation for describing and controlling robot motion:
+
+- **Vectors** represent positions, velocities, and forces in 2D and 3D space
+- **Matrices** encode transformations like rotation and can be combined
+- **Rotation matrices** change orientation while preserving distances
+- **Homogeneous transformations** combine rotation and translation elegantly
+- **Coordinate frames** let us describe the same world from different perspectives
+- **Trigonometry** connects angles to positions, essential for kinematics
+
+These mathematical tools appear throughout robotics—from simple mobile robots to Mars rovers.
+
+---
+
+## Quiz
+
+### Question 1
+
+What does the magnitude of a vector represent in robotics?
+
+A) The angle of the vector
+B) The distance or length
+C) The direction only
+D) The color of the point
+
+<details>
+<summary>Answer</summary>
+**B**: The magnitude of a vector represents its length or distance. In robotics, this might be the distance between two points or the speed of motion.
+</details>
+
+### Question 2
+
+What is special about rotation matrices that makes finding their inverse easy?
+
+A) They are always zero
+B) They are orthonormal, so R^T = R^(-1)
+C) They only work in 2D
+D) They cannot be inverted
+
+<details>
+<summary>Answer</summary>
+**B**: Rotation matrices are orthonormal (columns are perpendicular unit vectors), which means the transpose equals the inverse: R^T = R^(-1). This makes computing inverse rotations computationally cheap.
+</details>
+
+### Question 3
+
+Why do we use 4×4 homogeneous transformation matrices instead of 3×3 matrices?
+
+A) They look more impressive
+B) They combine rotation and translation in one matrix
+C) 3×3 matrices don't work with computers
+D) They are required by ROS2
+
+<details>
+<summary>Answer</summary>
+**B**: Homogeneous transformation matrices (4×4) allow us to combine rotation and translation into a single matrix multiplication. This makes chaining multiple transformations simple and efficient.
+</details>
+
+### Question 4
+
+In a 2-link robot arm, what does "forward kinematics" calculate?
+
+A) The required motor torques
+B) The joint angles needed to reach a position
+C) The end effector position given joint angles
+D) The speed of the arm
+
+<details>
+<summary>Answer</summary>
+**C**: Forward kinematics calculates the end effector position given the joint angles. Inverse kinematics does the opposite—finding joint angles to reach a desired position.
+</details>
+
+### Question 5
+
+What function is commonly used to find an angle given x and y coordinates?
+
+A) sin(x, y)
+B) cos^(-1)(x/y)
+C) atan2(y, x)
+D) sqrt(x, y)
+
+<details>
+<summary>Answer</summary>
+**C**: The atan2(y, x) function returns the angle from the positive x-axis to the point (x, y), handling all four quadrants correctly. It's essential for calculating joint angles from positions.
+</details>
+
+<RAGZone id="quiz">
+</RAGZone>
+
+---
+
+## References
+
+[1] J. J. Craig, "Introduction to Robotics: Mechanics and Control," 4th ed., Pearson, 2017.
+
+[2] R. M. Murray, Z. Li, and S. S. Sastry, "A Mathematical Introduction to Robotic Manipulation," CRC Press, 1994.
+
+[3] K. M. Lynch and F. C. Park, "Modern Robotics: Mechanics, Planning, and Control," Cambridge University Press, 2017.
+
+[4] NASA Jet Propulsion Laboratory, "Mars 2020 Perseverance Rover," NASA, 2021. [Online]. Available: https://mars.nasa.gov/mars2020/
+
+---
+
+## Further Reading
+
+- "Modern Robotics" textbook (free online version available)
+- 3Blue1Brown "Essence of Linear Algebra" video series
+- ROS2 TF2 documentation for practical transformation handling

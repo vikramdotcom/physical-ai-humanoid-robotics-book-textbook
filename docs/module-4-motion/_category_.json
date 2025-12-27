@@ -1,0 +1,22 @@
+{
+  "label": "Module 4: Motion and Locomotion",
+  "position": 5,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "description": "Principles of robot movement, from basic kinematics to advanced bipedal walking and whole-body control.",
+    "keywords": ["kinematics", "dynamics", "locomotion", "bipedal-walking", "balance"]
+  },
+  "customProps": {
+    "module_number": 4,
+    "chapter_count": 7,
+    "prerequisites": ["Module 2", "Basic calculus concepts"],
+    "learning_outcomes": [
+      "Solve forward and inverse kinematics problems",
+      "Understand robot dynamics and force control",
+      "Implement motion planning algorithms",
+      "Describe bipedal walking principles and balance control"
+    ]
+  }
+}

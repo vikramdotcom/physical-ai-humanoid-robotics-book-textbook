@@ -1,0 +1,22 @@
+{
+  "label": "Module 8: Applications and Future Directions",
+  "position": 9,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "description": "Real-world applications of humanoid robotics and emerging trends shaping the future of the field.",
+    "keywords": ["manufacturing", "healthcare", "service-robots", "research-platforms", "future-of-ai"]
+  },
+  "customProps": {
+    "module_number": 8,
+    "chapter_count": 5,
+    "prerequisites": ["Modules 1-7 (can be read earlier for motivation)"],
+    "learning_outcomes": [
+      "Identify applications of humanoid robotics across industries",
+      "Evaluate research platforms and open-source projects",
+      "Analyze the future trajectory of physical AI",
+      "Explore career pathways in robotics"
+    ]
+  }
+}

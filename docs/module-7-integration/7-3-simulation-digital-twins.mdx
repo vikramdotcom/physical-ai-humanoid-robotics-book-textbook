@@ -1,0 +1,123 @@
+---
+id: "7-3-simulation-digital-twins"
+title: "Simulation and Digital Twins"
+sidebar_label: "7.3 Simulation"
+sidebar_position: 3
+description: "Isaac Sim, Gazebo, and simulation-based development"
+keywords: [simulation, Isaac-Sim, Gazebo, digital-twin]
+module: 7
+chapter: 3
+reading_time: 25
+difficulty: "intermediate"
+prerequisites: ["7-1-ros2-architecture-deep-dive"]
+learning_objectives: ["Use robot simulators", "Apply digital twin concepts"]
+simulation_lab: {platform: "colab", estimated_time: 30}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 35}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Simulation and Digital Twins
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Use simulation for robot development
+- Understand digital twins
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+## Introduction
+
+Simulation enables safe, fast, cost-effective robot development before real-world deployment.
+
+<RAGZone id="introduction"></RAGZone>
+
+## Theory Content
+
+### Gazebo
+Open-source simulator with ROS2 integration. Good for navigation and manipulation.
+
+### NVIDIA Isaac Sim
+High-fidelity simulation with GPU acceleration. Excellent for AI training.
+
+### Digital Twins
+Virtual replicas synchronized with physical robots for monitoring and prediction.
+
+<RAGZone id="theory-content"></RAGZone>
+
+## Simulation Lab
+
+```python
+# Simulation benefits
+benefits = ['Safe testing', 'Faster iteration', 'Lower cost', 'Parallel training']
+for b in benefits:
+    print(f"- {b}")
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+## Hardware Lab
+
+```bash
+# Launch Gazebo simulation
+ros2 launch gazebo_ros gazebo.launch.py
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+## Case Study
+
+NVIDIA uses Isaac Sim to train warehouse robots with thousands of parallel simulations.
+
+<RAGZone id="case-study"></RAGZone>
+
+## Summary
+
+Simulation accelerates robot development by providing safe, scalable testing environments.
+
+## Quiz
+
+### Question 1
+Simulation enables?
+A) Only real tests B) Safe development C) No testing D) Hardware only
+<details><summary>Answer</summary>**B**: Simulation provides safe development environment.</details>
+
+### Question 2
+Isaac Sim uses?
+A) CPU only B) GPU acceleration C) No compute D) Cloud only
+<details><summary>Answer</summary>**B**: Isaac Sim leverages GPU for high-fidelity simulation.</details>
+
+### Question 3
+Digital twin is?
+A) Two robots B) Virtual replica of physical system C) Just simulation D) Hardware copy
+<details><summary>Answer</summary>**B**: Digital twins mirror physical systems virtually.</details>
+
+### Question 4
+Gazebo integrates with?
+A) No framework B) ROS2 C) Only proprietary D) Nothing
+<details><summary>Answer</summary>**B**: Gazebo has strong ROS2 integration.</details>
+
+### Question 5
+Parallel simulation?
+A) One at a time B) Many instances simultaneously C) Not possible D) Slower
+<details><summary>Answer</summary>**B**: Multiple simulations can run in parallel for faster training.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+## References
+
+[1] NVIDIA Isaac Sim Documentation, 2024.
+
+## Further Reading
+
+- Gazebo tutorials

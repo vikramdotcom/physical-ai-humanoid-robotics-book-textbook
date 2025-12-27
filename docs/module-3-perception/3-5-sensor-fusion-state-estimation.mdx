@@ -1,0 +1,185 @@
+---
+id: "3-5-sensor-fusion-state-estimation"
+title: "Sensor Fusion and State Estimation"
+sidebar_label: "3.5 Sensor Fusion"
+sidebar_position: 5
+description: "Combining multiple sensors using Kalman filters and other fusion techniques"
+keywords: [sensor-fusion, kalman-filter, state-estimation, EKF]
+module: 3
+chapter: 5
+reading_time: 25
+difficulty: "advanced"
+prerequisites: ["3-1-sensor-fundamentals", "1-4-mathematics-for-robotics"]
+learning_objectives:
+  - "Understand the principles of sensor fusion"
+  - "Apply Kalman filtering for state estimation"
+  - "Combine multiple sensor modalities effectively"
+simulation_lab: {platform: "colab", estimated_time: 35}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 30}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Sensor Fusion and State Estimation
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Understand the principles of sensor fusion
+- Apply Kalman filtering for state estimation
+- Combine multiple sensor modalities effectively
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+---
+
+## Introduction
+
+No single sensor is perfect. Sensor fusion combines information from multiple sensors to achieve better estimates than any individual sensor alone.
+
+<RAGZone id="introduction"></RAGZone>
+
+---
+
+## Theory Content
+
+### Section 1: Why Sensor Fusion?
+
+Different sensors have different strengths: GPS gives global position but with noise; IMUs give smooth motion but drift. Fusion combines their strengths.
+
+### Section 2: Kalman Filter
+
+The Kalman filter is the optimal linear estimator for Gaussian noise. It predicts state, incorporates measurements, and tracks uncertainty.
+
+**Key equations:**
+- Predict: x̂ = Fx + Bu
+- Update: x̂ = x̂ + K(z - Hx̂)
+
+### Section 3: Extended Kalman Filter (EKF)
+
+For nonlinear systems, EKF linearizes around the current estimate, enabling fusion for robot localization and SLAM.
+
+<RAGZone id="theory-content"></RAGZone>
+
+---
+
+## Simulation Lab
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Simple 1D Kalman filter
+def kalman_filter(measurements, process_var=0.1, measurement_var=1.0):
+    n = len(measurements)
+    estimates = np.zeros(n)
+
+    x = 0  # Initial estimate
+    P = 1  # Initial uncertainty
+
+    for i, z in enumerate(measurements):
+        # Predict
+        P = P + process_var
+
+        # Update
+        K = P / (P + measurement_var)  # Kalman gain
+        x = x + K * (z - x)
+        P = (1 - K) * P
+
+        estimates[i] = x
+
+    return estimates
+
+# Generate noisy measurements of constant value
+true_value = 5.0
+measurements = true_value + np.random.normal(0, 1, 50)
+filtered = kalman_filter(measurements)
+
+plt.figure(figsize=(12, 5))
+plt.plot(measurements, 'b.', alpha=0.5, label='Measurements')
+plt.plot(filtered, 'r-', linewidth=2, label='Kalman estimate')
+plt.axhline(y=true_value, color='g', linestyle='--', label='True value')
+plt.legend()
+plt.title('Kalman Filter Demonstration')
+plt.show()
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+---
+
+## Hardware Lab
+
+```bash
+# ROS2 robot_localization package for sensor fusion
+ros2 pkg info robot_localization
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+---
+
+## Case Study
+
+Autonomous vehicles fuse GPS, IMU, wheel odometry, and visual odometry using EKF to achieve centimeter-level localization accuracy.
+
+<RAGZone id="case-study"></RAGZone>
+
+---
+
+## Summary
+
+Sensor fusion, especially through Kalman filtering, enables robust state estimation by combining imperfect sensor data optimally.
+
+---
+
+## Quiz
+
+### Question 1
+What is the purpose of sensor fusion?
+A) Reduce sensors B) Combine sensor strengths C) Eliminate noise completely D) Save power
+<details><summary>Answer</summary>**B**: Fusion combines strengths of different sensors for better overall estimates.</details>
+
+### Question 2
+What does the Kalman gain determine?
+A) Sensor cost B) How much to trust measurement vs prediction C) Battery life D) Communication speed
+<details><summary>Answer</summary>**B**: Kalman gain balances trust between model prediction and new measurements.</details>
+
+### Question 3
+Why use EKF instead of standard Kalman filter?
+A) Faster B) For nonlinear systems C) Cheaper D) Simpler
+<details><summary>Answer</summary>**B**: EKF handles nonlinear system dynamics through linearization.</details>
+
+### Question 4
+What does sensor fusion help with in robotics?
+A) Appearance B) Accurate state estimation C) Color detection D) Sound production
+<details><summary>Answer</summary>**B**: Fusion improves state estimation accuracy for localization and navigation.</details>
+
+### Question 5
+IMU-GPS fusion compensates for?
+A) Color B) IMU drift and GPS noise C) Temperature D) Weight
+<details><summary>Answer</summary>**B**: IMU provides smooth short-term estimates while GPS corrects long-term drift.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+---
+
+## References
+
+[1] S. Thrun et al., "Probabilistic Robotics," MIT Press, 2005.
+
+---
+
+## Further Reading
+
+- robot_localization ROS2 package documentation
+- "Kalman and Bayesian Filters in Python" by R. Labbe

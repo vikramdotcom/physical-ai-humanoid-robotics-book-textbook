@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "module-category.schema.json",
+  "title": "Module Category Schema",
+  "description": "JSON Schema for Docusaurus _category_.json files",
+  "type": "object",
+  "required": ["label", "position"],
+  "properties": {
+    "label": {
+      "type": "string",
+      "pattern": "^Module [1-8]: .+$",
+      "description": "Module label for sidebar (e.g., 'Module 1: Foundations of Physical AI')"
+    },
+    "position": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 8,
+      "description": "Order in sidebar"
+    },
+    "collapsible": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether module can be collapsed"
+    },
+    "collapsed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Initial collapsed state"
+    },
+    "link": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["generated-index", "doc"],
+          "default": "generated-index"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 50,
+          "maxLength": 300,
+          "description": "Module description for generated index page"
+        },
+        "keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 3,
+          "description": "SEO keywords for module"
+        }
+      }
+    },
+    "customProps": {
+      "type": "object",
+      "properties": {
+        "module_number": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "chapter_count": {
+          "type": "integer",
+          "minimum": 5,
+          "maximum": 8
+        },
+        "prerequisites": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "learning_outcomes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 3
+        }
+      }
+    }
+  }
+}

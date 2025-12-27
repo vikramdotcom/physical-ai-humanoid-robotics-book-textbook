@@ -1,0 +1,166 @@
+---
+id: "3-1-sensor-fundamentals"
+title: "Sensor Fundamentals"
+sidebar_label: "3.1 Sensor Fundamentals"
+sidebar_position: 1
+description: "Understanding sensor types, specifications, noise characteristics, and calibration for robotics"
+keywords: [sensors, calibration, noise, specifications]
+module: 3
+chapter: 1
+reading_time: 20
+difficulty: "intermediate"
+prerequisites: ["1-3-physical-ai-technology-stack"]
+learning_objectives:
+  - "Classify different sensor types used in robotics"
+  - "Interpret sensor specifications and datasheets"
+  - "Understand noise characteristics and filtering"
+simulation_lab: {platform: "colab", estimated_time: 30}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 30}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Sensor Fundamentals
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Classify different sensor types used in robotics
+- Interpret sensor specifications and datasheets
+- Understand noise characteristics and filtering
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+---
+
+## Introduction
+
+Sensors are the robot's connection to the physical world, converting physical phenomena into electrical signals. Understanding sensor fundamentals is essential for building effective robotic perception systems.
+
+<RAGZone id="introduction"></RAGZone>
+
+---
+
+## Theory Content
+
+### Section 1: Sensor Classification
+
+**Exteroceptive sensors** perceive the external environment (cameras, LIDAR, sonar). **Proprioceptive sensors** measure internal state (encoders, IMUs, current sensors).
+
+### Section 2: Key Specifications
+
+- **Range**: Minimum and maximum measurable values
+- **Resolution**: Smallest detectable change
+- **Accuracy**: Closeness to true value
+- **Precision**: Repeatability of measurements
+- **Bandwidth**: Response speed
+
+### Section 3: Noise and Calibration
+
+All sensors have noise. Understanding and mitigating noise through filtering and calibration is crucial for reliable robot operation.
+
+<RAGZone id="theory-content"></RAGZone>
+
+---
+
+## Simulation Lab
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Simulate noisy sensor readings
+true_value = 10.0
+noise_std = 0.5
+readings = true_value + np.random.normal(0, noise_std, 100)
+
+plt.figure(figsize=(10, 4))
+plt.plot(readings, 'b.', alpha=0.5, label='Readings')
+plt.axhline(y=true_value, color='r', linestyle='--', label='True value')
+plt.xlabel('Sample')
+plt.ylabel('Value')
+plt.legend()
+plt.title('Simulated Sensor Noise')
+plt.show()
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+---
+
+## Hardware Lab
+
+```bash
+# Explore ROS2 sensor messages
+ros2 interface show sensor_msgs/msg/Range
+ros2 interface show sensor_msgs/msg/Imu
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+---
+
+## Case Study
+
+Industrial robots use sensor calibration procedures to maintain accuracy over time, with regular recalibration schedules.
+
+<RAGZone id="case-study"></RAGZone>
+
+---
+
+## Summary
+
+Sensors are fundamental to robot perception. Understanding specifications, noise, and calibration enables effective sensor selection and integration.
+
+---
+
+## Quiz
+
+### Question 1
+What does sensor resolution measure?
+A) Maximum range B) Smallest detectable change C) Speed D) Cost
+<details><summary>Answer</summary>**B**: Resolution is the smallest change the sensor can detect.</details>
+
+### Question 2
+What type of sensor measures internal robot state?
+A) Exteroceptive B) Proprioceptive C) External D) Visual
+<details><summary>Answer</summary>**B**: Proprioceptive sensors measure internal state like joint positions.</details>
+
+### Question 3
+Why is calibration important?
+A) Reduces cost B) Improves accuracy C) Increases speed D) Adds features
+<details><summary>Answer</summary>**B**: Calibration corrects systematic errors to improve measurement accuracy.</details>
+
+### Question 4
+What is sensor bandwidth?
+A) Data size B) Response speed C) Power consumption D) Cost
+<details><summary>Answer</summary>**B**: Bandwidth indicates how quickly the sensor can respond to changes.</details>
+
+### Question 5
+How is noise typically reduced?
+A) Ignore it B) Filtering C) Higher voltage D) Larger sensors
+<details><summary>Answer</summary>**B**: Filtering techniques like averaging or Kalman filters reduce noise effects.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+---
+
+## References
+
+[1] S. Thrun et al., "Probabilistic Robotics," MIT Press, 2005.
+
+---
+
+## Further Reading
+
+- Sensor datasheets and application notes
+- ROS2 sensor message documentation

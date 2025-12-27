@@ -1,0 +1,123 @@
+---
+id: "6-6-foundation-models-robotics"
+title: "Foundation Models for Robotics"
+sidebar_label: "6.6 Foundation Models"
+sidebar_position: 6
+description: "Vision-language models, RT-X, and generalist robot policies"
+keywords: [foundation-models, VLM, RT-X, generalist]
+module: 6
+chapter: 6
+reading_time: 25
+difficulty: "advanced"
+prerequisites: ["6-1-ml-fundamentals-robotics"]
+learning_objectives: ["Understand foundation models for robotics", "Apply VLMs to robot tasks"]
+simulation_lab: {platform: "colab", estimated_time: 30}
+hardware_lab: {platform: "ros2-humble", hardware: "simulation-only", estimated_time: 25}
+version: "1.0.0"
+last_updated: "2025-12-27"
+authors: [{name: "Physical AI Textbook Team"}]
+---
+
+import { PersonalizeButton } from '@site/src/components/extensibility/PersonalizeButton';
+import { TranslateButton } from '@site/src/components/extensibility/TranslateButton';
+import { RAGZone } from '@site/src/components/extensibility/RAGZone';
+
+# Foundation Models for Robotics
+
+<div style={{display: 'flex', gap: '8px', marginBottom: '20px'}}>
+  <PersonalizeButton />
+  <TranslateButton lang="urdu" />
+</div>
+
+## Learning Objectives
+
+- Understand vision-language models for robotics
+- Apply foundation models to robot tasks
+
+<RAGZone id="learning-objectives"></RAGZone>
+
+## Introduction
+
+Large foundation models trained on internet-scale data bring general knowledge to robotics, enabling instruction-following and generalization.
+
+<RAGZone id="introduction"></RAGZone>
+
+## Theory Content
+
+### Vision-Language Models (VLMs)
+Models like CLIP understand both images and text, enabling language-conditioned robot control.
+
+### RT-X and Generalist Policies
+Google's RT-X trains on diverse robot data for policies that generalize across robots and tasks.
+
+### Language as Interface
+Natural language instructions enable flexible, general-purpose robot control.
+
+<RAGZone id="theory-content"></RAGZone>
+
+## Simulation Lab
+
+```python
+# Conceptual foundation model use
+instruction = "Pick up the red cup"
+image = "camera_image.jpg"
+print(f"VLM processes: '{instruction}' + image")
+print("Output: robot action sequence")
+```
+
+<RAGZone id="simulation-lab"></RAGZone>
+
+## Hardware Lab
+
+```bash
+ros2 topic list
+```
+
+<RAGZone id="hardware-lab"></RAGZone>
+
+## Case Study
+
+Google's PaLM-E combines language models with robotics for instruction-following manipulation.
+
+<RAGZone id="case-study"></RAGZone>
+
+## Summary
+
+Foundation models bring general knowledge and language understanding to robotics, enabling more capable and flexible systems.
+
+## Quiz
+
+### Question 1
+VLM stands for?
+A) Very Large Motor B) Vision-Language Model C) Virtual Learning Machine D) Variable Load Manager
+<details><summary>Answer</summary>**B**: Vision-Language Models understand both modalities.</details>
+
+### Question 2
+RT-X aims for?
+A) Speed only B) Generalist robot policies C) One task only D) No learning
+<details><summary>Answer</summary>**B**: RT-X trains policies that generalize across robots and tasks.</details>
+
+### Question 3
+Language enables?
+A) Rigid control B) Flexible instruction-following C) No control D) Hardware changes
+<details><summary>Answer</summary>**B**: Natural language provides flexible control interface.</details>
+
+### Question 4
+Foundation models are trained on?
+A) Small datasets B) Internet-scale data C) No data D) Robot data only
+<details><summary>Answer</summary>**B**: Foundation models use massive internet-scale training data.</details>
+
+### Question 5
+CLIP understands?
+A) Sound only B) Images and text C) Touch only D) Smell
+<details><summary>Answer</summary>**B**: CLIP connects visual and textual representations.</details>
+
+<RAGZone id="quiz"></RAGZone>
+
+## References
+
+[1] Google DeepMind, "RT-X," 2023.
+
+## Further Reading
+
+- PaLM-E paper
