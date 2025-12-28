@@ -11,7 +11,7 @@ const config: Config = {
     v4: true,
   },
 
-  url: 'https://physical-ai-humanoiid-robotics-book.vercel.app',
+  url: 'https://physical-ai-humanoid-robotics-book-nu-seven.vercel.app',
   baseUrl: '/',
 
 
@@ -75,8 +75,8 @@ const config: Config = {
           title: 'Textbook',
           items: [
             {
-              label: 'Chapter 1: Introduction',
-              to: '/01-intro',
+              label: 'Introduction',
+              to: '/intro',
             },
           ],
         },
