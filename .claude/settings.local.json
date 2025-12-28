@@ -20,7 +20,10 @@
       "Bash(if [ -d \"history/prompts/general\" ])",
       "Bash(then ls history/prompts/general/*.prompt.md)",
       "Bash(else echo \"0\")",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git push:*)",
+      "mcp__github__get_file_contents",
+      "Bash(git commit:*)"
     ]
   }
 }
